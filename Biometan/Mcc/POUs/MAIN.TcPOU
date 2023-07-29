@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1">
-  <POU Name="MAIN" Id="{5ce869a2-8876-462e-9766-a690c22efe4d}">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{5ce869a2-8876-462e-9766-a690c22efe4d}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
+	motorContactor : MotorContactor;
 END_VAR
-]]>
-    </Declaration>
+]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[motorContactor.SwitchOn();
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
