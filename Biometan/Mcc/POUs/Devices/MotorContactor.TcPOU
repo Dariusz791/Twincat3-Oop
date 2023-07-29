@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MotorContactor" Id="{e1462739-47c9-4575-add9-5f065839d072}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK MotorContactor
+VAR
+	_output	AT%Q*	: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="SwitchOff" Id="{2b0a9879-206a-40e5-8032-7f79867a5df1}">
+      <Declaration><![CDATA[METHOD SwitchOff : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_output := False;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SwitchOn" Id="{f96a8c5e-6833-4535-b423-6211447e25fc}">
+      <Declaration><![CDATA[METHOD SwitchOn : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_output := True;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
