@@ -18,6 +18,9 @@
     <LibraryReferences>{a1937c7a-bb3b-4165-b4f6-773a44017a92}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DUTs\ST_WorkTime.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
@@ -28,6 +31,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\MotorWorkTime.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

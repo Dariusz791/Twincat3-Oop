@@ -3,14 +3,29 @@
   <POU Name="MotorWorkTime" Id="{bf300658-67ee-4a5c-88df-962f2b07572d}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK MotorWorkTime
 VAR_INPUT
+	stWorkTime : ST_WorkTime;
 END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
+	fbTon	: TON;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[
+fbTon(IN := TRUE, PT := T#1S);
+
+IF (fbTon.Q) THEN
+	
+	stWorkTime.seconds := stWorkTime.seconds +1;
+	
+	IF stWorkTime.seconds > 59 THEN
+		stWorkTime.seconds := 0;
+		stWorkTime.minuts := stWorkTime.minuts +1;
+		stWorkTime.hours := stWorkTime.minuts / 60;
+	END_IF
+	
+END_IF]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

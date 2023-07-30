@@ -3,11 +3,19 @@
   <POU Name="MAIN" Id="{5ce869a2-8876-462e-9766-a690c22efe4d}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
+	stWorkTime : ST_WorkTime;
 	motorContactor : MotorContactor;
+	motorWorkTime : MotorWorkTime;
+	
+	
+
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[motorContactor.SwitchOn();
+      <ST><![CDATA[motorWorkTime(stWorkTime:=stWorkTime);
+
+
+
 ]]></ST>
     </Implementation>
   </POU>

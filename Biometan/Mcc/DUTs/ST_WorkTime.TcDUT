@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ST_WorkTime" Id="{a47abd02-c805-4524-8b6f-66147f9de5d3}">
+    <Declaration><![CDATA[TYPE ST_WorkTime :
+STRUCT
+	hours	: UDINT;
+	minuts	: UINT;
+	seconds	: UINT;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
