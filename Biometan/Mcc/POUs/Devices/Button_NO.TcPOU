@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="Button_NO" Id="{6a31ca67-2efd-4a12-9b08-d9d7ccb5fe91}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK Button_NO
+    <Declaration><![CDATA[FUNCTION_BLOCK Button_NO IMPLEMENTS I_Button
 VAR
 	_input AT%M*	:BOOL;
 END_VAR

@@ -3,18 +3,26 @@
   <POU Name="MAIN" Id="{5ce869a2-8876-462e-9766-a690c22efe4d}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	stWorkTime : ST_WorkTime;
-	motorContactor : MotorContactor;
-	motorWorkTime : MotorWorkTime;
+	
+	stWorkTime 				: ST_WorkTime;
+	autoScadaButton			: Button_NO;
+	forwardScadaButton		: Button_NO;
+	reverseScadaButton		: Button_NO;
+	stateScadaLed			: Led;
+	autoScadaLed			: Led;
+	supplyScadaLed			: Led;
+	statusScadalabel		: Label;
+	motorContactor 			: MotorContactor;
+	motorWorkTime 			: MotorWorkTime;
 	
 	
 
-	stan: BOOL;
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[stan := motorContactor.SwitchOn;
-motorWorkTime(stWorkTime:=stWorkTime);
+      <ST><![CDATA[//motorContactor.SwitchOn;
+motorWorkTime(stWorkTime:=stWorkTime, iButton:=forwardScadaButton);
 
 
 

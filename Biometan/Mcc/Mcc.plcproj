@@ -25,10 +25,25 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\Devices\Button_NO.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Devices\ITFs\I_Button.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Devices\Label.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Devices\Led.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Devices\MotorContactor.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Devices\MotorTermFuse.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Devices\WorkCounter.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
@@ -42,6 +57,7 @@
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
     <Folder Include="POUs\Devices" />
+    <Folder Include="POUs\Devices\ITFs" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>

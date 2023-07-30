@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="MotorWorkTime" Id="{bf300658-67ee-4a5c-88df-962f2b07572d}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK MotorWorkTime
+  <POU Name="WorkCounter" Id="{5346841c-7375-40f7-8ece-b479cbbef4db}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK WorkCounter
 VAR_INPUT
 	stWorkTime : REFERENCE TO ST_WorkTime;
 END_VAR
@@ -9,13 +9,13 @@ VAR_OUTPUT
 END_VAR
 VAR
 	fbTon	: TON;
+	iButton: I_Button;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[
-fbTon(IN := TRUE, PT := T#1S);
+      <ST><![CDATA[fbTon(IN := TRUE, PT := T#1S);
 
-IF (fbTon.Q) THEN
+IF (fbTon.Q) AND iButton.IsPressed THEN
 	
 	fbTon(IN:=FALSE);
 	
