@@ -13,7 +13,8 @@ VAR
 	supplyScadaLed			: Led;
 	statusScadalabel		: Label;
 	motorContactor 			: MotorContactor;
-	motorWorkTime 			: MotorWorkTime;
+	motorTermFuse			: MotorTermFuse;
+	motorWorkTime 			: WorkCounter;
 	
 	
 
@@ -21,8 +22,15 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//motorContactor.SwitchOn;
-motorWorkTime(stWorkTime:=stWorkTime, iButton:=forwardScadaButton);
+      <ST><![CDATA[
+if 
+
+
+
+motorWorkTime();
+motorWorkTime.CheckState(forwardScadaButton);
+
+
 
 
 

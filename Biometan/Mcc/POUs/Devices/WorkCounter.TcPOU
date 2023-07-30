@@ -3,19 +3,20 @@
   <POU Name="WorkCounter" Id="{5346841c-7375-40f7-8ece-b479cbbef4db}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK WorkCounter
 VAR_INPUT
-	stWorkTime : REFERENCE TO ST_WorkTime;
 END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
-	fbTon	: TON;
-	iButton: I_Button;
+	startCount  : BOOL;
+	stWorkTime  : ST_WorkTime;
+	fbTon		: TON;
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[fbTon(IN := TRUE, PT := T#1S);
 
-IF (fbTon.Q) AND iButton.IsPressed THEN
+IF (fbTon.Q) AND startCount THEN
 	
 	fbTon(IN:=FALSE);
 	
@@ -29,5 +30,19 @@ IF (fbTon.Q) AND iButton.IsPressed THEN
 	
 END_IF]]></ST>
     </Implementation>
+    <Method Name="CheckState" Id="{321827c4-10eb-4532-8b1e-079566f64614}">
+      <Declaration><![CDATA[METHOD CheckState : BOOL
+VAR_INPUT
+	iButton	: I_Button;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF iButton.IsPressed THEN
+	THIS^.startCount := TRUE;
+ELSE
+	THIS^.startCount := FALSE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>
