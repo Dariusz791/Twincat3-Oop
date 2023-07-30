@@ -16,6 +16,7 @@
     <Implicit_KindOfTask>{f436af73-c4fb-44e9-b525-c7c2a0bb895e}</Implicit_KindOfTask>
     <Implicit_Jitter_Distribution>{85e29cf8-fed6-4ab0-9fd8-5de5da04e319}</Implicit_Jitter_Distribution>
     <LibraryReferences>{a1937c7a-bb3b-4165-b4f6-773a44017a92}</LibraryReferences>
+    <Released>false</Released>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DUTs\ST_WorkTime.TcDUT">

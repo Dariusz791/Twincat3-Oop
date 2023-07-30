@@ -9,10 +9,12 @@ VAR
 	
 	
 
+	stan: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[motorWorkTime(stWorkTime:=stWorkTime);
+      <ST><![CDATA[stan := motorContactor.SwitchOn;
+motorWorkTime(stWorkTime:=stWorkTime);
 
 
 

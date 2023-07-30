@@ -3,7 +3,7 @@
   <POU Name="MotorWorkTime" Id="{bf300658-67ee-4a5c-88df-962f2b07572d}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK MotorWorkTime
 VAR_INPUT
-	stWorkTime : ST_WorkTime;
+	stWorkTime : REFERENCE TO ST_WorkTime;
 END_VAR
 VAR_OUTPUT
 END_VAR
@@ -16,6 +16,8 @@ END_VAR
 fbTon(IN := TRUE, PT := T#1S);
 
 IF (fbTon.Q) THEN
+	
+	fbTon(IN:=FALSE);
 	
 	stWorkTime.seconds := stWorkTime.seconds +1;
 	
