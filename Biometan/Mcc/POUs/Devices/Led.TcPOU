@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Led" Id="{5192deaf-a571-4c56-a193-61331a8e0b7c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Led
+VAR
+	_state	AT%M* : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="State" Id="{d42ba43d-b562-46aa-bef9-a5c2dcfb7fcb}">
+      <Declaration><![CDATA[PROPERTY State : BOOL]]></Declaration>
+      <Get Name="Get" Id="{ce5c1849-9ed5-42f0-923d-bafeb1f9a12a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[State := _state;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{e2261ee8-000f-442a-9440-c1ecbed6ff40}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_state := State;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>

@@ -9,14 +9,14 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Property Name="IsActive" Id="{41f3700b-46e7-499b-ba0c-97c1c152ff2d}">
-      <Declaration><![CDATA[PROPERTY IsActive : BOOL]]></Declaration>
+    <Property Name="IsPressed" Id="{41f3700b-46e7-499b-ba0c-97c1c152ff2d}">
+      <Declaration><![CDATA[PROPERTY IsPressed : BOOL]]></Declaration>
       <Get Name="Get" Id="{4b486152-cfe4-4136-b2da-a2c8f67032f3}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[IsActive:= _input;
+          <ST><![CDATA[IsPressed:= _input;
 ]]></ST>
         </Implementation>
       </Get>
