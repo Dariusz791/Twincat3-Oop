@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MotorTermFuse" Id="{2bcfa7ff-b43c-4aa6-8d90-cefd9a2cbeb3}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK MotorTermFuse
+
+VAR
+	_input AT%I* :BOOL;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="IsActive" Id="{db56a24f-5d66-4268-a71f-5e29406db3e4}">
+      <Declaration><![CDATA[PROPERTY IsActive : BOOL]]></Declaration>
+      <Get Name="Get" Id="{7ce5753b-bc05-48a1-b2f2-c7db717ca361}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IsActive := _input;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>
