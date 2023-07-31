@@ -4,29 +4,28 @@
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
 	
-	stWorkTime 				: ST_WorkTime;
-	autoScadaLed			: Led;
-	supplyScadaLed			: Led;
-	statusScadaLabel		: Label;
-	motorContactor 			: MotorContactor;
-	motorTermFuse			: MotorTermFuse;
-	autoScadaButton			: Button_NO;
-	forwardScadaButton		: Button_NO;
-	reverseScadaButton		: Button_NO;
-	stateTaurusLed			: TaurusLed(forwardScadaButton, motorTermFuse);
-	motorWorkTime 			: WorkCounter;
-	
-	
+	mccMotor				: MccMotor;
 
+//	stWorkTime 				: ST_WorkTime;
+//	autoScadaLed			: Led;
+//	supplyScadaLed			: Led;
+//	statusScadaLabel		: Label;
+//	motorContactor 			: MotorContactor;
+//	motorTermFuse			: MotorTermFuse;
+//	autoScadaButton			: Button_NO;
+//	forwardScadaButton		: Button_NO;
+//	reverseScadaButton		: Button_NO;
+//	stateTaurusLed			: TaurusLed(forwardScadaButton, motorTermFuse);
+//	motorWorkTime 			: WorkCounter;
+	
+	
 	
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[
+mccMotor();
 
-stateTaurusLed();
-motorWorkTime();
-motorWorkTime.CheckState(stateTaurusLed);
 
 
 

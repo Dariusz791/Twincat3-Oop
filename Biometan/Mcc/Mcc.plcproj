@@ -43,6 +43,9 @@
     <Compile Include="POUs\Devices\Led.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\Devices\MccMotor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Devices\MotorContactor.TcPOU">
       <SubType>Code</SubType>
     </Compile>

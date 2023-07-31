@@ -7,23 +7,45 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
-	stWorkTime 				: ST_WorkTime;
-	autoScadaLed			: Led;
-	supplyScadaLed			: Led;
-	statusScadaLabel		: Label;
-	motorContactor 			: MotorContactor;
-	motorTermFuse			: MotorTermFuse;
-	autoScadaButton			: Button_NO;
-	forwardScadaButton		: Button_NO;
-	reverseScadaButton		: Button_NO;
-	stateTaurusLed			: TaurusLed(forwardScadaButton, motorTermFuse);
-	motorWorkTime 			: WorkCounter;
+	stWorkTime 				: ST_WorkTime;	// Work time structure
+	autoScadaLed			: Led;	// SCADA Led indicated mode of work Mcc
+	supplyScadaLed			: Led;	// SCADA Led supply displayed in SCADA it set flag in Memory to read by SCADA
+	statusScadaLabel		: Label;	// SCADA Label to display status of Mcc
+	autoScadaButton			: Button_NO;		// SCADA Button to set Auto work mode
+	forwardScadaButton		: Button_NO;		// SCADA Button to set work Mcc forward
+	//reverseScadaButton		: Button_NO;
+	stateTaurusLed			: TaurusLed(forwardScadaButton, motorTermFuse);	// SCADA Taurus LED to indicate state of Mcc
+	motorContactor 			: MotorContactor;	// Psyhical output Starting Contactor 
+	motorTermFuse			: MotorTermFuse;	// Psyhical input Thermal and Overcurrent Switch
+	motorWorkCounter 		: WorkCounter;	//FB to determine work time of Mcc
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[stateTaurusLed();
-motorWorkTime();
-motorWorkTime.CheckState(stateTaurusLed);]]></ST>
+      <ST><![CDATA[// determine the state of the Mcc device
+stateTaurusLed();
+// check if MCC is runnning and start count time of work
+motorWorkCounter.CheckState(stateTaurusLed);
+motorWorkCounter();
+
+// set the supply Led in SCADA system depending on the TermFuse
+IF motorTermFuse.IsActive THEN
+	supplyScadaLed.State := TRUE;
+ELSE
+	supplyScadaLed.State := FALSE;
+END_IF
+
+// set the autoScadaLed in SCADA system depending on the AutoScadaButton state
+IF autoScadaButton.IsPressed THEN
+	autoScadaLed.State := TRUE;
+ELSE
+	autoScadaLed := FALSE;
+END_IF
+
+
+
+
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
