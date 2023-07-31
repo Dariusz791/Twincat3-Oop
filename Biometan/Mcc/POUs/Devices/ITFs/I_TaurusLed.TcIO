@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="I_TaurusLed" Id="{849bbff6-f5db-40e4-a15f-bfd252aa8a6a}">
+    <Declaration><![CDATA[INTERFACE I_TaurusLed
+]]></Declaration>
+    <Property Name="Text" Id="{63f51548-7e69-4fe1-8400-17ef379a800c}">
+      <Declaration><![CDATA[PROPERTY Text : STRING]]></Declaration>
+      <Get Name="Get" Id="{b5fbbe03-d9c1-45c3-a9db-085bfeddcd17}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{8ab33a09-ba33-4097-92d4-3ac64905ff9d}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
+  </Itf>
+</TcPlcObject>

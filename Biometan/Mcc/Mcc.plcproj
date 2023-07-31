@@ -31,6 +31,12 @@
     <Compile Include="POUs\Devices\ITFs\I_Button.TcIO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\Devices\ITFs\I_TaurusLed.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Devices\ITFs\I_TermFuse.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Devices\Label.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -41,6 +47,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Devices\MotorTermFuse.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Devices\TaurusLed.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Devices\WorkCounter.TcPOU">

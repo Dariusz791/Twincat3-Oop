@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="I_TermFuse" Id="{0573ceee-50ba-429c-b51a-a4dd1cf710ff}">
+    <Declaration><![CDATA[INTERFACE I_TermFuse
+]]></Declaration>
+    <Property Name="IsActive" Id="{c2383986-bf17-437f-8b08-8d0280441366}">
+      <Declaration><![CDATA[PROPERTY IsActive : BOOL]]></Declaration>
+      <Get Name="Get" Id="{75b0de78-b082-4195-b620-8ef0e3350276}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+  </Itf>
+</TcPlcObject>
