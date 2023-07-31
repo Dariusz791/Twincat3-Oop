@@ -2,7 +2,6 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="MotorTermFuse" Id="{2bcfa7ff-b43c-4aa6-8d90-cefd9a2cbeb3}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK MotorTermFuse IMPLEMENTS I_TermFuse
-
 VAR
 	_input AT%I* :BOOL;
 	

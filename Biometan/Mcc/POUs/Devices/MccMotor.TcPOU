@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MccMotor" Id="{fabe2059-ffcd-43e3-911d-8d07ba3d8921}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK MccMotor
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	stWorkTime 				: ST_WorkTime;
+	autoScadaLed			: Led;
+	supplyScadaLed			: Led;
+	statusScadaLabel		: Label;
+	motorContactor 			: MotorContactor;
+	motorTermFuse			: MotorTermFuse;
+	autoScadaButton			: Button_NO;
+	forwardScadaButton		: Button_NO;
+	reverseScadaButton		: Button_NO;
+	stateTaurusLed			: TaurusLed(forwardScadaButton, motorTermFuse);
+	motorWorkTime 			: WorkCounter;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[stateTaurusLed();
+motorWorkTime();
+motorWorkTime.CheckState(stateTaurusLed);]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
