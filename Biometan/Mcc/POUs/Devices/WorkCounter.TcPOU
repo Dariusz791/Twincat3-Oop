@@ -33,11 +33,11 @@ END_IF]]></ST>
     <Method Name="CheckState" Id="{321827c4-10eb-4532-8b1e-079566f64614}">
       <Declaration><![CDATA[METHOD CheckState : BOOL
 VAR_INPUT
-	iButton	: I_Button;
+	iTaurusLed	: I_TaurusLed;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF iButton.IsPressed THEN
+        <ST><![CDATA[IF iTaurusLed.Text = 'RUNNING' THEN
 	THIS^.startCount := TRUE;
 ELSE
 	THIS^.startCount := FALSE;

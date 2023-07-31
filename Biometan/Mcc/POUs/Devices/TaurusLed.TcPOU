@@ -19,7 +19,7 @@ IF motorTermFuse.IsActive THEN
 	END_IF
 ELSE
 		_text := 'OFF';
-	IF NOT forwardButton.IsPressed THEN
+	IF forwardButton.IsPressed THEN
 		_text := 'FAULT';
 	END_IF
 END_IF]]></ST>

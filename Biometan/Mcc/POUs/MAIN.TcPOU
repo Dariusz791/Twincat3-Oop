@@ -7,7 +7,7 @@ VAR
 	stWorkTime 				: ST_WorkTime;
 	autoScadaLed			: Led;
 	supplyScadaLed			: Led;
-	statusScadalabel		: Label;
+	statusScadaLabel		: Label;
 	motorContactor 			: MotorContactor;
 	motorTermFuse			: MotorTermFuse;
 	autoScadaButton			: Button_NO;
@@ -23,10 +23,10 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[
-stateTaurusLed();
 
+stateTaurusLed();
 motorWorkTime();
-motorWorkTime.CheckState(forwardScadaButton);
+motorWorkTime.CheckState(stateTaurusLed);
 
 
 
