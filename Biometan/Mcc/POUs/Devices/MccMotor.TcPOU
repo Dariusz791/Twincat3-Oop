@@ -23,22 +23,22 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[// determine the state of the Mcc device
+      <ST><![CDATA[// Determine the state of the Mcc device
 stateTaurusLed();
 
-// check if MCC is runnning and start count time of work
+// Check if MCC is runnning and start count time of work
 motorWorkCounter.CheckState(stateTaurusLed);
 motorWorkCounter();
 motorWorkCounter.MakeString(workTimeScadaLabel);
 
-// set the supply Led in SCADA system depending on the TermFuse
+// Set the supply Led in SCADA system depending on the TermFuse
 IF motorTermFuse.IsActive THEN
 	supplyScadaLed.State := TRUE;
 ELSE
 	supplyScadaLed.State := FALSE;
 END_IF
 
-// set the autoScadaLed in SCADA system depending on the AutoScadaButton state
+// Set the autoScadaLed in SCADA system depending on the AutoScadaButton state
 IF autoScadaButton.IsPressed THEN
 	autoScadaLed.State := TRUE;
 ELSE
@@ -51,6 +51,15 @@ IF forwardScadaButton.IsPressed AND motorTermFuse.IsActive THEN
 ELSE
 	motorContactor.SwitchOff();
 END_IF
+
+//Auto/Manual Led set
+IF autoScadaButton.IsPressed  THEN
+	autoScadaLed.State := TRUE;
+ELSE
+	autoScadaLed.State := FALSE;
+END_IF
+
+
 
 
 
