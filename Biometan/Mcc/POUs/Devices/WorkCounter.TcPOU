@@ -6,6 +6,7 @@ VAR
 	startCount  : BOOL;
 	stWorkTime  : ST_WorkTime;
 	fbTon		: TON;
+	_text	    : T_MaxString;
 	
 END_VAR
 ]]></Declaration>
@@ -15,13 +16,15 @@ END_VAR
 IF (fbTon.Q) AND startCount THEN
 	
 	fbTon(IN:=FALSE);
-	
 	stWorkTime.seconds := stWorkTime.seconds +1;
 	
 	IF stWorkTime.seconds > 59 THEN
 		stWorkTime.seconds := 0;
 		stWorkTime.minuts := stWorkTime.minuts +1;
-		stWorkTime.hours := stWorkTime.minuts / 60;
+		IF stWorkTime.minuts > 59 THEN
+			stWorkTime.minuts := 0;
+			stWorkTime.hours := stWorkTime.hours +1;	
+		END_IF
 	END_IF
 	
 END_IF]]></ST>
@@ -38,6 +41,23 @@ END_VAR
 ELSE
 	THIS^.startCount := FALSE;
 END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MakeString" Id="{ddaaf234-bf90-42c1-81c7-ea4ae810079c}">
+      <Declaration><![CDATA[METHOD MakeString : STRING
+VAR_INPUT
+	workTimeScadaLabel	: I_Label;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Forms a chain of the form 'Hours:Minuts:Seconds'
+THIS^._text := CONCAT(UDINT_TO_STRING(THIS^.stWorkTime.hours), ':');
+THIS^._text := CONCAT(THIS^._text, UDINT_TO_STRING(THIS^.stWorkTime.minuts));
+THIS^._text := CONCAT(THIS^._text, ':');
+THIS^._text := CONCAT(THIS^._text, UDINT_TO_STRING(stWorkTime.seconds));
+
+workTimeScadaLabel.Text := THIS^._text;
+]]></ST>
       </Implementation>
     </Method>
   </POU>

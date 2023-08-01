@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="I_Label" Id="{efbe3fb4-8d6a-442e-9d7b-357fb722ddbc}">
+    <Declaration><![CDATA[INTERFACE I_Label
+]]></Declaration>
+    <Property Name="Text" Id="{a9dfa5f6-08b8-4212-bc0d-641b7b59fce2}">
+      <Declaration><![CDATA[PROPERTY Text : STRING]]></Declaration>
+      <Get Name="Get" Id="{9b65d82f-b8e4-4285-955c-62cae6cb871c}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{604d9a3c-0159-421b-baec-b593d41274ae}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
+  </Itf>
+</TcPlcObject>

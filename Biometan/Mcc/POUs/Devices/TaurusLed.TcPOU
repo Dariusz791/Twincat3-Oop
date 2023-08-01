@@ -3,40 +3,51 @@
   <POU Name="TaurusLed" Id="{f6f49f3d-8a72-4f7a-b651-4716ce5ac1db}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK TaurusLed IMPLEMENTS I_TaurusLed
 VAR
-	_text AT%M* : T_MaxString;
+	_text AT%M* 		: T_MaxString;
 
-	forwardButton	: I_Button;
-	motorTermFuse	: I_TermFuse;
+	forwardButton		: I_Button;
+	motorTermFuse		: I_TermFuse;
+	statusScadaLabel	: I_Label;
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[// ustaw stan zmiennej LED Taurusa w TANGO SCADA
 
+
+statusScadaLabel.Text := 'ON';	
+
 IF motorTermFuse.IsActive THEN
-		_text := 'ON';	
+		_text := 'ON';
+		statusScadaLabel.Text := 'ON';	
 	IF forwardButton.IsPressed THEN
 		_text := 'RUNNING';
+		statusScadaLabel.Text := 'RUNNING';
 	END_IF
 ELSE
 		_text := 'OFF';
+		statusScadaLabel.Text := 'OFF';
 	IF forwardButton.IsPressed THEN
 		_text := 'FAULT';
+		statusScadaLabel.Text := 'FAULT';
 	END_IF
 END_IF]]></ST>
     </Implementation>
     <Method Name="FB_init" Id="{73c97024-5816-4e10-b55f-f67168980634}">
       <Declaration><![CDATA[METHOD FB_init : BOOL
 VAR_INPUT
-	bInitRetains 	: BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
-	bInCopyCode 	: BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
-	forwardButton	: I_Button;
-	motorTermFuse	: I_TermFuse;
+	bInitRetains 		: BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode 		: BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	forwardButton		: I_Button;
+	motorTermFuse		: I_TermFuse;
+	statusScadaLabel	: I_Label;
 END_VAR
 
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[THIS^.forwardButton			:= forwardButton;
-THIS^.motorTermFuse			:= motorTermFuse;]]></ST>
+THIS^.motorTermFuse			:= motorTermFuse;
+THIS^.statusScadaLabel      := statusScadaLabel;]]></ST>
       </Implementation>
     </Method>
     <Property Name="Text" Id="{1aa88967-6225-4ffd-82b4-3b009d2bfb86}">

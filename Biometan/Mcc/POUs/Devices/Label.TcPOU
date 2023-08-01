@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="Label" Id="{01cd52d5-6d31-4fef-badc-d3b37de77d96}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK Label
+    <Declaration><![CDATA[FUNCTION_BLOCK Label IMPLEMENTS I_Label
 VAR
 	_label AT%M* : T_MaxString;
 END_VAR
@@ -24,7 +24,8 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Text := _label;]]></ST>
+          <ST><![CDATA[_label := Text;
+ ]]></ST>
         </Implementation>
       </Set>
     </Property>

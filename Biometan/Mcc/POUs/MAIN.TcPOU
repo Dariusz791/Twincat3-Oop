@@ -5,6 +5,7 @@
 VAR
 	
 	mccMotor				: MccMotor;
+	mccMotorP01				: MccMotor;
 
 //	stWorkTime 				: ST_WorkTime;
 //	autoScadaLed			: Led;
@@ -25,6 +26,8 @@ END_VAR
     <Implementation>
       <ST><![CDATA[
 mccMotor();
+mccMotorP01();
+
 
 
 
