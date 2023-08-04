@@ -2,12 +2,11 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_Contactor" Id="{112ce01f-73d6-45c3-b7fa-a81578b83871}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Contactor IMPLEMENTS I_Drive
-VAR_INPUT
-END_VAR
-VAR_OUTPUT
-END_VAR
 VAR
-	_auto	AT%M* : BOOL;	//Auto/Manual variable set from SCADA Toogle  
+	_auto	AT%M* : BOOL;	// Auto variable set from SCADA Toogle
+	_outputForward	AT%Q* : BOOL;	// Switch variable to start/stop Forward psychical output
+	
+	  
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -32,5 +31,23 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <Method Name="SwitchForwardOff" Id="{5ffd254c-b1d1-47d9-96ec-858c19bb28db}">
+      <Declaration><![CDATA[METHOD SwitchForwardOff : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_outputForward := False;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SwitchForwardOn" Id="{63217e33-cf7d-4f77-bc11-56c1bad4a22c}">
+      <Declaration><![CDATA[METHOD SwitchForwardOn : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_outputForward := True;]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

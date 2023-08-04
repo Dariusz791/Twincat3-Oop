@@ -48,7 +48,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[iDrive.SwitchForwardOff();]]></ST>
       </Implementation>
     </Method>
     <Method Name="ForwardOn" Id="{ebe68f71-77b6-4a31-b726-f94b2b996811}">
@@ -57,7 +57,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[iDrive.SwitchForwardOn();
+]]></ST>
       </Implementation>
     </Method>
   </POU>

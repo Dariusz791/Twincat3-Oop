@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="POU" Id="{48133537-34d4-4612-9e66-963ba226311c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK POU EXTENDS FB_Contactor IMPLEMENTS I_DriveDouble
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="AutoToggle" Id="{8bdcf332-6957-439d-927d-839c98f5dabc}">
+      <Declaration><![CDATA[{error 'add property implementation or delete property to use base implementation'}
+PROPERTY AutoToggle : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{08bee13e-0e88-4b31-b70f-c1fa56739221}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{bd0ca6ca-89cd-4e98-9b49-42e2a189e267}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="SwitchForwardOff" Id="{f890c330-467d-4bec-9b9e-d627684caade}">
+      <Declaration><![CDATA[{error 'add method implementation or delete method to use base implementation'}
+METHOD SwitchForwardOff : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SwitchForwardOn" Id="{9a97f4fd-9acd-4ef1-9321-6b4c876412f7}">
+      <Declaration><![CDATA[{error 'add method implementation or delete method to use base implementation'}
+METHOD SwitchForwardOn : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SwitchReverseOff" Id="{76edae8d-ef50-4496-8d51-35c20281e523}">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD SwitchReverseOff : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SwitchReverseOn" Id="{d432c05b-2341-4086-bd0d-b577d7d674c6}">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD SwitchReverseOn : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

@@ -12,5 +12,17 @@
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
+    <Method Name="SwitchForwardOff" Id="{c50fb167-7ae9-4d0d-af2a-c53443212a8a}">
+      <Declaration><![CDATA[METHOD SwitchForwardOff : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="SwitchForwardOn" Id="{72a7bdb8-2830-47c4-a949-ed8b75aab8ad}">
+      <Declaration><![CDATA[METHOD SwitchForwardOn : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
   </Itf>
 </TcPlcObject>
