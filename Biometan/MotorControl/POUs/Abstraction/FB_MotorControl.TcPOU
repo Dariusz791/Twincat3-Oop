@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_MotorControl" Id="{cb429039-0c12-4649-8c7a-84a654602980}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MotorControl
+VAR
+	iDrive : I_Drive;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="AutoOff" Id="{d8967504-f11e-4755-939d-967045b0616b}">
+      <Declaration><![CDATA[METHOD AutoOff : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[iDrive.AutoToggle := FALSE;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="AutoOn" Id="{28b9c243-c4ee-4cbe-83aa-fef6a3c2a841}">
+      <Declaration><![CDATA[METHOD AutoOn : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[iDrive.AutoToggle := TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{30ce9704-a946-441a-bf51-690ce8812f28}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode  : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	iDrive		 : I_Drive;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^.iDrive := iDrive;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ForwardOff" Id="{fc03a760-fdef-4db9-b431-c6ea7e47b138}">
+      <Declaration><![CDATA[METHOD ForwardOff : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ForwardOn" Id="{ebe68f71-77b6-4a31-b726-f94b2b996811}">
+      <Declaration><![CDATA[METHOD ForwardOn : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

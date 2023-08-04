@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="I_Drive" Id="{32f04a35-7cc4-4a82-a219-6ae04a30264f}">
+    <Declaration><![CDATA[INTERFACE I_Drive
+]]></Declaration>
+    <Property Name="AutoToggle" Id="{4db19213-8477-4839-b846-3b9d542df83a}">
+      <Declaration><![CDATA[PROPERTY AutoToggle : BOOL]]></Declaration>
+      <Get Name="Get" Id="{920abfee-2c75-4df6-ba45-a738f9c9215e}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{96b589ab-1693-412d-8abd-cc3d36b94632}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
+  </Itf>
+</TcPlcObject>

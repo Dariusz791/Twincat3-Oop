@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_Contactor" Id="{112ce01f-73d6-45c3-b7fa-a81578b83871}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Contactor IMPLEMENTS I_Drive
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	_auto	AT%M* : BOOL;	//Auto/Manual variable set from SCADA Toogle  
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="AutoToggle" Id="{76feec25-ff30-4d7d-9a7f-b321e4f82c2c}">
+      <Declaration><![CDATA[PROPERTY AutoToggle : BOOL]]></Declaration>
+      <Get Name="Get" Id="{002bb87d-d5e6-4d37-a656-58d513d68446}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[AutoToggle := _auto;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{09549fd9-f75a-4f80-8e36-1888a0e815e5}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_auto := AutoToggle;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>
