@@ -18,31 +18,32 @@
     <LibraryReferences>{b44a2b0c-a7bd-4a89-9365-7ee8c7a6a1f7}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="GVLs\GVL.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Abstraction\FB_MotorControl.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\Class Diagram.TcCD">
+    <Compile Include="POUs\Abstraction\FB_MotorControlReverse.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\Class Diagram_1.TcCD">
+    <Compile Include="POUs\Devices\Button.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\Class Diagram_2.TcCD">
+    <Compile Include="POUs\Devices\Contactor.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\Implementation\FB_Contactor.TcPOU">
+    <Compile Include="POUs\Devices\ITFs\I_Button.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\Implementation\FB_DoubleContactor.TcPOU">
+    <Compile Include="POUs\Implementation\FB_Drive.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Implementation\ITFs\I_Drive.TcIO">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\Implementation\ITFs\I_DriveDouble.TcIO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
@@ -53,8 +54,10 @@
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
     <Folder Include="POUs\Abstraction" />
+    <Folder Include="POUs\Devices\ITFs" />
     <Folder Include="POUs\Implementation" />
     <Folder Include="POUs\Implementation\ITFs" />
+    <Folder Include="POUs\Devices" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>

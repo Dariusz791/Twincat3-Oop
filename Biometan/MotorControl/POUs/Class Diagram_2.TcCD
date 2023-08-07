@@ -31,7 +31,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"BOOL"</v>
                   <v n="AttributeParent">{112ce01f-73d6-45c3-b7fa-a81578b83871}</v>
-                  <v n="AttributeObjectGuid">{d0be79d2-09e3-491c-8935-381dd05a0d21}</v>
+                  <v n="AttributeObjectGuid">{7d9c6b60-797a-43f0-98bf-982e9e870c8b}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -45,7 +45,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"BOOL"</v>
                   <v n="AttributeParent">{112ce01f-73d6-45c3-b7fa-a81578b83871}</v>
-                  <v n="AttributeObjectGuid">{fb30c5a0-2c48-496d-9d66-ab8deb402523}</v>
+                  <v n="AttributeObjectGuid">{9bab5875-d355-4cec-8906-7ee76b5b5b61}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -98,7 +98,7 @@
               <o n="ElementVisualisation" t="ClassElementVisualisation">
                 <v n="ShowAttributes">false</v>
                 <v n="ShowMethods">false</v>
-                <a n="DockingPopulation" cet="Int32">AAAAAAAAAAABAAAAAgAAAA==</a>
+                <a n="DockingPopulation" cet="Int32">AAAAAAAAAAAAAAAAAAAAAA==</a>
                 <v n="ColumnIndex">1</v>
                 <v n="RowIndex">1</v>
                 <v n="RepresentedElement">3</v>
@@ -183,7 +183,7 @@
               <o n="ElementVisualisation" t="ClassElementVisualisation">
                 <v n="ShowAttributes">false</v>
                 <v n="ShowMethods">false</v>
-                <a n="DockingPopulation" cet="Int32">AQAAAAEAAAAAAAAAAAAAAA==</a>
+                <a n="DockingPopulation" cet="Int32">AAAAAAAAAAAAAAAAAAAAAA==</a>
                 <v n="ColumnIndex">0</v>
                 <v n="RowIndex">2</v>
                 <v n="RepresentedElement">5</v>
@@ -283,7 +283,7 @@
               <o n="ElementVisualisation" t="ClassElementVisualisation">
                 <v n="ShowAttributes">false</v>
                 <v n="ShowMethods">false</v>
-                <a n="DockingPopulation" cet="Int32">AQAAAAEAAAAAAAAAAQAAAA==</a>
+                <a n="DockingPopulation" cet="Int32">AAAAAAAAAAAAAAAAAAAAAA==</a>
                 <v n="ColumnIndex">1</v>
                 <v n="RowIndex">2</v>
                 <v n="RepresentedElement">6</v>
@@ -344,7 +344,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"I_Drive"</v>
                   <v n="AttributeParent">{cb429039-0c12-4649-8c7a-84a654602980}</v>
-                  <v n="AttributeObjectGuid">{04709e3b-f1e5-4b1a-b55d-2473daac03f0}</v>
+                  <v n="AttributeObjectGuid">{ddc495e5-667e-4d94-8bf2-89f45bfb1e7a}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
               </l>
@@ -438,7 +438,7 @@
               <o n="ElementVisualisation" t="ClassElementVisualisation">
                 <v n="ShowAttributes">false</v>
                 <v n="ShowMethods">false</v>
-                <a n="DockingPopulation" cet="Int32">AAAAAAAAAAABAAAAAgAAAA==</a>
+                <a n="DockingPopulation" cet="Int32">AAAAAAAAAAAAAAAAAAAAAA==</a>
                 <v n="ColumnIndex">2</v>
                 <v n="RowIndex">1</v>
                 <v n="RepresentedElement">4</v>
@@ -499,7 +499,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"BOOL"</v>
                   <v n="AttributeParent">{cc7fc58b-d311-4e65-ad7d-7841037b2b38}</v>
-                  <v n="AttributeObjectGuid">{422988cc-0890-4401-9a4b-2c434c3caa1b}</v>
+                  <v n="AttributeObjectGuid">{a3608edd-4f52-4d3f-add5-15c8bc84d177}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
               </l>
@@ -538,7 +538,7 @@
               <o n="ElementVisualisation" t="ClassElementVisualisation">
                 <v n="ShowAttributes">false</v>
                 <v n="ShowMethods">false</v>
-                <a n="DockingPopulation" cet="Int32">AQAAAAEAAAABAAAAAAAAAA==</a>
+                <a n="DockingPopulation" cet="Int32">AAAAAAAAAAAAAAAAAAAAAA==</a>
                 <v n="ColumnIndex">0</v>
                 <v n="RowIndex">1</v>
                 <v n="RepresentedElement">2</v>
@@ -599,7 +599,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"FB_Contactor"</v>
                   <v n="AttributeParent">{cd1eb890-8cf1-423f-af31-232f9c8a0bc7}</v>
-                  <v n="AttributeObjectGuid">{46435526-5bd9-4a1a-b5ae-793bbb1e56eb}</v>
+                  <v n="AttributeObjectGuid">{0a6aa302-d099-4134-9339-cf16988ae6ed}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -613,7 +613,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"FB_MotorControl"</v>
                   <v n="AttributeParent">{cd1eb890-8cf1-423f-af31-232f9c8a0bc7}</v>
-                  <v n="AttributeObjectGuid">{94412918-57f8-4d15-9f93-3161d2e3efd0}</v>
+                  <v n="AttributeObjectGuid">{8cafd6eb-3efa-4dda-9302-b80b97c5f85f}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -627,21 +627,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"FB_DoubleContactor"</v>
                   <v n="AttributeParent">{cd1eb890-8cf1-423f-af31-232f9c8a0bc7}</v>
-                  <v n="AttributeObjectGuid">{e51f2a56-8cdb-45ad-9d8a-db1d97e7a8cb}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"fbMotorControlDouble"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"FB_MotorControl"</v>
-                  <v n="AttributeParent">{cd1eb890-8cf1-423f-af31-232f9c8a0bc7}</v>
-                  <v n="AttributeObjectGuid">{a0113771-8922-4305-9fdc-d4b571b5e3bc}</v>
+                  <v n="AttributeObjectGuid">{d1a2ab50-2dee-4874-8cf8-47795d4894a3}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
               </l>
@@ -655,7 +641,7 @@
               <o n="ElementVisualisation" t="ClassElementVisualisation">
                 <v n="ShowAttributes">false</v>
                 <v n="ShowMethods">false</v>
-                <a n="DockingPopulation" cet="Int32">AAAAAAAAAAAEAAAAAAAAAA==</a>
+                <a n="DockingPopulation" cet="Int32">AAAAAAAAAAAAAAAAAAAAAA==</a>
                 <v n="ColumnIndex">0</v>
                 <v n="RowIndex">0</v>
                 <v n="RepresentedElement">1</v>
@@ -735,7 +721,7 @@
                   <v n="AnchorDockedState" t="Docked">Right</v>
                 </o>
                 <o n="EndAnchor" t="UMLAnchorPoint">
-                  <v n="AnchorID">0</v>
+                  <v n="AnchorID">1</v>
                   <v n="AnchorLeftPosition">300</v>
                   <v n="AnchorTopPosition">255</v>
                   <v n="AnchorRelationID">{067b2914-a6e9-45e4-a059-73463721fbbc}</v>
@@ -807,7 +793,7 @@
                   <v n="AnchorDockedState" t="Docked">Bottom</v>
                 </o>
                 <o n="EndAnchor" t="UMLAnchorPoint">
-                  <v n="AnchorID">0</v>
+                  <v n="AnchorID">4</v>
                   <v n="AnchorLeftPosition">300</v>
                   <v n="AnchorTopPosition">235</v>
                   <v n="AnchorRelationID">{0772a428-7dc3-4a13-be71-c4757c5059dd}</v>
@@ -910,7 +896,7 @@
                   <v n="AnchorDockedState" t="Docked">Bottom</v>
                 </o>
                 <o n="EndAnchor" t="UMLAnchorPoint">
-                  <v n="AnchorID">0</v>
+                  <v n="AnchorID">1</v>
                   <v n="AnchorLeftPosition">310</v>
                   <v n="AnchorTopPosition">413</v>
                   <v n="AnchorRelationID">{1164d777-345f-4b16-8468-734cb4384178}</v>
@@ -982,7 +968,7 @@
                   <v n="AnchorDockedState" t="Docked">Bottom</v>
                 </o>
                 <o n="EndAnchor" t="UMLAnchorPoint">
-                  <v n="AnchorID">0</v>
+                  <v n="AnchorID">4</v>
                   <v n="AnchorLeftPosition">400</v>
                   <v n="AnchorTopPosition">443</v>
                   <v n="AnchorRelationID">{4844180b-dd0c-4d58-9aa0-0fee3a1df35f}</v>
@@ -1085,7 +1071,7 @@
                   <v n="AnchorDockedState" t="Docked">Bottom</v>
                 </o>
                 <o n="EndAnchor" t="UMLAnchorPoint">
-                  <v n="AnchorID">0</v>
+                  <v n="AnchorID">4</v>
                   <v n="AnchorLeftPosition">595</v>
                   <v n="AnchorTopPosition">235</v>
                   <v n="AnchorRelationID">{7f6c2d5b-1008-4361-a5f1-005d8c0f7815}</v>
@@ -1180,7 +1166,7 @@
                 <d n="flagsY" t="Hashtable" />
                 <o n="StartAnchor" t="UMLAnchorPoint">
                   <v n="AnchorID">0</v>
-                  <v n="AnchorLeftPosition">35</v>
+                  <v n="AnchorLeftPosition">15</v>
                   <v n="AnchorTopPosition">112</v>
                   <v n="AnchorRelationID">{af88c835-d255-402d-b6e1-2ed940d72073}</v>
                   <v n="StartAnchor">true</v>
@@ -1188,7 +1174,7 @@
                   <v n="AnchorDockedState" t="Docked">Bottom</v>
                 </o>
                 <o n="EndAnchor" t="UMLAnchorPoint">
-                  <v n="AnchorID">0</v>
+                  <v n="AnchorID">1</v>
                   <v n="AnchorLeftPosition">15</v>
                   <v n="AnchorTopPosition">225</v>
                   <v n="AnchorRelationID">{af88c835-d255-402d-b6e1-2ed940d72073}</v>
@@ -1260,7 +1246,7 @@
                   <v n="AnchorDockedState" t="Docked">Bottom</v>
                 </o>
                 <o n="EndAnchor" t="UMLAnchorPoint">
-                  <v n="AnchorID">0</v>
+                  <v n="AnchorID">1</v>
                   <v n="AnchorLeftPosition">25</v>
                   <v n="AnchorTopPosition">413</v>
                   <v n="AnchorRelationID">{be2b91ff-4881-4cf3-9689-c3413f5a14b0}</v>
@@ -1332,9 +1318,9 @@
                   <v n="AnchorDockedState" t="Docked">Right</v>
                 </o>
                 <o n="EndAnchor" t="UMLAnchorPoint">
-                  <v n="AnchorID">0</v>
+                  <v n="AnchorID">1</v>
                   <v n="AnchorLeftPosition">300</v>
-                  <v n="AnchorTopPosition">433</v>
+                  <v n="AnchorTopPosition">423</v>
                   <v n="AnchorRelationID">{c4e064f5-40cb-4f1c-88a2-142ce8bc4c9e}</v>
                   <v n="StartAnchor">false</v>
                   <v n="EndAnchor">true</v>
@@ -1404,7 +1390,7 @@
                   <v n="AnchorDockedState" t="Docked">Bottom</v>
                 </o>
                 <o n="EndAnchor" t="UMLAnchorPoint">
-                  <v n="AnchorID">0</v>
+                  <v n="AnchorID">4</v>
                   <v n="AnchorLeftPosition">595</v>
                   <v n="AnchorTopPosition">245</v>
                   <v n="AnchorRelationID">{f28bcb16-5f7f-4cca-b945-915e971ad85b}</v>
@@ -1494,7 +1480,7 @@
           </o>
           <v n="IsFastStateDiagram">false</v>
           <l n="StereoTypeProfile" t="ArrayList" />
-          <v n="RelationRoleID">18</v>
+          <v n="RelationRoleID">27</v>
           <d n="PositionSerialization" t="Hashtable" />
         </o>
       </Data>

@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_Drive" Id="{112ce01f-73d6-45c3-b7fa-a81578b83871}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Drive IMPLEMENTS I_Drive
+VAR
+	_output AT%Q*	: BOOL;	// załącz/wyłącz stycznik silnika
+	_autoLed AT%M*	: BOOL;	// zaświeć/zgaś Led auto w stacyjce napędu SCADA
+	
+  
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="AutoLedOff" Id="{e07e0a99-b516-4100-ba57-7091f166c26d}">
+      <Declaration><![CDATA[METHOD AutoLedOff : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_autoLed := FALSE;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="AutoLedOn" Id="{f40adada-292d-42d1-bfea-7b992f66db54}">
+      <Declaration><![CDATA[METHOD AutoLedOn : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_autoLed := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SwitchOff" Id="{b726e6e2-693a-4b15-abd3-37eeaf4d83de}">
+      <Declaration><![CDATA[METHOD SwitchOff : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_output := False;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SwitchOn" Id="{047ffa8d-ba7e-4fee-8c3d-aa923ffb5d52}">
+      <Declaration><![CDATA[METHOD SwitchOn : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_output := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="WorkCounterOff" Id="{a9042c87-8ee2-440b-9f6f-bdcc6b653229}">
+      <Declaration><![CDATA[METHOD WorkCounterOff : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="WorkCounterOn" Id="{8d8a6122-3d0d-4d9c-a060-fcf02b0c3cc0}">
+      <Declaration><![CDATA[METHOD WorkCounterOn : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

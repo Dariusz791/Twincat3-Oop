@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Button" Id="{310a0ffc-7dae-4cca-bf93-4d4c96def001}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Button
+VAR
+	_input AT%M*	:BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="IsPressed" Id="{b362d482-2d17-4a5d-ba41-a7011dc106a1}">
+      <Declaration><![CDATA[PROPERTY IsPressed : BOOL]]></Declaration>
+      <Get Name="Get" Id="{a0cc68e7-5a00-4b3c-846d-23a34c93bfe8}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IsPressed:= _input;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

@@ -3,23 +3,38 @@
   <Itf Name="I_Drive" Id="{32f04a35-7cc4-4a82-a219-6ae04a30264f}">
     <Declaration><![CDATA[INTERFACE I_Drive
 ]]></Declaration>
-    <Property Name="AutoToggle" Id="{4db19213-8477-4839-b846-3b9d542df83a}">
-      <Declaration><![CDATA[PROPERTY AutoToggle : BOOL]]></Declaration>
-      <Get Name="Get" Id="{920abfee-2c75-4df6-ba45-a738f9c9215e}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Get>
-      <Set Name="Set" Id="{96b589ab-1693-412d-8abd-cc3d36b94632}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Set>
-    </Property>
-    <Method Name="SwitchForwardOff" Id="{c50fb167-7ae9-4d0d-af2a-c53443212a8a}">
-      <Declaration><![CDATA[METHOD SwitchForwardOff : BOOL
+    <Method Name="AutoLedOff" Id="{9d5a9030-3dfb-40e3-8783-1389ac006255}">
+      <Declaration><![CDATA[METHOD AutoLedOff : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
-    <Method Name="SwitchForwardOn" Id="{72a7bdb8-2830-47c4-a949-ed8b75aab8ad}">
-      <Declaration><![CDATA[METHOD SwitchForwardOn : BOOL
+    <Method Name="AutoLedOn" Id="{93a30ca8-66d3-41a8-95b1-10347e5c84ce}">
+      <Declaration><![CDATA[METHOD AutoLedOn : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="SwitchOff" Id="{ae9140d4-60e7-4ab0-9aba-6c098fbeaf6c}">
+      <Declaration><![CDATA[METHOD SwitchOff : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="SwitchOn" Id="{99be391c-6b6f-45b3-9fbc-71b1518bbbdd}">
+      <Declaration><![CDATA[METHOD SwitchOn : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="WorkCounterOff" Id="{2aa25d40-acd0-47fc-a6de-f1a52539585e}">
+      <Declaration><![CDATA[METHOD WorkCounterOff : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="WorkCounterOn" Id="{d4898fdc-7a8e-4e01-92c3-0f762b05b316}">
+      <Declaration><![CDATA[METHOD WorkCounterOn : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>

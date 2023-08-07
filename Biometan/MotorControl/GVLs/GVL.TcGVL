@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="GVL" Id="{44038d59-40fc-4bba-b1b6-cc6fd407169c}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+
+	bTermFuse  : BOOL;
+	bContactor : BOOL;
+	bState	   : BOOL;
+	sWorkTime   : T_MaxString := '100:45:34';
+	sStatus		: T_MaxString := 'RUNNING';
+			
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

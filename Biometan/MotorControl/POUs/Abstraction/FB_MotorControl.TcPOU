@@ -1,31 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_MotorControl" Id="{cb429039-0c12-4649-8c7a-84a654602980}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_MotorControl
+    <Declaration><![CDATA[// Function block to control simple MCC 
+FUNCTION_BLOCK FB_MotorControl
 VAR
+	autoButton		    : Button;
+	forwardButton		: Button;
+	forwardContactor	: Contactor;
+	
 	iDrive : I_Drive;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[IF autoButton.IsPressed THEN
+
+	AutoOn();	// Turn On SCADA auto Led
+
+ELSE
+
+	AutoOff(); // Turn Off SCADA auto Led
+	
+END_IF
+
+
+IF forwardButton.IsPressed THEN
+
+	ForwardOn(); 	// Switch Contactor On
+	iDrive.WorkCounterOn();	//Start count work time				
+
+ELSE
+
+	ForwardOff();	// Switch Contactor Off 
+	iDrive.WorkCounterOff();	//Stop count work time	
+	
+END_IF]]></ST>
     </Implementation>
     <Method Name="AutoOff" Id="{d8967504-f11e-4755-939d-967045b0616b}">
-      <Declaration><![CDATA[METHOD AutoOff : BOOL
+      <Declaration><![CDATA[METHOD PUBLIC AutoOff : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[iDrive.AutoToggle := FALSE;
+        <ST><![CDATA[iDrive.AutoLedOff();
 ]]></ST>
       </Implementation>
     </Method>
     <Method Name="AutoOn" Id="{28b9c243-c4ee-4cbe-83aa-fef6a3c2a841}">
-      <Declaration><![CDATA[METHOD AutoOn : BOOL
+      <Declaration><![CDATA[METHOD PUBLIC AutoOn : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[iDrive.AutoToggle := TRUE;
+        <ST><![CDATA[iDrive.AutoLedOn();
 ]]></ST>
       </Implementation>
     </Method>
@@ -43,21 +69,24 @@ END_VAR
       </Implementation>
     </Method>
     <Method Name="ForwardOff" Id="{fc03a760-fdef-4db9-b431-c6ea7e47b138}">
-      <Declaration><![CDATA[METHOD ForwardOff : BOOL
+      <Declaration><![CDATA[METHOD PUBLIC ForwardOff : BOOL
 VAR_INPUT
+
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[iDrive.SwitchForwardOff();]]></ST>
+        <ST><![CDATA[iDrive.SwitchOff();
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="ForwardOn" Id="{ebe68f71-77b6-4a31-b726-f94b2b996811}">
-      <Declaration><![CDATA[METHOD ForwardOn : BOOL
+      <Declaration><![CDATA[METHOD PUBLIC ForwardOn : BOOL
 VAR_INPUT
+
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[iDrive.SwitchForwardOn();
+        <ST><![CDATA[iDrive.SwitchOn();
 ]]></ST>
       </Implementation>
     </Method>

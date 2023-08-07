@@ -1,25 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="MAIN" Id="{cd1eb890-8cf1-423f-af31-232f9c8a0bc7}" SpecialFunc="None">
+  <POU Name="MAIN" Id="{94995db9-82fb-4583-94ae-a1fd1a7e3270}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	fbContactor    : FB_Contactor;	//klasa implementujaca interfejs
-	fbMotorControl : FB_MotorControl(fbContactor); // instancja klasy abstarkcyjnej z konstruktorem. 
-												   // Do konstruktora klasy przekazana jest referencja do obiektu implemenatcji interfacu 
-	fbDoubleContactor : FB_DoubleContactor;
-	fbMotorControlDouble	: FB_MotorControl(fbDoubleContactor);
-											   
+
+	fbDrive		   : FB_Drive;
+	fbMotorControl : FB_MotorControl(fbDrive);
+
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[fbMotorControl();
-fbDoubleContactor();
-
-fbMotorControl.AutoOn();
-fbMotorControl.ForwardOn();
-
-fbDoubleContactor.SwitchReverseOn();
-]]></ST>
+      <ST><![CDATA[]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

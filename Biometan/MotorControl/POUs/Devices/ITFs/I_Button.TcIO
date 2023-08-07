@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="I_Button" Id="{2e5e0d70-2ab7-4ccb-829a-46e6809f583e}">
+    <Declaration><![CDATA[INTERFACE I_Button
+]]></Declaration>
+    <Property Name="IsPressed" Id="{1c1cc6bd-d448-4fba-bea5-fb716cc6c925}">
+      <Declaration><![CDATA[PROPERTY IsPressed : BOOL]]></Declaration>
+      <Get Name="Get" Id="{f7fe1c53-09ba-4c6a-bf43-631a4b753b3b}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+  </Itf>
+</TcPlcObject>

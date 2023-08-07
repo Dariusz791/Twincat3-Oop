@@ -31,7 +31,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"BOOL"</v>
                   <v n="AttributeParent">{112ce01f-73d6-45c3-b7fa-a81578b83871}</v>
-                  <v n="AttributeObjectGuid">{bb55ea40-f467-472f-a505-c05a8b16e5eb}</v>
+                  <v n="AttributeObjectGuid">{935947e1-50eb-47c6-a061-fd2d84c85fae}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -45,7 +45,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"BOOL"</v>
                   <v n="AttributeParent">{112ce01f-73d6-45c3-b7fa-a81578b83871}</v>
-                  <v n="AttributeObjectGuid">{7974625f-d596-497e-9405-62a9805ac635}</v>
+                  <v n="AttributeObjectGuid">{8323a66c-0988-4f02-a080-68af531fda3c}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -259,7 +259,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"I_Drive"</v>
                   <v n="AttributeParent">{cb429039-0c12-4649-8c7a-84a654602980}</v>
-                  <v n="AttributeObjectGuid">{9a26a8bb-041f-4ad5-b6dc-e4b9da80db1b}</v>
+                  <v n="AttributeObjectGuid">{08d3463b-80ff-41be-8191-e530814a6e97}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
               </l>
@@ -414,7 +414,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"FB_Contactor"</v>
                   <v n="AttributeParent">{cd1eb890-8cf1-423f-af31-232f9c8a0bc7}</v>
-                  <v n="AttributeObjectGuid">{28152c24-bb62-4abc-b46e-a40b38c4bfc7}</v>
+                  <v n="AttributeObjectGuid">{03975627-684f-470b-b1df-7d97343cc88d}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -428,7 +428,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"FB_MotorControl"</v>
                   <v n="AttributeParent">{cd1eb890-8cf1-423f-af31-232f9c8a0bc7}</v>
-                  <v n="AttributeObjectGuid">{42dc624f-da33-4389-b8ea-e025e44a71d4}</v>
+                  <v n="AttributeObjectGuid">{a3ec919f-d3bb-4ddf-bcf9-6f054ebcb45e}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -442,21 +442,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"FB_DoubleContactor"</v>
                   <v n="AttributeParent">{cd1eb890-8cf1-423f-af31-232f9c8a0bc7}</v>
-                  <v n="AttributeObjectGuid">{30f03c36-ac24-4b91-bd6b-3470ba581362}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"fbMotorControlDouble"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"FB_MotorControl"</v>
-                  <v n="AttributeParent">{cd1eb890-8cf1-423f-af31-232f9c8a0bc7}</v>
-                  <v n="AttributeObjectGuid">{7eb000a5-8cc3-473d-8197-c0fb6cd383aa}</v>
+                  <v n="AttributeObjectGuid">{d0120ae2-2ae7-42de-b0d5-d1ea48359939}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
               </l>
