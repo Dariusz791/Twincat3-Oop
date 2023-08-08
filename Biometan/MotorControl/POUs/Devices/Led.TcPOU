@@ -1,30 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="Contactor" Id="{c060f755-e854-44d6-80a6-8e4dedcc8084}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK Contactor
+  <POU Name="Led" Id="{eee83838-3c2c-43ec-8b89-683878a85abd}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Led
 VAR
-	_output AT%Q*: BOOL;
+	_state : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Property Name="State" Id="{0e142a4b-cd3f-4ab7-9ab4-1784c7145a1f}">
+    <Property Name="State" Id="{e3a1b6cd-cb48-465d-b773-1a08ffdb9242}">
       <Declaration><![CDATA[PROPERTY State : BOOL]]></Declaration>
-      <Get Name="Get" Id="{a3074313-4226-4222-a590-1d86a6eb0a5e}">
+      <Get Name="Get" Id="{36c5ca79-529f-4892-bf03-3de869524f7e}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[State := _output;]]></ST>
+          <ST><![CDATA[State := _state;]]></ST>
         </Implementation>
       </Get>
-      <Set Name="Set" Id="{04cd2443-c326-4ff6-9a1d-095275924f65}">
+      <Set Name="Set" Id="{4324096c-7237-4c8f-8743-ad9168051b93}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[_output := State;]]></ST>
+          <ST><![CDATA[_state := State;]]></ST>
         </Implementation>
       </Set>
     </Property>

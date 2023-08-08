@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="TaurusLed" Id="{e63cee5b-d7be-43fb-a377-2aa3bbe5386e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TaurusLed 
+VAR
+	_text : T_MaxString;
+
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="Text" Id="{b753cbdf-f104-4e01-8e2f-6f6d5bb31d2f}">
+      <Declaration><![CDATA[PROPERTY Text : STRING]]></Declaration>
+      <Get Name="Get" Id="{bed5069e-410c-4790-bead-a7d8591095b0}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Text := _text;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{e42b9ef2-96ee-452e-9dd0-944c0239a58f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_text := Text;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>

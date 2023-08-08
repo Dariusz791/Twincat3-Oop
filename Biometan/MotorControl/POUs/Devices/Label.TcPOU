@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Label" Id="{407f426c-0c4c-4de9-b8b0-502b37790a3f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Label 
+VAR
+	_label : T_MaxString;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="Text" Id="{66237e83-5a30-47d6-bcb8-5508ec49c1c4}">
+      <Declaration><![CDATA[PROPERTY Text : STRING]]></Declaration>
+      <Get Name="Get" Id="{dc89a7b6-455a-4823-a351-6300d9e79d42}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Text := _label;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{a47bba9f-441b-4460-8539-be58aceacbb1}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_label := Text;
+ ]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>

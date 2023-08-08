@@ -3,7 +3,7 @@
   <POU Name="Button" Id="{310a0ffc-7dae-4cca-bf93-4d4c96def001}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Button
 VAR
-	_input AT%M*	:BOOL;
+	_input	: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>

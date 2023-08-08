@@ -18,6 +18,9 @@
     <LibraryReferences>{b44a2b0c-a7bd-4a89-9365-7ee8c7a6a1f7}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DUTs\ST_WorkTime.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GVLs\GVL.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -38,6 +41,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Devices\ITFs\I_Button.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Devices\Label.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Devices\Led.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Devices\TaurusLed.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Devices\TermFuse.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Implementation\FB_Drive.TcPOU">

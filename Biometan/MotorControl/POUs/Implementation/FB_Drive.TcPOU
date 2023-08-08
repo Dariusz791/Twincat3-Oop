@@ -3,9 +3,20 @@
   <POU Name="FB_Drive" Id="{112ce01f-73d6-45c3-b7fa-a81578b83871}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Drive IMPLEMENTS I_Drive
 VAR
-	_output AT%Q*	: BOOL;	// załącz/wyłącz stycznik silnika
-	_autoLed AT%M*	: BOOL;	// zaświeć/zgaś Led auto w stacyjce napędu SCADA
+	_contactor		: Contactor;	// załącz/wyłącz stycznik silnika
+	_autoLed 		: Led;	// zaświeć/zgaś Led auto w stacyjce napędu SCADA
+	_supplyLed		: Led;	// zaświeć/zgaś Led supply w stacyjce napędu SCADA
+	_taurusLed		: TaurusLed;  // sygnalizacja stanów za pomocą diody Taurus Led
+	_workTimeLabel	: Label; // label do wyświetlania czasu pracy napędu w stacyjce SCADA
+	_statusLabel	: Label; // label to wyświetlania statusu napędu w stacyjce SCADA
+	_termFuse		: TermFuse; // wejście zabezpieczenia termicznego i nadprądowego napędu
+
+	_startCount  	: BOOL;
+	_stWorkTime  	: ST_WorkTime;
+	_text			: T_MaxString;	
+
 	
+
   
 END_VAR
 ]]></Declaration>
@@ -18,7 +29,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_autoLed := FALSE;
+        <ST><![CDATA[_autoLed.State := FALSE;
 ]]></ST>
       </Implementation>
     </Method>
@@ -28,7 +39,9 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_autoLed := TRUE;]]></ST>
+        <ST><![CDATA[_autoLed.State := TRUE;
+
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="SwitchOff" Id="{b726e6e2-693a-4b15-abd3-37eeaf4d83de}">
@@ -37,7 +50,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_output := False;]]></ST>
+        <ST><![CDATA[_contactor.State := FALSE;
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="SwitchOn" Id="{047ffa8d-ba7e-4fee-8c3d-aa923ffb5d52}">
@@ -46,7 +60,79 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_output := TRUE;]]></ST>
+        <ST><![CDATA[_contactor.State := TRUE;
+
+
+
+
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TaurusState" Id="{cd1cb900-b022-4cc7-bc91-7a31f5c8791b}">
+      <Declaration><![CDATA[METHOD TaurusState : STRING
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// ustaw stan zmiennej LED Taurusa w TANGO SCADA (zmiana koloru diody predefiniowana tekstem) oraz label statusu jako tekst
+// zliczaj zcas pracy gdy napęd jest uruchomiony
+
+
+IF _termFuse.IsActive THEN
+		_supplyLed.State := TRUE;
+		_taurusLed.Text := 'ON';
+		_statusLabel.Text := 'ON';	
+
+	IF _contactor.State THEN
+		_taurusLed.Text := 'RUNNING';
+		_statusLabel.Text := 'RUNNING';
+		
+		// start count work time
+		WorkCount();
+		WorkTimelabel();
+	END_IF
+
+ELSE
+		_supplyLed.State := FALSE;
+		_taurusLed.Text := 'OFF';
+		_statusLabel.Text := 'OFF';
+
+	IF _contactor.State THEN
+		_taurusLed.Text := 'FAULT';
+		_statusLabel.Text := 'FAULT';
+	END_IF
+
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="WorkCount" Id="{72be380d-7f66-4d86-a0eb-efd62cefdaad}">
+      <Declaration><![CDATA[METHOD PRIVATE WorkCount : STRING
+VAR_INPUT
+END_VAR
+
+VAR_INST
+	fbTon	: TON;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbTon(IN := _startCount, PT := T#1S);
+
+IF (fbTon.Q) THEN
+	
+	fbTon(IN:=FALSE);
+	_stWorkTime.seconds := _stWorkTime.seconds +1;
+	
+	IF _stWorkTime.seconds > 59 THEN
+		_stWorkTime.seconds := 0;
+		_stWorkTime.minuts := _stWorkTime.minuts +1;
+		IF _stWorkTime.minuts > 59 THEN
+			_stWorkTime.minuts := 0;
+			_stWorkTime.hours := _stWorkTime.hours +1;	
+		END_IF
+	END_IF
+	
+END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="WorkCounterOff" Id="{a9042c87-8ee2-440b-9f6f-bdcc6b653229}">
@@ -55,7 +141,9 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[_startCount := FALSE;
+
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="WorkCounterOn" Id="{8d8a6122-3d0d-4d9c-a060-fcf02b0c3cc0}">
@@ -64,7 +152,26 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[_startCount := TRUE;
+
+
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="WorkTimeLabel" Id="{3c2a35eb-17e7-4a61-9a22-d11136ab8f6c}">
+      <Declaration><![CDATA[METHOD PRIVATE WorkTimeLabel : STRING
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Forms a chain of the form 'Hours:Minuts:Seconds'
+_text := CONCAT(UDINT_TO_STRING(THIS^._stWorkTime.hours), ':');
+_text := CONCAT(_text, UDINT_TO_STRING(THIS^._stWorkTime.minuts));
+_text := CONCAT(_text, ':');
+_text := CONCAT(_text, UDINT_TO_STRING(_stWorkTime.seconds));
+
+_workTimeLabel.Text := _text;]]></ST>
       </Implementation>
     </Method>
   </POU>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="TermFuse" Id="{a8875299-77d1-432d-981b-82ec5782068f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TermFuse
+VAR
+	_input AT%I* : BOOL;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="IsActive" Id="{c9d06f43-a262-42a7-97fc-e7cefa25fa55}">
+      <Declaration><![CDATA[PROPERTY IsActive : BOOL]]></Declaration>
+      <Get Name="Get" Id="{55ae8ec7-bb02-45c6-95f9-60dab7c2bc54}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IsActive := _input;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

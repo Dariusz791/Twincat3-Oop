@@ -4,13 +4,20 @@
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
 
-	fbDrive		   : FB_Drive;
-	fbMotorControl : FB_MotorControl(fbDrive);
+	fbDrive			  : FB_Drive;
+	fbDrive_01		  : FB_Drive;
+	fbMotorControl 	  : FB_MotorControl(fbDrive);
+	fbMotorControl_01 : FB_MotorControl(fbDrive_01);
 
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[fbMotorControl();
+fbMotorControl_01();
+
+
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

@@ -6,13 +6,14 @@ FUNCTION_BLOCK FB_MotorControl
 VAR
 	autoButton		    : Button;
 	forwardButton		: Button;
-	forwardContactor	: Contactor;
+
 	
 	iDrive : I_Drive;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF autoButton.IsPressed THEN
+      <ST><![CDATA[//Button Auto is set in SCADA motor control station, but Client in PLC have to have acces too directly via a variable to work in Auto mode
+IF autoButton.IsPressed THEN 
 
 	AutoOn();	// Turn On SCADA auto Led
 
@@ -23,17 +24,24 @@ ELSE
 END_IF
 
 
+//Button Forward is set in SCADA motor control station, but Client in PLC have to have acces too directly via a variable to work in Auto mode
 IF forwardButton.IsPressed THEN
 
 	ForwardOn(); 	// Switch Contactor On
-	iDrive.WorkCounterOn();	//Start count work time				
+	iDrive.WorkCounterOn();	//Start count work time	
+				
 
 ELSE
 
 	ForwardOff();	// Switch Contactor Off 
 	iDrive.WorkCounterOff();	//Stop count work time	
 	
-END_IF]]></ST>
+END_IF
+
+// determine the state of the device and light the Taurus LED with the appropriate color
+iDrive.TaurusState();
+
+]]></ST>
     </Implementation>
     <Method Name="AutoOff" Id="{d8967504-f11e-4755-939d-967045b0616b}">
       <Declaration><![CDATA[METHOD PUBLIC AutoOff : BOOL

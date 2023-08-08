@@ -27,15 +27,23 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="TaurusState" Id="{74712898-7e4a-4743-8fa9-e3d190fe99b0}">
+      <Declaration><![CDATA[METHOD TaurusState : STRING
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="WorkCounterOff" Id="{2aa25d40-acd0-47fc-a6de-f1a52539585e}">
       <Declaration><![CDATA[METHOD WorkCounterOff : BOOL
 VAR_INPUT
+	
 END_VAR
 ]]></Declaration>
     </Method>
     <Method Name="WorkCounterOn" Id="{d4898fdc-7a8e-4e01-92c3-0f762b05b316}">
       <Declaration><![CDATA[METHOD WorkCounterOn : BOOL
 VAR_INPUT
+
 END_VAR
 ]]></Declaration>
     </Method>
