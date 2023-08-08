@@ -14,9 +14,6 @@ VAR
 	_startCount  	: BOOL;
 	_stWorkTime  	: ST_WorkTime;
 	_text			: T_MaxString;	
-
-	
-
   
 END_VAR
 ]]></Declaration>
@@ -47,10 +44,13 @@ END_VAR
     <Method Name="SwitchOff" Id="{b726e6e2-693a-4b15-abd3-37eeaf4d83de}">
       <Declaration><![CDATA[METHOD SwitchOff : BOOL
 VAR_INPUT
+	
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[_contactor.State := FALSE;
+
+	
 ]]></ST>
       </Implementation>
     </Method>
@@ -107,7 +107,7 @@ END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="WorkCount" Id="{72be380d-7f66-4d86-a0eb-efd62cefdaad}">
-      <Declaration><![CDATA[METHOD PRIVATE WorkCount : STRING
+      <Declaration><![CDATA[METHOD PROTECTED WorkCount : STRING
 VAR_INPUT
 END_VAR
 
@@ -160,7 +160,7 @@ END_VAR
       </Implementation>
     </Method>
     <Method Name="WorkTimeLabel" Id="{3c2a35eb-17e7-4a61-9a22-d11136ab8f6c}">
-      <Declaration><![CDATA[METHOD PRIVATE WorkTimeLabel : STRING
+      <Declaration><![CDATA[METHOD PROTECTED WorkTimeLabel : STRING
 VAR_INPUT
 END_VAR
 ]]></Declaration>

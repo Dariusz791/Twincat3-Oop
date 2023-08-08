@@ -8,6 +8,9 @@ VAR
 	fbDrive_01		  : FB_Drive;
 	fbMotorControl 	  : FB_MotorControl(fbDrive);
 	fbMotorControl_01 : FB_MotorControl(fbDrive_01);
+	
+	fbDriveReverse	  : FB_DriveReverse;	
+	fbMotorControlReverse : FB_MotorControlReverse(fbDriveReverse);
 
 	
 END_VAR
@@ -15,6 +18,7 @@ END_VAR
     <Implementation>
       <ST><![CDATA[fbMotorControl();
 fbMotorControl_01();
+fbMotorControlReverse();
 
 
 ]]></ST>

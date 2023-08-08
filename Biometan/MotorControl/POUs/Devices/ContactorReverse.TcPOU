@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="ContactorReverse" Id="{cbb906b0-fc51-40c3-90e9-12890d021e59}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ContactorReverse
+VAR
+	_output AT%Q*: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="State" Id="{071cc637-4931-422d-8ca2-244b0a22f730}">
+      <Declaration><![CDATA[PROPERTY State : BOOL]]></Declaration>
+      <Get Name="Get" Id="{770dd012-0daa-4b75-84bd-579a6dc1884e}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[State := _output;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{f37c17f1-7c1f-4962-bb94-35c1514b4e44}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_output := State;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>

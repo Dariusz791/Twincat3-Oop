@@ -3,11 +3,29 @@
   <POU Name="FB_MotorControlReverse" Id="{e3f6163d-999c-4c4f-bc04-2ed30004ff70}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_MotorControlReverse EXTENDS FB_MotorControl
 VAR
-
+	reverseButton		: Button;	// Scada Button reverse
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[SUPER^(); //call base class 
+
+
+//Button Forward is set in SCADA motor control station, but Client in PLC have to have acces too directly via a variable to work in Auto mode
+IF reverseButton.IsPressed THEN
+
+	ReverseOn(); 	// Switch Contactor On
+	iDrive.WorkCounterOn();	//Start count work time	
+				
+
+ELSE
+
+	ReverseOff();	// Switch Contactor Off 
+	iDrive.WorkCounterOff();	//Stop count work time	
+	
+END_IF
+
+// determine the state of the device and light the Taurus LED with the appropriate color
+iDrive.TaurusState();]]></ST>
     </Implementation>
     <Method Name="FB_init" Id="{ae3fb759-2dd1-4395-b7cc-36f373dd76fb}">
       <Declaration><![CDATA[METHOD FB_init : BOOL

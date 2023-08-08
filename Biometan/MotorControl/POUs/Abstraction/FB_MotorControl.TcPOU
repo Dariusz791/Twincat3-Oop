@@ -4,11 +4,10 @@
     <Declaration><![CDATA[// Function block to control simple MCC 
 FUNCTION_BLOCK FB_MotorControl
 VAR
-	autoButton		    : Button;
-	forwardButton		: Button;
-
+	autoButton		    : Button;	// Scada Button auto
+	forwardButton		: Button;	// Scada Button forward
 	
-	iDrive : I_Drive;
+	iDrive : I_Drive;				// interface variable
 END_VAR
 ]]></Declaration>
     <Implementation>

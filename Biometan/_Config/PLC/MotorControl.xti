@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.47" ClassName="CNestedPlcProjDef">
 	<Project GUID="{C2885184-96B6-487C-9286-A6CA2945AECD}" Name="MotorControl" PrjFilePath="..\..\MotorControl\MotorControl.plcproj" TmcFilePath="..\..\MotorControl\MotorControl.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="MotorControl\MotorControl.tmc" TmcHash="{E76D881B-774C-43F5-B239-BE5684CCD3E2}">
+		<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="MotorControl\MotorControl.tmc" TmcHash="{AD8EA15C-9405-1FA6-6A4E-DB3040C22737}">
 			<Name>MotorControl Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
@@ -14,6 +14,10 @@
 					<Name>MAIN.fbDrive_01._termFuse._input</Name>
 					<Type>BOOL</Type>
 				</Var>
+				<Var>
+					<Name>MAIN.fbDriveReverse._termFuse._input</Name>
+					<Type>BOOL</Type>
+				</Var>
 			</Vars>
 			<Vars VarGrpType="2" AreaNo="1">
 				<Name>PlcTask Outputs</Name>
@@ -23,6 +27,14 @@
 				</Var>
 				<Var>
 					<Name>MAIN.fbDrive_01._contactor._output</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.fbDriveReverse._contactor._output</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.fbDriveReverse._contactorReverse._output</Name>
 					<Type>BOOL</Type>
 				</Var>
 			</Vars>
