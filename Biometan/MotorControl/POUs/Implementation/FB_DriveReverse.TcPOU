@@ -11,17 +11,15 @@ END_VAR
       <ST><![CDATA[SUPER^();
 ]]></ST>
     </Implementation>
-    <Method Name="SwitchOff" Id="{1bf8401f-e92a-45bf-8d9b-1f25e75c2802}">
-      <Declaration><![CDATA[
-METHOD SwitchOff : BOOL
+    <Method Name="SwitchReverseOff" Id="{1bf8401f-e92a-45bf-8d9b-1f25e75c2802}">
+      <Declaration><![CDATA[METHOD SwitchReverseOff : BOOL
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[_contactor.State := False;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="SwitchOn" Id="{d0c55b9b-ce07-4e2d-8242-0831ea7d7140}">
-      <Declaration><![CDATA[
-METHOD SwitchOn : BOOL
+    <Method Name="SwitchReverseOn" Id="{d0c55b9b-ce07-4e2d-8242-0831ea7d7140}">
+      <Declaration><![CDATA[METHOD SwitchReverseOn : BOOL
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[_contactor.State := TRUE;]]></ST>

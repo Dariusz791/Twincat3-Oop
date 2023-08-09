@@ -82,7 +82,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[iDrive.SwitchOff();
+        <ST><![CDATA[iDrive.SwitchReverseOff();
 ]]></ST>
       </Implementation>
     </Method>
@@ -93,7 +93,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[iDrive.SwitchOn();
+        <ST><![CDATA[iDrive.SwitchReverseOn();
 ]]></ST>
       </Implementation>
     </Method>

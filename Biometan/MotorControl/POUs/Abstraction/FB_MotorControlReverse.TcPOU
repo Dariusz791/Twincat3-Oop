@@ -47,7 +47,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[iDrive.SwitchOff();]]></ST>
+        <ST><![CDATA[iDrive.SwitchReverseOff();]]></ST>
       </Implementation>
     </Method>
     <Method Name="ReverseOn" Id="{c76a633c-5fd6-4c8d-90e7-611a4362c596}">
@@ -56,7 +56,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[iDrive.SwitchOn();]]></ST>
+        <ST><![CDATA[iDrive.SwitchReverseOn();]]></ST>
       </Implementation>
     </Method>
   </POU>

@@ -27,6 +27,18 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="SwitchReverseOff" Id="{de8545cc-c9b7-4f9d-bf20-d93d9b164788}">
+      <Declaration><![CDATA[METHOD SwitchReverseOff : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="SwitchReverseON" Id="{f9735176-34e5-45e5-8a15-bb554486a2c6}">
+      <Declaration><![CDATA[METHOD SwitchReverseON : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="TaurusState" Id="{74712898-7e4a-4743-8fa9-e3d190fe99b0}">
       <Declaration><![CDATA[METHOD TaurusState : STRING
 VAR_INPUT
