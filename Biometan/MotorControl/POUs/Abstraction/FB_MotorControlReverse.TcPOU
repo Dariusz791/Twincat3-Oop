@@ -4,28 +4,28 @@
     <Declaration><![CDATA[FUNCTION_BLOCK FB_MotorControlReverse EXTENDS FB_MotorControl
 VAR
 	reverseButton		: Button;	// Scada Button reverse
+	iDriveReverse		: I_DriveReverse; //Interface variable 
+	
+	bSuccess: BOOL;
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[SUPER^(); //call base class 
 
-
-//Button Forward is set in SCADA motor control station, but Client in PLC have to have acces too directly via a variable to work in Auto mode
-IF reverseButton.IsPressed THEN
-
-	ReverseOn(); 	// Switch Contactor On
-	iDrive.WorkCounterOn();	//Start count work time	
-				
-
-ELSE
-
-	ReverseOff();	// Switch Contactor Off 
-	iDrive.WorkCounterOff();	//Stop count work time	
-	
+IF NOT forwardButton.IsPressed THEN
+	IF reverseButton.IsPressed THEN
+		ReverseOn();
+		iDriveReverse.WorkCounterOn();
+		iDriveReverse.WorkCount();
+	ELSE
+		ReverseOff();
+		iDriveReverse.WorkCounterOff();		
+	END_IF
 END_IF
 
-// determine the state of the device and light the Taurus LED with the appropriate color
-iDrive.TaurusState();]]></ST>
+
+]]></ST>
     </Implementation>
     <Method Name="FB_init" Id="{ae3fb759-2dd1-4395-b7cc-36f373dd76fb}">
       <Declaration><![CDATA[METHOD FB_init : BOOL
@@ -35,10 +35,14 @@ VAR_INPUT
 	iDrive		 : I_Drive;
 			
 END_VAR
+
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[
-]]></ST>
+        <ST><![CDATA[//check it is possible conversion type of interface
+
+IF __QUERYINTERFACE(iDrive, iDriveReverse) THEN
+	bSuccess := TRUE;
+END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="ReverseOff" Id="{755b010d-844a-4604-9bcb-4be64e1215bf}">
@@ -47,7 +51,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[iDrive.SwitchReverseOff();]]></ST>
+        <ST><![CDATA[iDriveReverse.SwitchReverseOff();]]></ST>
       </Implementation>
     </Method>
     <Method Name="ReverseOn" Id="{c76a633c-5fd6-4c8d-90e7-611a4362c596}">
@@ -56,7 +60,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[iDrive.SwitchReverseOn();]]></ST>
+        <ST><![CDATA[iDriveReverse.SwitchReverseOn();]]></ST>
       </Implementation>
     </Method>
   </POU>

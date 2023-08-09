@@ -3,7 +3,7 @@
   <POU Name="Contactor" Id="{c060f755-e854-44d6-80a6-8e4dedcc8084}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Contactor
 VAR
-	_output AT%Q*: BOOL;
+	_output AT%QX1.0: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>

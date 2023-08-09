@@ -67,6 +67,9 @@
     <Compile Include="POUs\Implementation\ITFs\I_Drive.TcIO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\Implementation\ITFs\I_DriveReverse.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>

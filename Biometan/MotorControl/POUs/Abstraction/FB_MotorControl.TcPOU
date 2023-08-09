@@ -28,7 +28,7 @@ IF forwardButton.IsPressed THEN
 
 	ForwardOn(); 	// Switch Contactor On
 	iDrive.WorkCounterOn();	//Start count work time	
-				
+	iDrive.WorkCount();			
 
 ELSE
 
@@ -82,7 +82,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[iDrive.SwitchReverseOff();
+        <ST><![CDATA[iDrive.SwitchOff();
 ]]></ST>
       </Implementation>
     </Method>
@@ -93,7 +93,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[iDrive.SwitchReverseOn();
+        <ST><![CDATA[iDrive.SwitchOn();
 ]]></ST>
       </Implementation>
     </Method>

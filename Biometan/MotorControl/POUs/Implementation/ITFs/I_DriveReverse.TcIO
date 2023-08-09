@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="I_DriveReverse" Id="{7e6fb88b-ab30-49e9-aab8-c2339bf84641}">
+    <Declaration><![CDATA[INTERFACE I_DriveReverse EXTENDS I_Drive
+]]></Declaration>
+    <Method Name="SwitchReverseOff" Id="{de8545cc-c9b7-4f9d-bf20-d93d9b164788}">
+      <Declaration><![CDATA[METHOD SwitchReverseOff : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="SwitchReverseON" Id="{f9735176-34e5-45e5-8a15-bb554486a2c6}">
+      <Declaration><![CDATA[METHOD SwitchReverseON : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

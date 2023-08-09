@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_DriveReverse" Id="{e7f5413c-681f-401c-af50-970535df7710}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_DriveReverse EXTENDS FB_Drive IMPLEMENTS I_Drive
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_DriveReverse EXTENDS FB_Drive IMPLEMENTS I_DriveReverse
 
 VAR
 	_contactorReverse		: ContactorReverse;	// załącz/wyłącz stycznik do tyłu silnika
@@ -15,14 +15,14 @@ END_VAR
       <Declaration><![CDATA[METHOD SwitchReverseOff : BOOL
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_contactor.State := False;]]></ST>
+        <ST><![CDATA[_contactorReverse.State := False;]]></ST>
       </Implementation>
     </Method>
     <Method Name="SwitchReverseOn" Id="{d0c55b9b-ce07-4e2d-8242-0831ea7d7140}">
       <Declaration><![CDATA[METHOD SwitchReverseOn : BOOL
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_contactor.State := TRUE;]]></ST>
+        <ST><![CDATA[_contactorReverse.State := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Method Name="TaurusState" Id="{9134f4c8-a297-452b-a6ad-a83f0aad6a9c}">
@@ -45,7 +45,6 @@ IF _termFuse.IsActive THEN
 		_statusLabel.Text := 'RUNNING';
 		
 		// start count work time
-		WorkCount();
 		WorkTimelabel();
 	END_IF
 

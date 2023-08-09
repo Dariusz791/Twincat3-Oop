@@ -89,7 +89,6 @@ IF _termFuse.IsActive THEN
 		_statusLabel.Text := 'RUNNING';
 		
 		// start count work time
-		WorkCount();
 		WorkTimelabel();
 	END_IF
 
@@ -107,7 +106,7 @@ END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="WorkCount" Id="{72be380d-7f66-4d86-a0eb-efd62cefdaad}">
-      <Declaration><![CDATA[METHOD PROTECTED WorkCount : STRING
+      <Declaration><![CDATA[METHOD PUBLIC WorkCount : STRING
 VAR_INPUT
 END_VAR
 
