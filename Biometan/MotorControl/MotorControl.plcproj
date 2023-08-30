@@ -58,6 +58,9 @@
     <Compile Include="POUs\Devices\Led.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\Devices\Modbus\ModbusRtu.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Devices\TermFuse.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -88,6 +91,7 @@
     <Folder Include="GVLs" />
     <Folder Include="POUs\Abstraction" />
     <Folder Include="POUs\Devices\ITFs" />
+    <Folder Include="POUs\Devices\Modbus" />
     <Folder Include="POUs\Implementation" />
     <Folder Include="POUs\Implementation\ITFs" />
     <Folder Include="POUs\Devices" />
@@ -95,6 +99,9 @@
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>
+    <PlaceholderReference Include="Tc2_ModbusRTU">
+      <DefaultResolution>Tc2_ModbusRTU, * (Beckhoff Automation GmbH)</DefaultResolution>
+    </PlaceholderReference>
     <PlaceholderReference Include="Tc2_Standard">
       <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_Standard</Namespace>

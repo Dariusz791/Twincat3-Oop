@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="ModbusRtu" Id="{69d5e8b6-d242-4c8d-a42f-563324e4dbde}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ModbusRtu
+
+VAR
+	MB: ModbusRtuMaster_KL6x22B;
+	MBdata : ARRAY[0..40] OF WORD;		(* The size of this array can be adapted to the modbus slaves register area *)
+	timeoutvalue: TIME := T#300MS;		(* timeout while waiting for an answer of the modbus slave *)
+	_deviceID: BYTE;
+	busy: BOOL;
+	LastErrorstate: INT;
+	LastModbusError: ST_ModbusErrorDiagnostics;
+	CounterError: DINT;
+	CounterSuccess: DINT;
+	ident: INT;
+	slave_id: INT;
+	ReadedValue : ARRAY[0..50] OF WORD;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="ModbusID" Id="{a4139f0b-5a1b-48da-b7ea-b6010050c3c5}">
+      <Declaration><![CDATA[PROPERTY ModbusID : BYTE]]></Declaration>
+      <Get Name="Get" Id="{0345bf64-8096-425f-be8f-a4c2e9f7e5d0}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ModbusID := _deviceID;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{20348fd4-af98-46db-8592-54a7b992e71a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_deviceID := ModbusID;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>
