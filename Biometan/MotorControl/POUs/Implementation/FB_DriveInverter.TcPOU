@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_DriveInverter" Id="{3b50846e-6152-4329-9a31-34ca455c4ec3}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_DriveInverter EXTENDS FB_DriveReverse IMPLEMENTS I_DriveInverter;
+VAR
+	_speedEdit : Edit;  // Inverter speed set point from SCADA drive station
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SUPER^();]]></ST>
+    </Implementation>
+    <Method Name="Reset" Id="{64b64920-6b0e-4b95-82d2-e242fdbecf20}">
+      <Declaration><![CDATA[METHOD Reset : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="StatusState" Id="{b2fd76c3-f710-4a43-a23d-38a510ede9d2}">
+      <Declaration><![CDATA[METHOD StatusState : STRING
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Override ]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SwitchOff" Id="{2f65f00a-f656-42e9-8005-44be524860e7}">
+      <Declaration><![CDATA[METHOD SwitchOff : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Override  send "stop" command to modbus block]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SwitchOn" Id="{76402309-67ef-4b97-8c86-4d742fe7270a}">
+      <Declaration><![CDATA[METHOD SwitchOn : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Override  send "start" command to Modbus block]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SwitchReverseOff" Id="{e2abbc87-bf0f-449b-b617-af2f148cc1f4}">
+      <Declaration><![CDATA[METHOD SwitchReverseOff : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Override  send "reverse" stop command to Modbus block]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SwitchReverseOn" Id="{fa8df555-f63f-4670-adb2-e7de773a03c4}">
+      <Declaration><![CDATA[METHOD SwitchReverseOn : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Override  send "reverse" start command to Modbus block]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

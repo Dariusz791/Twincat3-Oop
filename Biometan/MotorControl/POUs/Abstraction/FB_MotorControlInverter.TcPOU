@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_MotorControlInverter" Id="{09f97a7c-20ed-4dba-b4ed-2db01e0000dd}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MotorControlInverter EXTENDS FB_MotorControlReverse
+VAR
+	resetButton		: Button;	// Scada Button inverter reset
+	iDriveInverter   : I_DriveInverter; // interface variable
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SUPER^(); //call base class 
+
+IF resetButton.IsPressed THEN
+	Reset();
+END_IF]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{0e59730c-83eb-413d-aa7a-18575dff9c7e}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode  : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	iDrive		 : I_Drive;
+			
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//check it is possible conversion type of interface
+
+IF __QUERYINTERFACE(iDrive, iDriveInverter) THEN
+	bSuccess := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Reset" Id="{021b8393-ba79-4dba-a194-82bb069c65c7}">
+      <Declaration><![CDATA[METHOD Reset : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[iDriveInverter.Reset();
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

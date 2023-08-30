@@ -31,6 +31,9 @@
     <Compile Include="POUs\Abstraction\FB_MotorControl.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\Abstraction\FB_MotorControlInverter.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Abstraction\FB_MotorControlReverse.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -43,6 +46,9 @@
     <Compile Include="POUs\Devices\ContactorReverse.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\Devices\Edit.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Devices\ITFs\I_Button.TcIO">
       <SubType>Code</SubType>
     </Compile>
@@ -52,19 +58,22 @@
     <Compile Include="POUs\Devices\Led.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\Devices\TaurusLed.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="POUs\Devices\TermFuse.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Implementation\FB_Drive.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\Implementation\FB_DriveInverter.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Implementation\FB_DriveReverse.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Implementation\ITFs\I_Drive.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Implementation\ITFs\I_DriveInverter.TcIO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Implementation\ITFs\I_DriveReverse.TcIO">

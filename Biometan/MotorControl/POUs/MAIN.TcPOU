@@ -5,21 +5,21 @@
 VAR
 	// Drive
 	fbDrive			      : FB_Drive;
-	fbDrive_01		      : FB_Drive;
 	fbDriveReverse	      : FB_DriveReverse;
+	fbDriveInverter		  : FB_DriveInverter;	
 
 	//Drive Control	
 	fbMotorControl 	      : FB_MotorControl(fbDrive);
-	fbMotorControl_01 	  : FB_MotorControl(fbDrive_01);	
 	fbMotorControlReverse : FB_MotorControlReverse(fbDriveReverse);
+	fbMotorControlInverter: FB_MotorControlInverter(fbDriveInverter);		
 
 	
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[fbMotorControl();
-fbMotorControl_01();
 fbMotorControlReverse();
+fbMotorControlInverter();
 
 
 ]]></ST>

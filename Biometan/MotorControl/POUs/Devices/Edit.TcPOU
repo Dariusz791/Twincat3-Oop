@@ -1,32 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="TaurusLed" Id="{e63cee5b-d7be-43fb-a377-2aa3bbe5386e}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK TaurusLed 
+  <POU Name="Edit" Id="{dd182afd-7d10-410a-9d00-31674a3839a1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Edit
 VAR
-	_text : T_MaxString;
-
-	
+	_edit : T_MaxString;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Property Name="Text" Id="{b753cbdf-f104-4e01-8e2f-6f6d5bb31d2f}">
+    <Property Name="Text" Id="{8c53d925-f5f0-4953-a30c-774f1d18bfb3}">
       <Declaration><![CDATA[PROPERTY Text : STRING]]></Declaration>
-      <Get Name="Get" Id="{bed5069e-410c-4790-bead-a7d8591095b0}">
+      <Get Name="Get" Id="{1f334f1c-bb17-48ab-974e-2444e2944be4}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Text := _text;]]></ST>
+          <ST><![CDATA[Text := _edit;]]></ST>
         </Implementation>
       </Get>
-      <Set Name="Set" Id="{e42b9ef2-96ee-452e-9dd0-944c0239a58f}">
+      <Set Name="Set" Id="{ff9edd7d-ac20-4180-92ce-7533b13b0e7c}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[_text := Text;]]></ST>
+          <ST><![CDATA[Text := _edit;]]></ST>
         </Implementation>
       </Set>
     </Property>
