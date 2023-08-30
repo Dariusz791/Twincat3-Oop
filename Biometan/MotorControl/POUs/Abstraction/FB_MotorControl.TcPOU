@@ -38,7 +38,7 @@ ELSE
 END_IF
 
 // determine the state of the device and light the Taurus LED with the appropriate color
-iDrive.TaurusState();
+iDrive.StatusState();
 
 ]]></ST>
     </Implementation>

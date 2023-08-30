@@ -11,6 +11,52 @@ END_VAR
       <ST><![CDATA[SUPER^();
 ]]></ST>
     </Implementation>
+    <Method Name="StatusState" Id="{9134f4c8-a297-452b-a6ad-a83f0aad6a9c}">
+      <Declaration><![CDATA[METHOD StatusState : STRING
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// ustaw stan zmiennej LED Taurusa w TANGO SCADA (zmiana koloru diody predefiniowana tekstem) oraz label statusu jako tekst
+// zliczaj czas pracy gdy napęd jest uruchomiony
+
+
+IF _termFuse.IsActive THEN
+		_supplyLed.State := TRUE;
+		_stateLabel.Text := 'ON';
+		_statusLabel.Text := 'Napęd jest w gotowości';	
+
+	IF _contactor.State THEN
+		_stateLabel.Text := 'RUNNING';
+		_statusLabel.Text := 'Napęd jest uruchomiony do przodu';
+		
+		// start count work time
+		WorkTimelabel();
+	END_IF
+	
+	IF _contactorReverse.State THEN
+		_stateLabel.Text := 'RUNNING';
+		_statusLabel.Text := 'Napęd jest uruchomiony do tyłu';
+		
+		// start count work time
+		WorkTimelabel();
+	END_IF
+	
+	
+
+ELSE
+		_supplyLed.State := FALSE;
+		_stateLabel.Text := 'OFF';
+		_statusLabel.Text := 'Napęd jest wyłączony';
+
+	IF _contactor.State OR _contactorReverse.State THEN
+		_stateLabel.Text := 'FAULT';
+		_statusLabel.Text := 'Zadziałał wyłacznik silnikowy';
+	END_IF
+
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="SwitchReverseOff" Id="{1bf8401f-e92a-45bf-8d9b-1f25e75c2802}">
       <Declaration><![CDATA[METHOD SwitchReverseOff : BOOL
 ]]></Declaration>
@@ -23,42 +69,6 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[_contactorReverse.State := TRUE;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="TaurusState" Id="{9134f4c8-a297-452b-a6ad-a83f0aad6a9c}">
-      <Declaration><![CDATA[METHOD TaurusState : STRING
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[// ustaw stan zmiennej LED Taurusa w TANGO SCADA (zmiana koloru diody predefiniowana tekstem) oraz label statusu jako tekst
-// zliczaj czas pracy gdy napęd jest uruchomiony
-
-
-IF _termFuse.IsActive THEN
-		_supplyLed.State := TRUE;
-		_taurusLed.Text := 'ON';
-		_statusLabel.Text := 'ON';	
-
-	IF _contactor.State OR _contactorReverse.State THEN
-		_taurusLed.Text := 'RUNNING';
-		_statusLabel.Text := 'RUNNING';
-		
-		// start count work time
-		WorkTimelabel();
-	END_IF
-
-ELSE
-		_supplyLed.State := FALSE;
-		_taurusLed.Text := 'OFF';
-		_statusLabel.Text := 'OFF';
-
-	IF _contactor.State OR _contactorReverse.State THEN
-		_taurusLed.Text := 'FAULT';
-		_statusLabel.Text := 'FAULT';
-	END_IF
-
-END_IF]]></ST>
       </Implementation>
     </Method>
   </POU>

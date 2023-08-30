@@ -1,27 +1,9 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.47" ClassName="CNestedPlcProjDef">
 	<Project GUID="{C2885184-96B6-487C-9286-A6CA2945AECD}" Name="MotorControl" PrjFilePath="..\..\MotorControl\MotorControl.plcproj" TmcFilePath="..\..\MotorControl\MotorControl.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="MotorControl\MotorControl.tmc" TmcHash="{C371BDF7-058B-A345-CA0B-627692313FB2}">
+		<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="MotorControl\MotorControl.tmc" TmcHash="{B7847CEB-23FF-599E-8888-BE7197056FE8}">
 			<Name>MotorControl Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
-			<Vars VarGrpType="1">
-				<Name>PlcTask Inputs</Name>
-				<Var>
-					<Name>MAIN.fbDriveReverse._termFuse._input</Name>
-					<Type>BOOL</Type>
-				</Var>
-			</Vars>
-			<Vars VarGrpType="2" AreaNo="1">
-				<Name>PlcTask Outputs</Name>
-				<Var>
-					<Name>Contactor._output</Name>
-					<Type>BIT</Type>
-				</Var>
-				<Var>
-					<Name>ContactorReverse._output</Name>
-					<Type>BIT</Type>
-				</Var>
-			</Vars>
 			<Contexts>
 				<Context>
 					<Id>0</Id>

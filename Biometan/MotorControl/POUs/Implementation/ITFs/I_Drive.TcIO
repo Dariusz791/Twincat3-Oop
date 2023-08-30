@@ -15,6 +15,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Method Name="StatusState" Id="{74712898-7e4a-4743-8fa9-e3d190fe99b0}">
+      <Declaration><![CDATA[METHOD StatusState : STRING
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
     <Method Name="SwitchOff" Id="{ae9140d4-60e7-4ab0-9aba-6c098fbeaf6c}">
       <Declaration><![CDATA[METHOD SwitchOff : BOOL
 VAR_INPUT
@@ -23,12 +29,6 @@ END_VAR
     </Method>
     <Method Name="SwitchOn" Id="{99be391c-6b6f-45b3-9fbc-71b1518bbbdd}">
       <Declaration><![CDATA[METHOD SwitchOn : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
-    <Method Name="TaurusState" Id="{74712898-7e4a-4743-8fa9-e3d190fe99b0}">
-      <Declaration><![CDATA[METHOD TaurusState : STRING
 VAR_INPUT
 END_VAR
 ]]></Declaration>

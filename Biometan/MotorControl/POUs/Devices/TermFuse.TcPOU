@@ -3,7 +3,7 @@
   <POU Name="TermFuse" Id="{a8875299-77d1-432d-981b-82ec5782068f}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK TermFuse
 VAR
-	_input AT%I* : BOOL;
+	_input : BOOL;
 	
 END_VAR
 ]]></Declaration>

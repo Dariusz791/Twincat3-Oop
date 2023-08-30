@@ -3,7 +3,7 @@
   <POU Name="ContactorReverse" Id="{cbb906b0-fc51-40c3-90e9-12890d021e59}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ContactorReverse
 VAR
-	_output AT%QX1.1: BOOL;
+	_output  : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>

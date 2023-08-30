@@ -6,7 +6,7 @@ VAR
 	_contactor		: Contactor;	// załącz/wyłącz stycznik silnika
 	_autoLed 		: Led;	// zaświeć/zgaś Led auto w stacyjce napędu SCADA
 	_supplyLed		: Led;	// zaświeć/zgaś Led supply w stacyjce napędu SCADA
-	_taurusLed		: TaurusLed;  // sygnalizacja stanów za pomocą diody Taurus Led
+	_stateLabel		: Label; // label do wyświetlania stanu urzadzenia w stacyjce SCADA
 	_workTimeLabel	: Label; // label do wyświetlania czasu pracy napędu w stacyjce SCADA
 	_statusLabel	: Label; // label to wyświetlania statusu napędu w stacyjce SCADA
 	_termFuse		: TermFuse; // wejście zabezpieczenia termicznego i nadprądowego napędu
@@ -41,6 +41,42 @@ END_VAR
 ]]></ST>
       </Implementation>
     </Method>
+    <Method Name="StatusState" Id="{cd1cb900-b022-4cc7-bc91-7a31f5c8791b}">
+      <Declaration><![CDATA[METHOD StatusState : STRING
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// ustaw stan zmiennej LED Taurusa w TANGO SCADA (zmiana koloru diody predefiniowana tekstem) oraz label statusu jako tekst
+// zliczaj zcas pracy gdy napęd jest uruchomiony
+
+
+IF _termFuse.IsActive THEN
+		_supplyLed.State := TRUE;
+		_stateLabel.Text := 'ON';
+		_statusLabel.Text := 'Napęd jest w gotowości';	
+
+	IF _contactor.State THEN
+		_stateLabel.Text := 'RUNNING';
+		_statusLabel.Text := 'Napęd jest uruchomiony do przodu';
+		
+		// start count work time
+		WorkTimelabel();
+	END_IF
+
+ELSE
+		_supplyLed.State := FALSE;
+		_stateLabel.Text := 'OFF';
+		_statusLabel.Text := 'Napęd jest wyłączony';
+
+	IF _contactor.State THEN
+		_stateLabel.Text := 'FAULT';
+		_statusLabel.Text := 'Zadziałał wyłacznik silnikowy';
+	END_IF
+
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="SwitchOff" Id="{b726e6e2-693a-4b15-abd3-37eeaf4d83de}">
       <Declaration><![CDATA[METHOD SwitchOff : BOOL
 VAR_INPUT
@@ -67,42 +103,6 @@ END_VAR
 
 
 ]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="TaurusState" Id="{cd1cb900-b022-4cc7-bc91-7a31f5c8791b}">
-      <Declaration><![CDATA[METHOD TaurusState : STRING
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[// ustaw stan zmiennej LED Taurusa w TANGO SCADA (zmiana koloru diody predefiniowana tekstem) oraz label statusu jako tekst
-// zliczaj zcas pracy gdy napęd jest uruchomiony
-
-
-IF _termFuse.IsActive THEN
-		_supplyLed.State := TRUE;
-		_taurusLed.Text := 'ON';
-		_statusLabel.Text := 'ON';	
-
-	IF _contactor.State THEN
-		_taurusLed.Text := 'RUNNING';
-		_statusLabel.Text := 'RUNNING';
-		
-		// start count work time
-		WorkTimelabel();
-	END_IF
-
-ELSE
-		_supplyLed.State := FALSE;
-		_taurusLed.Text := 'OFF';
-		_statusLabel.Text := 'OFF';
-
-	IF _contactor.State THEN
-		_taurusLed.Text := 'FAULT';
-		_statusLabel.Text := 'FAULT';
-	END_IF
-
-END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="WorkCount" Id="{72be380d-7f66-4d86-a0eb-efd62cefdaad}">
