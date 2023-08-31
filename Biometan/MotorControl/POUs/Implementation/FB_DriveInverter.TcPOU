@@ -3,13 +3,31 @@
   <POU Name="FB_DriveInverter" Id="{3b50846e-6152-4329-9a31-34ca455c4ec3}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_DriveInverter EXTENDS FB_DriveReverse IMPLEMENTS I_DriveInverter;
 VAR
-	_speedEdit : Edit;  // Inverter speed set point from SCADA drive station
+	_speedEdit      : Edit;  // Inverter speed set point from SCADA drive station
+	_pFbModbusRtu	: POINTER TO FB_ModbusRtu;
 
 END_VAR
+
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[SUPER^();]]></ST>
+      <ST><![CDATA[SUPER^();
+
+
+ 
+]]></ST>
     </Implementation>
+    <Method Name="FB_init" Id="{6d280acc-97e0-46f6-b62b-83d083551f4d}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	pFbModbusRtu : POINTER TO FB_ModbusRtu;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^._pFbModbusRtu := pFbModbusRtu;]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Reset" Id="{64b64920-6b0e-4b95-82d2-e242fdbecf20}">
       <Declaration><![CDATA[METHOD Reset : BOOL
 VAR_INPUT
@@ -43,7 +61,17 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//Override  send "start" command to Modbus block]]></ST>
+        <ST><![CDATA[//Override  send "start" command to Modbus block
+
+_pFbModbusRtu^.ModbusID := 01; // TODO variable must be pass by method input argument
+_pFbModbusRtu^.MBAdress := 8501;
+_pFbModbusRtu^.MBquantity := 1;
+_pFbModbusRtu^.TimeoutValue := T#300MS;
+_pFbModbusRtu^.EnableWrite := TRUE;
+
+
+
+SwitchOn := _pFbModbusRtu^.WriteSingleRegister();]]></ST>
       </Implementation>
     </Method>
     <Method Name="SwitchReverseOff" Id="{e2abbc87-bf0f-449b-b617-af2f148cc1f4}">

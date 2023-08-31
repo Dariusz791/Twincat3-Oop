@@ -58,7 +58,7 @@
     <Compile Include="POUs\Devices\Led.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\Devices\Modbus\ModbusRtu.TcPOU">
+    <Compile Include="POUs\Devices\Modbus\FB_ModbusRtu.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Devices\TermFuse.TcPOU">

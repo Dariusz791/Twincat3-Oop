@@ -5,6 +5,7 @@
 
 VAR
 	_contactorReverse		: ContactorReverse;	// załącz/wyłącz stycznik do tyłu silnika
+
 END_VAR
 ]]></Declaration>
     <Implementation>

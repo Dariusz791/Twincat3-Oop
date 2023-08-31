@@ -8,6 +8,12 @@ VAR
 	forwardButton		: Button;	// Scada Button forward
 	
 	iDrive : I_Drive;				// interface variable
+	
+    
+	rtPressedForwardOn      : R_trig; //podtrzymanie wykonania
+	bForwardButtonIsPressed : BOOL;
+	
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -20,6 +26,17 @@ ELSE
 
 	AutoOff(); // Turn Off SCADA auto Led
 	
+END_IF
+
+
+rtPressedForwardOn(CLK := forwardButton.IsPressed);
+
+IF rtPressedForwardOn.Q THEN
+	bForwardButtonIsPressed := TRUE;
+END_IF
+
+IF bForwardButtonIsPressed AND_THEN ForwardOn() THEN
+	bForwardButtonIsPressed := FALSE;
 END_IF
 
 
@@ -82,7 +99,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[iDrive.SwitchOff();
+        <ST><![CDATA[ForwardOff := iDrive.SwitchOff();
 ]]></ST>
       </Implementation>
     </Method>
@@ -93,7 +110,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[iDrive.SwitchOn();
+        <ST><![CDATA[ForwardOn := iDrive.SwitchOn();
 ]]></ST>
       </Implementation>
     </Method>
