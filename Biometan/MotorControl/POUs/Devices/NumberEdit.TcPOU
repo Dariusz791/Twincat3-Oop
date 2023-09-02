@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="NumberEdit" Id="{dd182afd-7d10-410a-9d00-31674a3839a1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK NumberEdit
+VAR
+	_number : REAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="Number" Id="{8682b28b-7865-4c12-826a-43e63df61efb}">
+      <Declaration><![CDATA[PROPERTY Number : REAL]]></Declaration>
+      <Get Name="Get" Id="{7bf59276-0c37-4650-94d1-3c8840a47970}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Number := _number;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{402c2567-9276-4a34-9b14-1d907f6e18f8}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_number := Number;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>

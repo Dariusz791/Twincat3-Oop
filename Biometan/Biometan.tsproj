@@ -1,14 +1,8 @@
 <?xml version="1.0"?>
 <TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.47">
-	<Project ProjectGUID="{BF1E3BE0-15B4-4755-96EB-E4B6A90AC1E2}" TargetNetId="192.168.68.109.1.1" ShowHideConfigurations="#x106">
+	<Project ProjectGUID="{BF1E3BE0-15B4-4755-96EB-E4B6A90AC1E2}" TargetNetId="192.168.0.130.1.1" ShowHideConfigurations="#x106">
 		<System>
 			<Tasks>
-				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
-					<Name>PlcTask</Name>
-				</Task>
-				<Task Id="4" Priority="21" CycleTime="100000" AmsPort="351" AdtTasks="true">
-					<Name>PlcTask1</Name>
-				</Task>
 				<Task Id="5" Priority="22" CycleTime="100000" AmsPort="352" AdtTasks="true">
 					<Name>PlcTask2</Name>
 				</Task>
@@ -20,6 +14,10 @@
 		</Plc>
 		<Io>
 			<Device File="Device 1 (EtherCAT).xti" Id="1"/>
+			<Device File="Device 3 (NOV-DP-RAM).xti" Id="3"/>
 		</Io>
 	</Project>
+	<Mappings>
+		<MappingInfo Identifier="{00000000-2041-0850-4020-500810000403}" Id="#x02030010"/>
+	</Mappings>
 </TcSmProject>

@@ -4,16 +4,20 @@
     <Declaration><![CDATA[FUNCTION_BLOCK FB_MotorControlInverter EXTENDS FB_MotorControlReverse
 VAR
 	resetButton		: Button;	// Scada Button inverter reset
-	iDriveInverter   : I_DriveInverter; // interface variable
+	speedEdit		: NumberEdit; // SCADA number Edit field
+	currentSpeed	: REAL;	  // Current speed read from Inverter
+	
+	iDriveInverter  : I_DriveInverter; // interface variable
+	
 	
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[SUPER^(); //call base class 
 
-IF resetButton.IsPressed THEN
-	Reset();
-END_IF]]></ST>
+//IF resetButton.IsPressed THEN
+//	Reset();
+//END_IF]]></ST>
     </Implementation>
     <Method Name="FB_init" Id="{0e59730c-83eb-413d-aa7a-18575dff9c7e}">
       <Declaration><![CDATA[METHOD FB_init : BOOL
@@ -40,6 +44,18 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[iDriveInverter.Reset();
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Speed" Id="{e377fbfd-7497-4fa5-9059-0449f28386b6}">
+      <Declaration><![CDATA[METHOD Speed : BOOL
+VAR_INPUT
+	_setSpeedValue : REAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[iDriveInverter.SetSpeed(_setSpeedValue);
+currentSpeed := iDriveInverter.GetSpeed();
 ]]></ST>
       </Implementation>
     </Method>

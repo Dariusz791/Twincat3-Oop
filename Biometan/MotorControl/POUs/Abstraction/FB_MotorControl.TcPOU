@@ -10,8 +10,12 @@ VAR
 	iDrive : I_Drive;				// interface variable
 	
     
-	rtPressedForwardOn      : R_trig; //podtrzymanie wykonania
+	rtPressedForwardOn      : R_trig; //podtrzymanie wykonania zbocze narastajace
 	bForwardButtonIsPressed : BOOL;
+	
+	rtPressedForwardOff     : F_trig; //podtrzymanie wykonania zbocze opadajace
+	bForwardButtonIsRelease : BOOL;
+	
 	
 	
 END_VAR
@@ -29,6 +33,7 @@ ELSE
 END_IF
 
 
+//Button Forward Is Pressed "Przód"
 rtPressedForwardOn(CLK := forwardButton.IsPressed);
 
 IF rtPressedForwardOn.Q THEN
@@ -40,16 +45,31 @@ IF bForwardButtonIsPressed AND_THEN ForwardOn() THEN
 END_IF
 
 
-//Button Forward is set in SCADA motor control station, but Client in PLC have to have acces too directly via a variable to work in Auto mode
-IF forwardButton.IsPressed THEN
+//Button Forward Is Release "Stop"
+rtPressedForwardOff(CLK := forwardButton.IsPressed);
 
-	ForwardOn(); 	// Switch Contactor On
+IF rtPressedForwardOff.Q THEN
+	bForwardButtonIsRelease := TRUE;
+END_IF
+
+IF bForwardButtonIsRelease AND_THEN ForwardOff() THEN
+	bForwardButtonIsRelease := FALSE;
+END_IF
+
+
+
+
+
+//Button Forward is set in SCADA motor control station, but Client in PLC have to have acces too directly via a variable to work in Auto mode
+IF forwardButton.IsPressed AND NOT bForwardButtonIsPressed THEN
+
+	//ForwardOn(); 	// Switch Contactor On
 	iDrive.WorkCounterOn();	//Start count work time	
 	iDrive.WorkCount();			
 
 ELSE
 
-	ForwardOff();	// Switch Contactor Off 
+	//ForwardOff();	// Switch Contactor Off 
 	iDrive.WorkCounterOff();	//Stop count work time	
 	
 END_IF

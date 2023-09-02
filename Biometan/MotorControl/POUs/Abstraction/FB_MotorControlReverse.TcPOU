@@ -13,16 +13,16 @@ END_VAR
     <Implementation>
       <ST><![CDATA[SUPER^(); //call base class 
 
-IF NOT forwardButton.IsPressed THEN
-	IF reverseButton.IsPressed THEN
-		ReverseOn();
-		iDriveReverse.WorkCounterOn();
-		iDriveReverse.WorkCount();
-	ELSE
-		ReverseOff();
-		iDriveReverse.WorkCounterOff();		
-	END_IF
-END_IF
+//IF NOT forwardButton.IsPressed THEN
+//	IF reverseButton.IsPressed THEN
+//		ReverseOn();
+//		iDriveReverse.WorkCounterOn();
+//		iDriveReverse.WorkCount();
+//	ELSE
+//		ReverseOff();
+//		iDriveReverse.WorkCounterOff();		
+//	END_IF
+//END_IF
 
 
 ]]></ST>

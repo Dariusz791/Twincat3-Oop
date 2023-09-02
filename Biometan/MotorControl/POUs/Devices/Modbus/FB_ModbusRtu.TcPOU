@@ -11,9 +11,6 @@ VAR
 	_adress      : WORD; // Adress of Modbus data to read 
 	_MBdata      : ARRAY[0..40] OF WORD;		(* The size of this array can be adapted to the modbus slaves register area *)
 	_timeoutvalue: TIME;		(* timeout while waiting for an answer of the modbus slave *)
-	_enableRead  : BOOL; // enable read
-	_enableWrite : BOOL; // enable write
-	_busy        : BOOL; // If TRUE the block is busy. No other actions can be performed
 	_error		 : BOOL;  // IF TRUE was a failure
  	
 	
@@ -22,44 +19,6 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Property Name="EnableRead" Id="{fe4198ce-ae8b-40db-8132-cd4046b80f68}">
-      <Declaration><![CDATA[PROPERTY EnableRead : BOOL]]></Declaration>
-      <Get Name="Get" Id="{b52d5a94-3f84-4f65-b7cc-fde6983d4893}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[EnableRead := _enableRead; ]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{26b0f87a-fa41-4007-b18f-7401f139532d}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_enableRead := EnableRead;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
-    <Property Name="EnableWrite" Id="{2bac6580-ac22-4a23-bd6a-8e4978f8e0a3}">
-      <Declaration><![CDATA[PROPERTY EnableWrite : BOOL]]></Declaration>
-      <Get Name="Get" Id="{4da07096-d240-4b17-aecf-2bc438443cfd}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[EnableWrite := _enableWrite;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{4c9d4171-fc78-43fc-875b-cb004bcb8ac5}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_enableWrite := EnableWrite;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
     <Property Name="MBAdress" Id="{50c0951a-f22f-46e7-b935-f45c9332b4f0}">
       <Declaration><![CDATA[PROPERTY MBAdress : WORD]]></Declaration>
       <Get Name="Get" Id="{25df7df0-611b-4679-aa26-cf1d0d02d581}">
@@ -77,25 +36,6 @@ END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[_adress := MBAdress;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
-    <Property Name="MBbusy" Id="{a57f417d-4c06-425d-b1a8-d14d1ba0ca6f}">
-      <Declaration><![CDATA[PROPERTY MBbusy : BOOL]]></Declaration>
-      <Get Name="Get" Id="{b85f51e4-8d57-48ad-92f3-26ce3a688521}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[MBbusy := _busy;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{b3affab0-a5b0-42be-a988-aa9f7c8dac04}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_busy := MBbusy;]]></ST>
         </Implementation>
       </Set>
     </Property>
@@ -168,15 +108,6 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Method Name="ReadRegs" Id="{14b58424-db19-47ad-a32c-6bec18f2196c}">
-      <Declaration><![CDATA[METHOD ReadRegs : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[]]></ST>
-      </Implementation>
-    </Method>
     <Property Name="TimeoutValue" Id="{1d2d4778-f541-4932-be3d-efd5ee208ddd}">
       <Declaration><![CDATA[PROPERTY TimeoutValue : TIME]]></Declaration>
       <Get Name="Get" Id="{097b8b9d-d6e6-448e-9399-07ffb8ae7021}">
@@ -197,72 +128,185 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Method Name="WriteFrequency" Id="{f2fdab5e-c20c-475f-8c64-701670b2e7bb}">
-      <Declaration><![CDATA[METHOD WriteFrequency : BOOL
-VAR_INPUT
-	
-END_VAR
-
-VAR
-	busy : BOOL;
-
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[//ATV320 Inverter Write frequency 
-
-//set Modbus Block configuration
-MBquantity := 1;
-MBAdress := 8502;
-EnableWrite := TRUE;
-
-//Write frequency to AVT Register
-MB.WriteSingleRegister(
-	UnitID := ModbusID,
-	Quantity := MBquantity,
-	MBAddr := MBAdress,
-	cbLength := MBquantity*2,
-	pMemoryAddr := MBdata,
-	Execute := EnableWrite,
-	Timeout := TimeoutValue,
-	Busy => busy
-);
-
-]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="WriteSingleRegister" Id="{7322a721-3988-4aa6-9617-d75b59e1e3e9}">
       <Declaration><![CDATA[METHOD WriteSingleRegister : BOOL
 VAR_INPUT
 END_VAR
 
-VAR_INST
 
+VAR_INST
+	step : INT:=0;
+	busy : BOOL;
+	state : T_MaxString;
+	//start : 	
 END_VAR
+
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[//ATV320 Inverter write control register
 
-
-//Write frequency to AVT Register
-MB.WriteSingleRegister(
-	UnitID := ModbusID,
-	Quantity := MBquantity,
-	MBAddr := MBAdress,
-	cbLength := MBquantity*2,
-	pMemoryAddr := MBdata,
-	Execute := TRUE,
-	Timeout := TimeoutValue,
-	Busy => ,
-);
-
-IF NOT Mb.BUSY THEN
-	IF mb.Error THEN
-		WriteSingleRegister := FALSE;
-	ELSE
-		WriteSingleRegister := TRUE;
+CASE step OF
+0: (*Initialize*)
+	WriteSingleRegister := FALSE;
+	MB.ReadRegs(Execute:=FALSE);
+	MBdata^[0] := 15;
+	step := 10;
+	
+10: (*Read status of Inverter*)
+	MB.ReadRegs(
+		UnitID:=ModbusID,
+		Quantity:= 1,
+		MBAddr:=3240,
+		cbLength:= 2,
+		pMemoryAddr:= MBdata,
+		Execute:= TRUE,
+		Timeout:= T#2S,
+		Busy => busy	);
+		
+	IF NOT busy THEN
+		IF MB.Error THEN
+			state := 'error';
+		ELSE
+			state := 'odczytany state';
+		END_IF
+		MB.WriteRegs(Execute:= FALSE);
+	
+		step :=20;
+		
 	END_IF
-	MB.WriteSingleRegister(Execute:= FALSE); //reset FB_ModbusRtuMaster_KL6x22B;
-END_IF
+	
+
+	
+20: (*Reading the current inverter settings*)	
+	
+	MB.ReadRegs(
+		UnitID:=ModbusID,
+		Quantity:= 1,
+		MBAddr:=3202,
+		cbLength:= 2,
+		pMemoryAddr:= MBdata,
+		Execute:= TRUE,
+		Timeout:= T#2S,
+		Busy => busy	);
+		
+	IF NOT busy THEN
+		IF MB.Error THEN
+			state := 'error';
+		ELSE
+			state := 'odczytana nastawa';
+		END_IF
+		MB.WriteRegs(Execute:= FALSE);
+		
+		step :=30;
+	END_IF
+	
+	
+	
+30: (*Write Control Register*)
+	//MBdata^ := 15;
+	
+	MB.ReadRegs(
+		UnitID:=ModbusID,
+		Quantity:= 1,
+		MBAddr:=8501,
+		cbLength:= 2,
+		pMemoryAddr:= MBdata,
+		Execute:= TRUE,
+		Timeout:= T#2S,
+		Busy => busy	);
+		
+	IF NOT busy THEN
+		IF MB.Error THEN
+			state := 'error';
+		ELSE
+			state := 'zapis rejestru kontrolnego';
+		END_IF
+		MB.WriteRegs(Execute:= FALSE);	
+		
+		step :=40;	
+	END_IF
+	
+
+	
+40: (*Write the set frequency*)
+
+	MB.WriteSingleRegister(
+				UnitID:=1,
+				Quantity:=1,
+				MBAddr:=8502,
+				cbLength:= 2,
+				pMemoryAddr:= MBdata,
+				Execute:= TRUE,
+				Timeout:= T#2S,
+				Busy => busy	);
+
+	IF NOT busy THEN
+		IF MB.Error THEN
+			state := 'error';
+		ELSE
+			state := 'zapis częstotliwości zadanej';
+		END_IF
+		MB.WriteRegs(Execute:= FALSE);		
+
+		step := 50;
+	END_IF	
+	
+
+
+50:
+	
+	MB.ReadRegs(
+		UnitID:=ModbusID,
+		Quantity:= 1,
+		MBAddr:=3202,
+		cbLength:= 2,
+		pMemoryAddr:= MBdata,
+		Execute:= TRUE,
+		Timeout:= T#2S,
+		Busy => busy	);
+		
+	IF NOT busy THEN
+		IF MB.Error THEN
+			state := 'error';
+		ELSE
+			state := 'odczytana nastawa';
+		END_IF
+		MB.WriteRegs(Execute:= FALSE);
+		WriteSingleRegister := TRUE;		
+	END_IF
+	
+	
+END_CASE
+
+
+
+
+
+
+
+////Write frequency to AVT Register
+//MB.WriteSingleRegister(
+//	UnitID := ModbusID,
+//	Quantity := MBquantity,
+//	MBAddr := MBAdress,
+//	cbLength := MBquantity*2,
+//	pMemoryAddr := MBdata,
+//	Execute := TRUE,
+//	Timeout := TimeoutValue,
+//	Busy => ,
+//);
+
+
+//WriteSingleRegister := FALSE;
+
+//IF NOT Mb.BUSY THEN
+//	IF mb.Error THEN
+//		WriteSingleRegister := FALSE;
+//	ELSE
+//		WriteSingleRegister := TRUE;
+//	END_IF
+//	MB.WriteSingleRegister(Execute:= FALSE); //reset FB_ModbusRtuMaster_KL6x22B;
+//END_IF
 
 ]]></ST>
       </Implementation>

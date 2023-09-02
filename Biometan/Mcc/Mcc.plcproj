@@ -22,9 +22,6 @@
     <Compile Include="DUTs\ST_WorkTime.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="PlcTask.TcTTO">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="POUs\Devices\Button_NO.TcPOU">
       <SubType>Code</SubType>
     </Compile>

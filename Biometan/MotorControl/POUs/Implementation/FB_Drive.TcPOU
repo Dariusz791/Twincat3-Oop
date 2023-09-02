@@ -85,6 +85,8 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[_contactor.State := FALSE;
+SwitchOff := TRUE;
+
 
 	
 ]]></ST>
@@ -97,6 +99,8 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[_contactor.State := TRUE;
+SwitchOn := TRUE;
+
 
 
 

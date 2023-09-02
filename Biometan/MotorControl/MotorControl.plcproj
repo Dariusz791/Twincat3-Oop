@@ -46,7 +46,7 @@
     <Compile Include="POUs\Devices\ContactorReverse.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\Devices\Edit.TcPOU">
+    <Compile Include="POUs\Devices\NumberEdit.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Devices\ITFs\I_Button.TcIO">

@@ -24,9 +24,9 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[
-mccMotor();
-mccMotorP01();
+      <ST><![CDATA[;
+//mccMotor();
+//mccMotorP01();
 
 
 

@@ -4,26 +4,28 @@
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
 	
-	//Modbus RTU
+	//Modbus RTU - obiektów tej klasy może być tylko tyle ile jest dostępnych fizycznych portów RS485
+	//np. dla modułu EL6022 są dwa fizyczne porty RS485
 	fbModbusRtu			  : FB_ModbusRtu;
 	pFbModbusRtu		  : POINTER TO FB_ModbusRtu := ADR(fbModbusRtu);		
 	
     // Drive
-	fbDrive			      : FB_Drive;
-	fbDriveReverse	      : FB_DriveReverse;
-	fbDriveInverter		  : FB_DriveInverter(pFbModbusRtu);	
+	//fbDrive			      : FB_Drive;
+	//fbDriveReverse	      : FB_DriveReverse;
+	bUnitId               : BYTE:=1; //adres napędu falownikowego Higienizatora
+	fbDriveInverter		  : FB_DriveInverter(pFbModbusRtu, bUnitId);	
 
 	//Drive Control	
-	fbMotorControl 	      : FB_MotorControl(fbDrive);
-	fbMotorControlReverse : FB_MotorControlReverse(fbDriveReverse);
-	fbMotorControlInverter: FB_MotorControlInverter(fbDriveInverter);		
+	//fbMotorControl 	      : FB_MotorControl(fbDrive);
+	//fbMotorControlReverse : FB_MotorControlReverse(fbDriveReverse);
+	fbMotorControlInverter : FB_MotorControlInverter(fbDriveInverter);		
 
 	
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[fbMotorControl();
-fbMotorControlReverse();
+      <ST><![CDATA[//fbMotorControl();
+//fbMotorControlReverse();
 fbMotorControlInverter();
 
 
