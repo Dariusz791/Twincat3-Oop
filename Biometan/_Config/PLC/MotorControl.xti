@@ -53,7 +53,7 @@
 		</DataType>
 	</DataTypes>
 	<Project GUID="{C2885184-96B6-487C-9286-A6CA2945AECD}" Name="MotorControl" PrjFilePath="..\..\MotorControl\MotorControl.plcproj" TmcFilePath="..\..\MotorControl\MotorControl.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="MotorControl\MotorControl.tmc" TmcHash="{F4F25D0C-4DB3-4AEE-843F-0DE25146AD45}">
+		<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="MotorControl\MotorControl.tmc" TmcHash="{42C9E4B6-A7EF-40B6-1DBD-99B926B16498}">
 			<Name>MotorControl Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
