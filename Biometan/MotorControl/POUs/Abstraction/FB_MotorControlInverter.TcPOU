@@ -15,9 +15,9 @@ END_VAR
     <Implementation>
       <ST><![CDATA[SUPER^(); //call base class 
 
-//IF resetButton.IsPressed THEN
-//	Reset();
-//END_IF]]></ST>
+IF resetButton.IsPressed THEN
+	Reset();
+END_IF]]></ST>
     </Implementation>
     <Method Name="FB_init" Id="{0e59730c-83eb-413d-aa7a-18575dff9c7e}">
       <Declaration><![CDATA[METHOD FB_init : BOOL
@@ -55,7 +55,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[iDriveInverter.SetSpeed(_setSpeedValue);
-currentSpeed := iDriveInverter.GetSpeed();
+
 ]]></ST>
       </Implementation>
     </Method>

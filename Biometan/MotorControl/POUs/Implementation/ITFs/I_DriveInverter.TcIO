@@ -3,12 +3,6 @@
   <Itf Name="I_DriveInverter" Id="{9a5e992e-1284-4147-ba3f-8a6070e5989f}">
     <Declaration><![CDATA[INTERFACE I_DriveInverter EXTENDS I_DriveReverse
 ]]></Declaration>
-    <Method Name="GetSpeed" Id="{e957c2a6-d887-4b14-b4cc-55e0721d5ac8}">
-      <Declaration><![CDATA[METHOD GetSpeed : REAL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-    </Method>
     <Method Name="Reset" Id="{858c975f-f164-483b-b967-bc1f72971972}">
       <Declaration><![CDATA[METHOD Reset : BOOL
 VAR_INPUT

@@ -33,28 +33,37 @@ ELSE
 END_IF
 
 
+IF forwardButton.IsPressed THEN
+	forwardOn();
+ELSE
+	forwardOff();
+END_IF
+
+
+
+
 //Button Forward Is Pressed "Przód"
-rtPressedForwardOn(CLK := forwardButton.IsPressed);
+//rtPressedForwardOn(CLK := forwardButton.IsPressed);
 
-IF rtPressedForwardOn.Q THEN
-	bForwardButtonIsPressed := TRUE;
-END_IF
+//IF rtPressedForwardOn.Q THEN
+//	bForwardButtonIsPressed := TRUE;
+//END_IF
 
-IF bForwardButtonIsPressed AND_THEN ForwardOn() THEN
-	bForwardButtonIsPressed := FALSE;
-END_IF
+//IF bForwardButtonIsPressed AND_THEN ForwardOn() THEN
+//	bForwardButtonIsPressed := FALSE;
+//END_IF
 
 
 //Button Forward Is Release "Stop"
-rtPressedForwardOff(CLK := forwardButton.IsPressed);
+//rtPressedForwardOff(CLK := forwardButton.IsPressed);
 
-IF rtPressedForwardOff.Q THEN
-	bForwardButtonIsRelease := TRUE;
-END_IF
+//IF rtPressedForwardOff.Q THEN
+//	bForwardButtonIsRelease := TRUE;
+//END_IF
 
-IF bForwardButtonIsRelease AND_THEN ForwardOff() THEN
-	bForwardButtonIsRelease := FALSE;
-END_IF
+//IF bForwardButtonIsRelease AND_THEN ForwardOff() THEN
+//	bForwardButtonIsRelease := FALSE;
+//END_IF
 
 
 

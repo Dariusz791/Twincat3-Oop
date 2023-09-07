@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="Param" Id="{96866b97-15f6-4968-a61b-c1f596285cd7}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL CONSTANT
+	// size of max AVT inverter in network Modbus RTU
+	cMaxInverter	: INT := 31;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

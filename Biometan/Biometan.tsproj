@@ -17,7 +17,4 @@
 			<Device File="Device 3 (NOV-DP-RAM).xti" Id="3"/>
 		</Io>
 	</Project>
-	<Mappings>
-		<MappingInfo Identifier="{00000000-2041-0850-4020-500810000403}" Id="#x02030010"/>
-	</Mappings>
 </TcSmProject>

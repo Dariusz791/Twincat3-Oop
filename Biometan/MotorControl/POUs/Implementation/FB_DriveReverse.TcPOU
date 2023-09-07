@@ -9,7 +9,7 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//SUPER^();
+      <ST><![CDATA[
 ]]></ST>
     </Implementation>
     <Method Name="StatusState" Id="{9134f4c8-a297-452b-a6ad-a83f0aad6a9c}">

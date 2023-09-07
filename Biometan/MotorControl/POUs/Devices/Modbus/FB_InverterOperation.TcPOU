@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_InverterOperation" Id="{69d5e8b6-d242-4c8d-a42f-563324e4dbde}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_InverterOperation
+
+VAR
+	
+	MB           		: ModbusRtuMaster_KL6x22B;
+	//_afbDriveInverter	: POINTER TO FB_DriveInverter;
+	_deviceID    		: BYTE;                    (* Slave Device Adress *)
+	_MBdata      		: ARRAY[0..40] OF WORD;	(* The size of this array can be adapted to the modbus slaves register area *)
+	_MdbStatus   		: MODBUS_ERRORS;			(*Modbus Communications Error information*)
+ 	_busy		 		: BOOL;	
+	_timeoutvalue		: TIME;		            (* Timeout while waiting for an answer of the modbus slave *)
+	
+	
+	_error		 		: INT;						(* Error Read from Inverter Register*)	
+	_step		 		: INT;						(* Step of the control inverter program*)
+	_eAtvCommand  		: E_ATVCommand;
+	_status    	 		: WORD;
+	
+	iItfCount			: INT :=1;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//GVL.aItfDriveInverter[iItfCount].
+
+
+
+
+
+CASE _step OF
+0:	(*Initialize*)
+		MB.ReadRegs(Execute:= FALSE); (* initialize *)
+		_step:= 10;
+		
+
+	
+10:	(*Read status of Inverter*) (*Sprawdzić status po wystąpieniu bledu przerwania komuikacji*)
+
+		MB.ReadRegs(
+			UnitID:=_deviceID,
+			Quantity:= 1,
+			MBAddr:=3201,
+			cbLength:= 2,
+			pMemoryAddr:= ADR(_MBdata[0]),
+			Execute:= TRUE,
+			Timeout:= _timeoutvalue,
+			Busy => _busy	);
+
+		
+		IF NOT _busy THEN
+			MB.ReadRegs(Execute:=FALSE);
+			_MdbStatus := MB.ErrorId;		
+		
+			IF NOT MB.Error THEN
+				_status:=MBdata^[0];
+			END_IF
+			MBdata^[0]:=0;
+	
+			_step :=20;
+		
+		END_IF
+		
+	
+		
+20: 	(*Write Control Register*)
+
+		CASE _eAtvCommand OF
+			eStart:
+			   _MBdata[0] := 15;
+			eRevers:
+				_MBdata[0] := 2063;
+			eReset:
+				_MBdata[0] := 128;		 
+		ELSE
+			_MBdata[0] := 14;
+		
+		END_CASE
+	
+		
+		MB.WriteSingleRegister(
+			UnitID:=_deviceID,
+			Quantity:=1,
+			MBAddr:=8501,
+			cbLength:= 2,
+			pMemoryAddr:= ADR(_MBdata[0]),
+			Execute:= TRUE,
+			Timeout:= _timeoutvalue,
+			Busy => _busy	);
+
+		IF NOT _busy THEN
+			MB.ReadRegs(Execute:=FALSE);
+			_step :=30;
+		END_IF
+
+30: 	(*Write the set frequency*)
+		
+		_MBdata[0] := 400;
+	
+		MB.WriteSingleRegister(
+					UnitID:=_deviceID,
+					Quantity:=1,
+					MBAddr:=8502,
+					cbLength:= 2,
+					pMemoryAddr:= ADR(_MBdata),
+					Execute:= TRUE,
+					Timeout:= _timeoutvalue,
+					Busy => _busy	);
+	
+		IF NOT _busy THEN
+			MB.ReadRegs(Execute:=FALSE);
+			_step :=40;
+		END_IF
+		
+
+40:	(*Read actual error of Inverter*)
+	
+		MB.ReadRegs(
+			UnitID:=_deviceID,
+			Quantity:= 1,
+			MBAddr:=7200,
+			cbLength:= 2,
+			pMemoryAddr:= ADR(_MBdata),
+			Execute:= TRUE,
+			Timeout:= _timeoutvalue,
+			Busy => _busy	);
+			
+		IF NOT _busy THEN
+			MB.ReadRegs(Execute:=FALSE);
+			_MdbStatus := MB.ErrorId;			
+			IF NOT MB.Error THEN
+				_error := WORD_TO_INT(MBdata^[0]);
+			END_IF
+	
+			_MBdata[0]:=0;
+			_step :=0;
+				
+	
+		END_IF
+
+	
+END_CASE	
+]]></ST>
+    </Implementation>
+    <Property Name="ATVCommand" Id="{dc357cda-b429-47ad-87f2-d3598731a580}">
+      <Declaration><![CDATA[PROPERTY ATVCommand : E_ATVCommand;]]></Declaration>
+      <Get Name="Get" Id="{10fe7980-354b-4371-99a5-b08603b9e636}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ATVCommand := _eAtvCommand;
+]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{b1987c15-a9dc-4dc2-99b8-2c4339fa489b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_eAtvCommand := ATVCommand;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="MBdata" Id="{531bda53-fc56-43cf-b68a-6ec3956ff1d9}">
+      <Declaration><![CDATA[PROPERTY MBdata : POINTER TO ARRAY [0..40] OF WORD]]></Declaration>
+      <Get Name="Get" Id="{34651e40-9942-4104-ae72-800ec00354bb}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MBdata := ADR(_MBdata);]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{852cea10-7605-48a2-b498-ace6dc3ec5cd}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_MBdata := MBdata^;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="ModbusID" Id="{a4139f0b-5a1b-48da-b7ea-b6010050c3c5}">
+      <Declaration><![CDATA[PROPERTY ModbusID : BYTE]]></Declaration>
+      <Get Name="Get" Id="{0345bf64-8096-425f-be8f-a4c2e9f7e5d0}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ModbusID := _deviceID;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{20348fd4-af98-46db-8592-54a7b992e71a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_deviceID := ModbusID;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="TimeoutValue" Id="{1d2d4778-f541-4932-be3d-efd5ee208ddd}">
+      <Declaration><![CDATA[PROPERTY TimeoutValue : TIME]]></Declaration>
+      <Get Name="Get" Id="{097b8b9d-d6e6-448e-9399-07ffb8ae7021}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[TimeoutValue := _timeoutvalue;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{fd486f22-48c4-4f95-ab50-b174b25b6d27}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_timeoutvalue := TimeoutValue;
+ ]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>

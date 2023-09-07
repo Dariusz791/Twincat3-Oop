@@ -3,14 +3,20 @@
   <POU Name="FB_DriveInverter" Id="{3b50846e-6152-4329-9a31-34ca455c4ec3}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_DriveInverter EXTENDS FB_DriveReverse IMPLEMENTS I_DriveInverter;
 VAR
+	_bUnitId		: BYTE;		//AVT inverter unit ID	
+	_status			: WORD;     //AVT inverter Status Word
+	_errorInv		: WORD;     //AVT inverter Error
+	_errorMdb		: MODBUS_ERRORS; // Modbus Communications error	 
+	_eATVCommand	: E_ATVCommand; // AVT inverter command control register
 	_speedHz      	: REAL;  // Inverter speed set point from SCADA drive station
-	_pFbModbusRtu	: POINTER TO FB_ModbusRtu;
-	_bUnitId		: BYTE;
+			
 END_VAR
 
-]]></Declaration>
+VAR_STAT
+	_nInstances		: INT;		// Counter of created Instances
+END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//SUPER^();
+      <ST><![CDATA[
 
 
  
@@ -21,22 +27,15 @@ END_VAR
 VAR_INPUT
 	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
 	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
-	pFbModbusRtu : POINTER TO FB_ModbusRtu;
 	bUnitId		 : BYTE;	
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[THIS^._pFbModbusRtu := pFbModbusRtu;
-THIS^._bUnitID :=bUnitID;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="GetSpeed" Id="{d473298f-6b1a-4667-995d-5bf841524995}">
-      <Declaration><![CDATA[METHOD GetSpeed : REAL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[//TODO Write a new function to handle actual speed of Motor and pass  to the calling function (object)]]></ST>
+        <ST><![CDATA[THIS^._bUnitID :=bUnitID;
+
+
+_nInstances := _nInstances + 1;
+GVL.aItfDriveInverter[_nInstances] := THIS^;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Reset" Id="{64b64920-6b0e-4b95-82d2-e242fdbecf20}">
@@ -45,7 +44,10 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[
+
+// Set reset Command
+This^._eATVCommand := eReset;]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetSpeed" Id="{ffbd82cf-721f-4d5f-82e9-2001d00f4e60}">
@@ -55,16 +57,24 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//TODO Write a new function to handle speed of motor ]]></ST>
+        <ST><![CDATA[This^._speedHz := _speed;]]></ST>
       </Implementation>
     </Method>
     <Method Name="StatusState" Id="{b2fd76c3-f710-4a43-a23d-38a510ede9d2}">
       <Declaration><![CDATA[METHOD StatusState : STRING
 VAR_INPUT
 END_VAR
+
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//Override ]]></ST>
+        <ST><![CDATA[//Override 
+
+
+
+
+
+
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="SwitchOff" Id="{2f65f00a-f656-42e9-8005-44be524860e7}">
@@ -75,15 +85,13 @@ END_VAR
       <Implementation>
         <ST><![CDATA[//Override  send "stop" command to modbus block
 
-_pFbModbusRtu^.ModbusID := 1; // TODO variable must be pass by method input argument
-//_pFbModbusRtu^.MBAdress := 8501;
-//_pFbModbusRtu^.MBquantity := 1;
-//_pFbModbusRtu^.MBdata := 14;
-//_pFbModbusRtu^.TimeoutValue := T#300MS;
-//_pFbModbusRtu^.EnableWrite := TRUE;
 
 
-SwitchOff := _pFbModbusRtu^.WriteSingleRegister();]]></ST>
+
+THIS^._eATVCommand := eReady; (*Set Ready Command (its mean stop inverter)*)
+
+
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="SwitchOn" Id="{76402309-67ef-4b97-8c86-4d742fe7270a}">
@@ -94,30 +102,33 @@ END_VAR
       <Implementation>
         <ST><![CDATA[//Override  send "start" command to Modbus block
 
-_pFbModbusRtu^.ModbusID := _bUnitId; // TODO variable must be pass by method input argument
-////_pFbModbusRtu^.MBAdress := 8501;
-////_pFbModbusRtu^.MBquantity := 1;
-////_pFbModbusRtu^.MBdata := 15;
-//_pFbModbusRtu^.TimeoutValue := T#300MS;
-////_pFbModbusRtu^.EnableWrite := TRUE;
 
 
 
-SwitchOn := _pFbModbusRtu^.WriteSingleRegister();]]></ST>
+THIS^._eATVCommand := eStart; (*Set Ready Command (its mean stop inverter)*)
+
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="SwitchReverseOff" Id="{e2abbc87-bf0f-449b-b617-af2f148cc1f4}">
       <Declaration><![CDATA[METHOD SwitchReverseOff : BOOL
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//Override  send "reverse" stop command to Modbus block]]></ST>
+        <ST><![CDATA[//Override  send "reverse" stop command to Modbus block
+
+
+THIS^._eATVCommand := eReady; (*Set Ready Command (its mean stop inverter)*)]]></ST>
       </Implementation>
     </Method>
     <Method Name="SwitchReverseOn" Id="{fa8df555-f63f-4670-adb2-e7de773a03c4}">
       <Declaration><![CDATA[METHOD SwitchReverseOn : BOOL
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//Override  send "reverse" start command to Modbus block]]></ST>
+        <ST><![CDATA[//Override  send "reverse" start command to Modbus block
+
+
+
+THIS^._eATVCommand := eRevers; (*Set Ready Command (its mean stop inverter)*)]]></ST>
       </Implementation>
     </Method>
   </POU>
