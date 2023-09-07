@@ -3,6 +3,19 @@
   <Itf Name="I_DriveInverter" Id="{9a5e992e-1284-4147-ba3f-8a6070e5989f}">
     <Declaration><![CDATA[INTERFACE I_DriveInverter EXTENDS I_DriveReverse
 ]]></Declaration>
+    <Property Name="DeviceData" Id="{1eaa2b74-a49a-4ae6-8a07-2d855495bacf}">
+      <Declaration><![CDATA[PROPERTY DeviceData : ST_Inverter
+]]></Declaration>
+      <Get Name="Get" Id="{c3d1219e-a4f9-425f-94f8-da59e4e8a604}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="InstanceCounter" Id="{ad8649c7-fdbd-40d3-b7cc-aa849d0ab7e0}">
+      <Declaration><![CDATA[PROPERTY InstanceCounter : INT]]></Declaration>
+      <Get Name="Get" Id="{0e93bed3-4072-4dd2-870f-572b7e9fe37d}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Method Name="Reset" Id="{858c975f-f164-483b-b967-bc1f72971972}">
       <Declaration><![CDATA[METHOD Reset : BOOL
 VAR_INPUT

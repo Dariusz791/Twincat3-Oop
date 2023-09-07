@@ -3,6 +3,10 @@
   <GVL Name="Itf" Id="{62c56635-23ca-4a47-a45b-a51818c30de4}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
+	
+	
+	aItfDriveInverter		  : ARRAY [1..Param.cMaxInverter] OF I_DriveInverter; // Array of Interface variable
+	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

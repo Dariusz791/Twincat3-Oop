@@ -10,7 +10,7 @@ VAR_GLOBAL
 	sWorkTime   : T_MaxString := '100:45:34';
 	sStatus		: T_MaxString := 'RUNNING';
 			
-	aItfDriveInverter		  : ARRAY [1..Param.cMaxInverter] OF I_DriveInverter;
+
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

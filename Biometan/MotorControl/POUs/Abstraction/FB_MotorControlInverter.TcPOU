@@ -17,7 +17,9 @@ END_VAR
 
 IF resetButton.IsPressed THEN
 	Reset();
-END_IF]]></ST>
+END_IF
+
+Speed(speedEdit.Number);]]></ST>
     </Implementation>
     <Method Name="FB_init" Id="{0e59730c-83eb-413d-aa7a-18575dff9c7e}">
       <Declaration><![CDATA[METHOD FB_init : BOOL

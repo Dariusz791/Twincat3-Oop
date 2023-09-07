@@ -9,23 +9,20 @@ VAR
 	//fbDriveReverse	      : FB_DriveReverse;
 	//bUnitId              	  : BYTE:=1; //adres napędu falownikowego Higienizatora
 	fbDriveInverter1		  : FB_DriveInverter(1);
-	fbDriveInverter2		  : FB_DriveInverter(2);
-	fbDriveInverter3		  : FB_DriveInverter(3);
 
 	
 
 	//Drive Control	
 	//fbMotorControl 	      : FB_MotorControl(fbDrive);
 	//fbMotorControlReverse : FB_MotorControlReverse(fbDriveReverse);
-	fbMotorControlInverter : FB_MotorControlInverter(fbDriveInverter1);		
+	fbMotorControlInverter     : FB_MotorControlInverter(fbDriveInverter1);		
 	
 
 	//Modbus RTU - obiektów tej klasy może być tylko tyle ile jest dostępnych fizycznych portów RS485
 	//np. dla modułu EL6022 są dwa fizyczne porty RS485
-	fbInverterOperation			  : FB_InverterOperation;
+	fbInverterOperation		   : FB_InverterOperation;
 	
-	i, k: INT;
-	value : BOOL;
+
 	
 END_VAR
 ]]></Declaration>
@@ -33,28 +30,14 @@ END_VAR
       <ST><![CDATA[//fbMotorControl();
 //fbMotorControlReverse();
 
-//fbModbusRtu.InverterState();
 
-//aItfDriveInverter[1] := fbDriveInverter1;
-//aItfDriveInverter[2] := fbDriveInverter2;
-//aItfDriveInverter[3] := fbDriveInverter3;
 
 fbMotorControlInverter();
 
-//fbInverterOperation();
+fbInverterOperation();
 
 
 
-FOR i := 1 TO 5 DO
-	
-	IF Itf.aItfDriveInverter[i] <> 0 THEN
-	
-		value := Itf.aItfDriveInverter[i].SetSpeed(10);
-	
-	END_IF
-		
-	
-END_FOR
 ]]></ST>
     </Implementation>
   </POU>
