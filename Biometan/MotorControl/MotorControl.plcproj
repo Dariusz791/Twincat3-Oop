@@ -21,6 +21,9 @@
     <Compile Include="DUTs\E_ATVCommand.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\E_StateDevice.TcTLEO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\ST_Inverter.TcDUT">
       <SubType>Code</SubType>
     </Compile>

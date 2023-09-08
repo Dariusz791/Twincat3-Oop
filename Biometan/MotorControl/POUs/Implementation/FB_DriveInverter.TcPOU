@@ -83,7 +83,7 @@ THIS^._stInverter.rSpeed := REAL_TO_WORD(_speed * 10);]]></ST>
       </Implementation>
     </Method>
     <Method Name="StatusState" Id="{b2fd76c3-f710-4a43-a23d-38a510ede9d2}">
-      <Declaration><![CDATA[METHOD StatusState : STRING
+      <Declaration><![CDATA[METHOD StatusState :  E_StateMachine
 VAR_INPUT
 END_VAR
 

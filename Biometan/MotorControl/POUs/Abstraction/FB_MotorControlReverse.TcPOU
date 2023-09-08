@@ -13,16 +13,44 @@ END_VAR
     <Implementation>
       <ST><![CDATA[SUPER^(); //call base class 
 
-IF NOT forwardButton.IsPressed THEN
-	IF reverseButton.IsPressed THEN
-		ReverseOn();
-		//iDriveReverse.WorkCounterOn();
-		//iDriveReverse.WorkCount();
-	ELSE
-		ReverseOff();
-		//iDriveReverse.WorkCounterOff();		
-	END_IF
+//Button Auto is set in SCADA motor control station, but Client in PLC have to have acces too directly via a variable to work in Auto mode
+IF autoButton.IsPressed THEN 
+	AutoOn();	// Turn On SCADA auto Led
+ELSE
+	AutoOff(); // Turn Off SCADA auto Led
+	
+	// IF NOT AUTO MODE THEN, EXECUTE
+	
+	CASE eStateDevice OF
+		eOn :
+			 IF reverseButton.IsPressed THEN
+				ReverseOn();		
+			 END_IF
+				 
+		eOff :
+			ReverseOff();
+			iDrive.WorkCounterOff();
+				
+		eReverse :
+			IF reverseButton.IsPressed THEN
+            	iDrive.WorkCount();			
+				iDrive.WorkCounterOn();
+			ELSE	
+				ReverseOff();
+				iDrive.WorkCounterOff();
+			 END_IF
+		
+		eFault :
+			iDrive.WorkCounterOff();
+	
+	END_CASE
+
 END_IF
+
+
+
+
+
 
 
 ]]></ST>

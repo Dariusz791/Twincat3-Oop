@@ -10,10 +10,11 @@ VAR
 	_workTimeLabel	: Label; // label do wyświetlania czasu pracy napędu w stacyjce SCADA
 	_statusLabel	: Label; // label to wyświetlania statusu napędu w stacyjce SCADA
 	_termFuse		: TermFuse; // wejście zabezpieczenia termicznego i nadprądowego napędu
+	_text			: T_MaxString;
 
-	_startCount  	: BOOL;
-	_stWorkTime  	: ST_WorkTime;
-	_text			: T_MaxString;	
+	_startCount  	: BOOL;		// start/stop zliczania czasu
+	_stWorkTime  	: ST_WorkTime;	// struktura czasu pracy napędu
+
   
 END_VAR
 ]]></Declaration>
@@ -42,39 +43,47 @@ END_VAR
       </Implementation>
     </Method>
     <Method Name="StatusState" Id="{cd1cb900-b022-4cc7-bc91-7a31f5c8791b}">
-      <Declaration><![CDATA[METHOD StatusState : STRING
+      <Declaration><![CDATA[METHOD StatusState : E_StateDevice
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[// ustaw stan zmiennej LED Taurusa w TANGO SCADA (zmiana koloru diody predefiniowana tekstem) oraz label statusu jako tekst
-// zliczaj zcas pracy gdy napęd jest uruchomiony
+        <ST><![CDATA[// State Machine of the Drive 
+// zliczaj czas pracy gdy napęd jest uruchomiony
 
 
 IF _termFuse.IsActive THEN
 		_supplyLed.State := TRUE;
 		_stateLabel.Text := 'ON';
-		_statusLabel.Text := 'Napęd jest w gotowości';	
-
+		_statusLabel.Text := 'Napęd jest w gotowości';
+		StatusState := eOn;
+		
 	IF _contactor.State THEN
 		_stateLabel.Text := 'RUNNING';
 		_statusLabel.Text := 'Napęd jest uruchomiony do przodu';
 		
 		// start count work time
 		WorkTimelabel();
+		StatusState := eForward;
+		
+		
 	END_IF
 
 ELSE
 		_supplyLed.State := FALSE;
 		_stateLabel.Text := 'OFF';
 		_statusLabel.Text := 'Napęd jest wyłączony';
+		StatusState := eOff;
 
 	IF _contactor.State THEN
 		_stateLabel.Text := 'FAULT';
 		_statusLabel.Text := 'Zadziałał wyłacznik silnikowy';
+		StatusState := eFault;
 	END_IF
 
-END_IF]]></ST>
+END_IF
+
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="SwitchOff" Id="{b726e6e2-693a-4b15-abd3-37eeaf4d83de}">
@@ -85,7 +94,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[_contactor.State := FALSE;
-SwitchOff := TRUE;
+
 
 
 	
@@ -99,7 +108,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[_contactor.State := TRUE;
-SwitchOn := TRUE;
+
 
 
 

@@ -6,48 +6,55 @@ FUNCTION_BLOCK FB_MotorControl
 VAR
 	autoButton		    : Button;	// Scada Button auto
 	forwardButton		: Button;	// Scada Button forward
+
 	
-	iDrive : I_Drive;				// interface variable
-	
-    
-	bForwardButtonIsPressed : BOOL;
-	bForwardButtonIsRelease : BOOL;
-	
-	
+	iDrive 		: I_Drive;				// interface variable
+	eStateDevice : E_StateDevice;     // text information about drive 'OFF', 'ON', 'FAULT', 'RUNNING'
 	
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//Button Auto is set in SCADA motor control station, but Client in PLC have to have acces too directly via a variable to work in Auto mode
+      <ST><![CDATA[// Check the Drive status
+eStateDevice := iDrive.StatusState();
+
+
+
+//Button Auto is set in SCADA motor control station, but Client in PLC have to have acces too directly via a variable to work in Auto mode
 IF autoButton.IsPressed THEN 
-
 	AutoOn();	// Turn On SCADA auto Led
-
 ELSE
-
 	AutoOff(); // Turn Off SCADA auto Led
 	
-END_IF
-
-
-
-
-//Button Forward is set in SCADA motor control station, but Client in PLC have to have acces too directly via a variable to work in Auto mode
-IF forwardButton.IsPressed THEN
-
-    ForwardOn(); 	// Switch Contactor On
-	//iDrive.WorkCounterOn();	//Start count work time	
-	//iDrive.WorkCount();			
-
-ELSE
-
-	ForwardOff();	// Switch Contactor Off 
-	//iDrive.WorkCounterOff();	//Stop count work time	
+	// IF NOT AUTO MODE THEN, EXECUTE
 	
+	CASE eStateDevice OF
+		eOn :
+			 IF forwardButton.IsPressed THEN
+				ForwardOn();
+			 END_IF
+				 
+		eOff :
+			ForwardOff();
+			iDrive.WorkCounterOff();
+				
+		eForward :
+			IF forwardButton.IsPressed THEN
+				iDrive.WorkCounterOn();
+            	iDrive.WorkCount();			
+			ELSE	
+				ForwardOff();
+				iDrive.WorkCounterOff();
+			 END_IF
+		
+		eFault :
+			iDrive.WorkCounterOff();
+	
+	END_CASE
+
 END_IF
 
-// determine the state of the device and light the Taurus LED with the appropriate color
-iDrive.StatusState();
+
+
 
 ]]></ST>
     </Implementation>
