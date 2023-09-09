@@ -15,10 +15,38 @@ END_VAR
     <Implementation>
       <ST><![CDATA[SUPER^(); //call base class 
 
-IF resetButton.IsPressed THEN
-	Reset();
+
+//Button Auto is set in SCADA motor control station, but Client in PLC have to have acces too directly via a variable to work in Auto mode
+IF autoButton.IsPressed THEN 
+	AutoOn();	// Turn On SCADA auto Led
+ELSE
+	AutoOff(); // Turn Off SCADA auto Led
+	
+	// IF NOT AUTO MODE THEN, EXECUTE
+	
+	CASE eStateDevice OF
+		eOn :
+			 IF resetButton.IsPressed THEN
+				Reset();		
+			 END_IF
+				 
+		eOff :
+			 IF resetButton.IsPressed THEN
+				Reset();		
+			 END_IF
+			
+		
+		eFault :
+			 IF resetButton.IsPressed THEN
+				Reset();		
+			 END_IF
+			 
+	END_CASE
+
 END_IF
 
+
+// Speed set all the time
 Speed(speedEdit.Number);]]></ST>
     </Implementation>
     <Method Name="FB_init" Id="{0e59730c-83eb-413d-aa7a-18575dff9c7e}">

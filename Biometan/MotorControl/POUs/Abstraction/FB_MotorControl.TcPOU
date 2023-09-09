@@ -31,7 +31,7 @@ ELSE
 		eOn :
 			 IF forwardButton.IsPressed THEN
 				ForwardOn();
-			 END_IF
+			END_IF
 				 
 		eOff :
 			ForwardOff();
@@ -47,6 +47,7 @@ ELSE
 			 END_IF
 		
 		eFault :
+			ForwardOff();
 			iDrive.WorkCounterOff();
 	
 	END_CASE

@@ -5,13 +5,13 @@
 {attribute 'strict'}
 TYPE E_StateDevice :
 (
-	eOn      := 0,
-	eOff     := 1,
-	eForward := 2,
-	eReverse := 3,
-	eReset   := 4,
-	eFault   := 5,
-	eAuto    := 6
+	eOn       := 0,
+	eOff      := 1,
+	eForward  := 2,
+	eReverse  := 3,
+	eReset    := 4,
+	eFault    := 5,
+	eAuto     := 6
 );
 END_TYPE
 ]]></Declaration>

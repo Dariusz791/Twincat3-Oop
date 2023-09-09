@@ -24,7 +24,7 @@ ELSE
 	CASE eStateDevice OF
 		eOn :
 			 IF reverseButton.IsPressed THEN
-				ReverseOn();		
+				ReverseOn();
 			 END_IF
 				 
 		eOff :
@@ -41,6 +41,7 @@ ELSE
 			 END_IF
 		
 		eFault :
+			ReverseOff();
 			iDrive.WorkCounterOff();
 	
 	END_CASE

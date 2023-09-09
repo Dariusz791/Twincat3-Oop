@@ -9,6 +9,11 @@
       <Get Name="Get" Id="{c3d1219e-a4f9-425f-94f8-da59e4e8a604}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
+      <Set Name="Set" Id="{68a97a70-232a-4994-9be0-1ca1dc62a874}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+      </Set>
     </Property>
     <Property Name="InstanceCounter" Id="{ad8649c7-fdbd-40d3-b7cc-aa849d0ab7e0}">
       <Declaration><![CDATA[PROPERTY InstanceCounter : INT]]></Declaration>

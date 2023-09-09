@@ -28,14 +28,17 @@ CASE _step OF
 0:	(*Initialize*)
 		MB.ReadRegs(Execute:= FALSE); (* initialize *)
 		
-		_stInverter := Itf.aItfDriveInverter[_iItfCount].DeviceData;
-		
+		//set index of inverter FB  
+		_iItfCount := 1;		
 		_step:= 10;
 		
 
 	
 10:	(*Read status of Inverter*) (*Sprawdzić status po wystąpieniu bledu przerwania komuikacji*)
 
+		// Read the device settings
+		_stInverter := Itf.aItfDriveInverter[_iItfCount].DeviceData;
+		
 		MB.ReadRegs(
 			UnitID:=_stInverter.bDeviceId,
 			Quantity:= 1,
@@ -56,10 +59,10 @@ CASE _step OF
 				_stInverter.wStatus := _MBdata[0];
 			END_IF
 			
-			IF _stInverter.wStatus.3 = TRUE THEN
+			IF _stInverter.wStatus = 568 OR _stInverter.wStatus = 536  THEN
 				_MBdata[0]:=0;
 				_step :=20;
-				_stInverter.eControl := eReset;
+				_stInverter.eControl := eResetInv;
 			ELSE
 				_MBdata[0]:=0;
 				_step :=20;			
@@ -72,11 +75,11 @@ CASE _step OF
 20: 	(*Write Control Register*)
 
 		CASE _stInverter.eControl OF
-			eStart:
+			eFwd:
 			   _MBdata[0] := 15;
-			eRevers:
+			eRev:
 				_MBdata[0] := 2063;
-			eReset:
+			eResetInv:
 				_MBdata[0] := 128;		 
 		ELSE
 			_MBdata[0] := 14;
@@ -140,14 +143,15 @@ CASE _step OF
 	
 			_MBdata[0]:=0;
 			_step :=50;	
-
+			
+			Itf.aItfDriveInverter[_iItfCount].DeviceData := _stInverter;	
 		END_IF
 		
 50: (* Go to the next device*)
 	
 	IF _iItfCount < 1 THEN
 		_iItfCount := _iItfCount +1;
-		_step := 1;
+		_step := 10;
 	ELSE
 		_step := 0;
 		

@@ -6,9 +6,9 @@
 TYPE E_ATVCommand :
 (
 	 eReady  := 14,
-	 eStart  := 15,
-	 eRevers := 2063,
-	 eReset  := 128
+	 eFwd  := 15,
+	 eRev := 2063,
+	 eResetInv  := 128
 	 
 )WORD; // domyślna inicjalizacja wszystkich E_ATVCommand Variables na WORD
 END_TYPE
