@@ -41,8 +41,11 @@ ELSE
 			 END_IF
 		
 		eFault :
-			ReverseOff();
-			iDrive.WorkCounterOff();
+			//IF NOT reverseButton.IsPressed AND NOT forwardButton.IsPressed THEN
+				iDrive.WorkCounterOff();	
+				ReverseOff();				
+			//END_IF
+			
 	
 	END_CASE
 

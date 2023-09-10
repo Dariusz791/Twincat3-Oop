@@ -130,7 +130,7 @@ IF _termFuse.IsActive AND (test.wStatus = 1591) THEN
 ELSIF _termFuse.IsActive AND (test.wStatus = 567) THEN
 	_stateLabel.Text := 'ON';
 	_statusLabel.Text := 'Ustawiono zerową prędkość zadaną';
-	StatusState := eFault;
+	StatusState := eOn;
 END_IF
 	
 IF _termFuse.IsActive AND (test.wStatus = 34359) THEN
@@ -144,7 +144,7 @@ IF _termFuse.IsActive AND (test.wStatus = 34359) THEN
 ELSIF _termFuse.IsActive AND (test.wStatus = 567) THEN
 	_stateLabel.Text := 'ON';
 	_statusLabel.Text := 'Ustawiono zerową prędkość zadaną';
-	StatusState := eFault;
+	StatusState := eOn;
 
 END_IF
 	

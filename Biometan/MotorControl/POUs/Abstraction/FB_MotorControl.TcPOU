@@ -7,7 +7,6 @@ VAR
 	autoButton		    : Button;	// Scada Button auto
 	forwardButton		: Button;	// Scada Button forward
 
-	
 	iDrive 		: I_Drive;				// interface variable
 	eStateDevice : E_StateDevice;     // text information about drive 'OFF', 'ON', 'FAULT', 'RUNNING'
 	
@@ -31,6 +30,8 @@ ELSE
 		eOn :
 			 IF forwardButton.IsPressed THEN
 				ForwardOn();
+			ELSE
+				ForwardOff();
 			END_IF
 				 
 		eOff :
@@ -47,8 +48,11 @@ ELSE
 			 END_IF
 		
 		eFault :
-			ForwardOff();
-			iDrive.WorkCounterOff();
+				iDrive.WorkCounterOff();	
+				ForwardOff();				
+
+			
+			
 	
 	END_CASE
 
