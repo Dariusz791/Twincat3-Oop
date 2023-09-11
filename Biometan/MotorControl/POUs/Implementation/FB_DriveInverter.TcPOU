@@ -106,7 +106,7 @@ END_VAR]]></Declaration>
         <ST><![CDATA[//Override 
 
 // State Machine of the Drive 
-// zliczaj czas pracy gdy napęd jest uruchomiony
+
 
 test := DeviceData;
 

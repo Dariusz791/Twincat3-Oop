@@ -5,8 +5,8 @@
 VAR
 	
 	// Drive
-	fbDrive			      : FB_Drive;
-	//fbDriveReverse	      : FB_DriveReverse;
+	//fbDrive			      : FB_Drive;
+	fbDriveReverse	      : FB_DriveReverse;
 	//bUnitId              	  : BYTE:=1; //adres napędu falownikowego Higienizatora
 	
 	//fbDriveInverter1		  : FB_DriveInverter(1);
@@ -14,8 +14,8 @@ VAR
 	
 
 	//Drive Control	
-	fbMotorControl 	      : FB_MotorControl(fbDrive);
-	//fbMotorControlReverse : FB_MotorControlReverse(fbDriveReverse);
+	//fbMotorControl 	      : FB_MotorControl(fbDrive);
+	fbMotorControlReverse : FB_MotorControlReverse(fbDriveReverse);
 	
 	//fbMotorControlInverter     : FB_MotorControlInverter(fbDriveInverter1);		
 	
@@ -31,9 +31,9 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[fbMotorControl();
+      <ST><![CDATA[//fbMotorControl();
 
-//fbMotorControlReverse();
+fbMotorControlReverse();
 
 //fbMotorControlInverter();
 

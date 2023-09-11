@@ -30,7 +30,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_autoLed.State := FALSE;
+        <ST><![CDATA[THIS^._autoLed.State := FALSE;
 ]]></ST>
       </Implementation>
     </Method>
@@ -40,7 +40,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_autoLed.State := TRUE;
+        <ST><![CDATA[THIS^._autoLed.State := TRUE;
 
 ]]></ST>
       </Implementation>
@@ -157,7 +157,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_eCommand := eReady;
+        <ST><![CDATA[THIS^._eCommand := eReady;
 
 
 
@@ -172,7 +172,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_eCommand := eFwd;
+        <ST><![CDATA[THIS^._eCommand := eFwd;
 
 
 
@@ -220,7 +220,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_startCount := FALSE;
+        <ST><![CDATA[THIS^._startCount := FALSE;
 
 ]]></ST>
       </Implementation>
@@ -231,7 +231,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_startCount := TRUE;
+        <ST><![CDATA[THIS^._startCount := TRUE;
 
 
 

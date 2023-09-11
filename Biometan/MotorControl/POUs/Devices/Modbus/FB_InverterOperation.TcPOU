@@ -49,17 +49,25 @@ CASE _step OF
 			Timeout:= _timeoutvalue,
 			Busy => _busy	);
 
-		
+	
+//	eSLF1      := 568,	// błąd komunikacja Modbus przerwana i nieaktywna
+//	enSL	   := 592,	// Stan po udanym resecie błędu komunikacji komedną eResetInv = 128
+//	eRdy       := 561,	// Stan po ustawieniu gotowości Inverta komendą eReady = 14
+//	eZeroSpeed := 567,  // Stan po ustawieniu komendy eFwd = 15 lub eRev = 2063 gdy jest zerowa prędkośc zadana speed = 0 
+//	eFwdOper   := 1591, // Stan gdy napęd pracuje w kierunku przodu po komendzie eFwd = 15 i osiągnał zadaną prędkość
+//	eRevOper   := 34359	// Stan gdy napęd pracuje w kierunku odwrotnym po komendzie eRev = 2063 i osiągnał zadaną prędkość 	
+
+	
 		IF NOT _busy THEN
 
 			MB.ReadRegs(Execute:=FALSE);
 			_stInverter.errorMdb := MB.ErrorId;		
 		
 			IF NOT MB.Error THEN
-				_stInverter.wStatus := _MBdata[0];
+				_stInverter.wStatus := StatusWord(_MBdata[0]);
 			END_IF
 			
-			IF _stInverter.wStatus = 568 OR _stInverter.wStatus = 536  THEN
+			IF _stInverter.wStatus = eSLF1 OR _stInverter.wStatus = 536  THEN
 				_MBdata[0]:=0;
 				_step :=20;
 				_stInverter.eControl := eResetInv;
@@ -76,13 +84,13 @@ CASE _step OF
 
 		CASE _stInverter.eControl OF
 			eFwd:
-			   _MBdata[0] := 15;
+			   _MBdata[0] := eFwd;
 			eRev:
-				_MBdata[0] := 2063;
+				_MBdata[0] := eRev;
 			eResetInv:
-				_MBdata[0] := 128;		 
+				_MBdata[0] := eResetInv;		 
 		ELSE
-			_MBdata[0] := 14;
+			_MBdata[0] := eReady;
 		
 		END_CASE
 	
@@ -162,5 +170,36 @@ CASE _step OF
 END_CASE	
 ]]></ST>
     </Implementation>
+    <Method Name="StatusWord" Id="{e6933e2b-4142-422c-ba7d-516e32170dda}">
+      <Declaration><![CDATA[METHOD StatusWord : E_InverterStatusWord
+VAR_INPUT
+	refMBdata : REFERENCE TO ARRAY[0..40] OF WORD;  //wskaźnik do tablicy ze słowem Controlnym 
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE refMBdata[0] OF
+	
+	568:
+		StatusWord := eSLF1; // błąd komunikacja Modbus przerwana i nieaktywna
+	592: 
+		StatusWord := enSL; // Stan po udanym resecie błędu komunikacji komedną eResetInv = 128
+	561: 
+		StatusWord := eRdy; // Stan po ustawieniu gotowości Inverta komendą eReady = 14
+	567:
+		StatusWord := eZeroSpeed; // Stan po ustawieniu komendy eFwd = 15 lub eRev = 2063 gdy jest zerowa prędkośc zadana speed = 0 
+	1591:
+		StatusWord := eFwdOper; // Stan gdy napęd pracuje w kierunku przodu po komendzie eFwd = 15 i osiągnał zadaną prędkość
+	34359:
+		StatusWord := eRevOper; // Stan gdy napęd pracuje w kierunku odwrotnym po komendzie eRev = 2063 i osiągnał zadaną prędkość 
+		
+END_CASE
+
+
+
+	
+	
+	]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

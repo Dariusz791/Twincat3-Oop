@@ -13,43 +13,27 @@ END_VAR
     <Implementation>
       <ST><![CDATA[SUPER^(); //call base class 
 
+
+
 //Button Auto is set in SCADA motor control station, but Client in PLC have to have acces too directly via a variable to work in Auto mode
 IF autoButton.IsPressed THEN 
 	AutoOn();	// Turn On SCADA auto Led
+
 ELSE
 	AutoOff(); // Turn Off SCADA auto Led
 	
 	// IF NOT AUTO MODE THEN, EXECUTE
 	
-	CASE eStateDevice OF
-		eOn :
-			 IF reverseButton.IsPressed THEN
-				ReverseOn();
-			 END_IF
-				 
-		eOff :
-			ReverseOff();
-			iDrive.WorkCounterOff();
-				
-		eReverse :
-			IF reverseButton.IsPressed THEN
-            	iDrive.WorkCount();			
-				iDrive.WorkCounterOn();
-			ELSE	
-				ReverseOff();
-				iDrive.WorkCounterOff();
-			 END_IF
-		
-		eFault :
-			//IF NOT reverseButton.IsPressed AND NOT forwardButton.IsPressed THEN
-				iDrive.WorkCounterOff();	
-				ReverseOff();				
-			//END_IF
-			
-	
-	END_CASE
+	IF reverseButton.IsPressed THEN
+		ReverseOn();
+	ELSIF NOT forwardButton.IsPressed THEN
+		ReverseOff();
+	END_IF
 
 END_IF
+
+
+
 
 
 
@@ -83,7 +67,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[iDriveReverse.SwitchReverseOff();]]></ST>
+        <ST><![CDATA[ReverseOff := iDriveReverse.SwitchReverseOff();]]></ST>
       </Implementation>
     </Method>
     <Method Name="ReverseOn" Id="{c76a633c-5fd6-4c8d-90e7-611a4362c596}">
@@ -92,7 +76,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[iDriveReverse.SwitchReverseOn();]]></ST>
+        <ST><![CDATA[ReverseOn := iDriveReverse.SwitchReverseOn();]]></ST>
       </Implementation>
     </Method>
   </POU>

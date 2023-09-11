@@ -22,58 +22,141 @@ END_VAR
 // zliczaj czas pracy gdy napęd jest uruchomiony
 
 
-IF _termFuse.IsActive THEN
-		_supplyLed.State := TRUE;
-		_stateLabel.Text := 'ON';
-		_statusLabel.Text := 'Napęd jest w gotowości';	
-		StatusState := eOn;
 
-	IF _contactor.State THEN
-		_stateLabel.Text := 'RUNNING';
-		_statusLabel.Text := 'Napęd jest uruchomiony do przodu';
-		
-		// start count work time
-		WorkTimelabel();
-		StatusState := eForward;
-	END_IF
+
+CASE _eStateMachine OF
 	
-	IF _contactorReverse.State THEN
-		_stateLabel.Text := 'RUNNING';
-		_statusLabel.Text := 'Napęd jest uruchomiony do tyłu';
-		
-		// start count work time
-		WorkTimelabel();
-		StatusState := eReverse;
-	END_IF
-	
-	
-ELSE
+	eOff:
+		WorkCounterOff();
 		_supplyLed.State := FALSE;
 		_stateLabel.Text := 'OFF';
 		_statusLabel.Text := 'Napęd jest wyłączony';
-		StatusState := eOff;
+		_contactor.State := FALSE;
+		_contactorReverse.State := FALSE;
+		
+		IF (_eCommand = eReady) AND _termFuse.IsActive THEN
+			_eStateMachine := eOn;	
+		END_IF
+	
+	eOn:
+		WorkCounterOff();
+		_supplyLed.State := TRUE;
+		_stateLabel.Text := 'ON';
+		_statusLabel.Text := 'Napęd jest w gotowości';
+		_contactor.State := FALSE;
+		_contactorReverse.State := FALSE;
 
-	IF _contactor.State OR _contactorReverse.State THEN
+		IF _eCommand = eFwd THEN
+			_eStateMachine := eForward;
+		ELSIF _eCommand = eRev THEN
+			_eStateMachine := eReverse;
+		ELSIF _eCommand = eReady AND NOT _termFuse.IsActive THEN
+			_eStateMachine := eOff;
+		ELSIF _eCommand = eReady AND _termFuse.IsActive THEN
+			_eStateMachine := eOn;	
+		END_IF
+		
+	
+	eForward:
+		_stateLabel.Text := 'RUNNING';
+		_statusLabel.Text := 'Napęd jest uruchomiony do przodu';	
+		WorkCounterOn();
+		WorkCount();
+		WorkTimelabel();	
+		IF _eCommand = eFwd THEN
+			_contactor.State := TRUE;
+		ELSIF _eCommand = eReady THEN
+			_eStateMachine := eOn;
+		END_IF
+		
+        IF _eCommand = eFwd AND NOT _termFuse.IsActive THEN
+			_eStateMachine := eFault;
+		END_IF
+		
+	eReverse:
+		_stateLabel.Text := 'RUNNING';
+		_statusLabel.Text := 'Napęd jest uruchomiony do tyłu';	
+		WorkCounterOn();
+		WorkCount();
+		WorkTimelabel();
+		IF _eCommand = eRev THEN
+			_contactorReverse.State := TRUE;
+		ELSIF _eCommand = eReady THEN
+			_eStateMachine := eOn;
+		END_IF
+		
+        IF _eCommand = eRev AND NOT _termFuse.IsActive THEN
+			_eStateMachine := eFault;
+		END_IF		
+	
+		
+	eFault:
+		_contactor.State := FALSE;
+		_contactorReverse.State := FALSE;
+		WorkCounterOff();
 		_stateLabel.Text := 'FAULT';
 		_statusLabel.Text := 'Zadziałał wyłacznik silnikowy';
-		StatusState := eFault;
-	END_IF
+		IF _eCommand = eReady AND NOT _termFuse.IsActive THEN
+			_eStateMachine := eOff;
+		END_IF
 
-END_IF]]></ST>
+END_CASE
+
+
+
+
+//IF _termFuse.IsActive THEN
+//		_supplyLed.State := TRUE;
+//		_stateLabel.Text := 'ON';
+//		_statusLabel.Text := 'Napęd jest w gotowości';	
+//		StatusState := eOn;
+
+//	IF _contactor.State THEN
+//		_stateLabel.Text := 'RUNNING';
+//		_statusLabel.Text := 'Napęd jest uruchomiony do przodu';
+		
+//		// start count work time
+//		WorkTimelabel();
+//		StatusState := eForward;
+//	END_IF
+	
+//	IF _contactorReverse.State THEN
+//		_stateLabel.Text := 'RUNNING';
+//		_statusLabel.Text := 'Napęd jest uruchomiony do tyłu';
+		
+//		// start count work time
+//		WorkTimelabel();
+//		StatusState := eReverse;
+//	END_IF
+	
+	
+//ELSE
+//		_supplyLed.State := FALSE;
+//		_stateLabel.Text := 'OFF';
+//		_statusLabel.Text := 'Napęd jest wyłączony';
+//		StatusState := eOff;
+
+//	IF _contactor.State OR _contactorReverse.State THEN
+//		_stateLabel.Text := 'FAULT';
+//		_statusLabel.Text := 'Zadziałał wyłacznik silnikowy';
+//		StatusState := eFault;
+//	END_IF
+
+//END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="SwitchReverseOff" Id="{1bf8401f-e92a-45bf-8d9b-1f25e75c2802}">
       <Declaration><![CDATA[METHOD SwitchReverseOff : BOOL
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_contactorReverse.State := False;]]></ST>
+        <ST><![CDATA[THIS^._eCommand := eReady;]]></ST>
       </Implementation>
     </Method>
     <Method Name="SwitchReverseOn" Id="{d0c55b9b-ce07-4e2d-8242-0831ea7d7140}">
       <Declaration><![CDATA[METHOD SwitchReverseOn : BOOL
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_contactorReverse.State := TRUE;]]></ST>
+        <ST><![CDATA[THIS^._eCommand := eRev; ]]></ST>
       </Implementation>
     </Method>
   </POU>

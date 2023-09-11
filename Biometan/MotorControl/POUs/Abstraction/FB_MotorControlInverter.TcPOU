@@ -24,24 +24,10 @@ ELSE
 	
 	// IF NOT AUTO MODE THEN, EXECUTE
 	
-	CASE eStateDevice OF
-		eOn :
-			 IF resetButton.IsPressed THEN
-				Reset();		
-			 END_IF
+	 IF resetButton.IsPressed THEN
+		Reset();		
+	 END_IF
 				 
-		eOff :
-			 IF resetButton.IsPressed THEN
-				Reset();		
-			 END_IF
-			
-		
-		eFault :
-			 IF resetButton.IsPressed THEN
-				Reset();		
-			 END_IF
-			 
-	END_CASE
 
 END_IF
 

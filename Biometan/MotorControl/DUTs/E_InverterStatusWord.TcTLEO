@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <EnumerationTextList Name="E_InverterStatusWord" Id="{a537bab2-a1fa-4c2f-8f0c-222f1e9a65c9}">
+    <Declaration><![CDATA[//{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE E_InverterStatusWord :
+(
+	eSLF1      := 568,	// błąd komunikacja Modbus przerwana i nieaktywna
+	enSL	   := 592,	// Stan po udanym resecie błędu komunikacji komedną eResetInv = 128
+	eRdy       := 561,	// Stan po ustawieniu gotowości Inverta komendą eReady = 14
+	eZeroSpeed := 567,  // Stan po ustawieniu komendy eFwd = 15 lub eRev = 2063 gdy jest zerowa prędkośc zadana speed = 0 
+	eFwdOper   := 1591, // Stan gdy napęd pracuje w kierunku przodu po komendzie eFwd = 15 i osiągnał zadaną prędkość
+	eRevOper   := 34359	// Stan gdy napęd pracuje w kierunku odwrotnym po komendzie eRev = 2063 i osiągnał zadaną prędkość 	
+	
+)WORD;
+END_TYPE]]></Declaration>
+    <XmlArchive>
+      <Data>
+        <o xml:space="preserve" t="TextListEnumerationTextListObject">
+          <l n="TextList" t="ArrayList" cet="TextListRow">
+            <o>
+              <v n="TextID">"eSLF1"</v>
+              <v n="TextDefault">"568"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"enSL"</v>
+              <v n="TextDefault">"592"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"eRdy"</v>
+              <v n="TextDefault">"561"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"eZeroSpeed"</v>
+              <v n="TextDefault">"567"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"eFwdOper"</v>
+              <v n="TextDefault">"1591"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"eRevOper"</v>
+              <v n="TextDefault">"34359"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">""</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+          </l>
+          <l n="Languages" t="ArrayList" />
+          <v n="GuidInit">{a01746ee-7c0b-4669-a789-7f6169244694}</v>
+          <v n="GuidReInit">{91ffd962-891c-479d-bd75-31296322ddd3}</v>
+          <v n="GuidExitX">{1c662cf5-00f3-453c-8c88-c0bc8474b69b}</v>
+        </o>
+      </Data>
+      <TypeList>
+        <Type n="ArrayList">System.Collections.ArrayList</Type>
+        <Type n="Guid">System.Guid</Type>
+        <Type n="String">System.String</Type>
+        <Type n="TextListEnumerationTextListObject">{4b60233c-f940-4beb-b331-82133b520151}</Type>
+        <Type n="TextListRow">{53da1be7-ad25-47c3-b0e8-e26286dad2e0}</Type>
+      </TypeList>
+    </XmlArchive>
+  </EnumerationTextList>
+</TcPlcObject>
