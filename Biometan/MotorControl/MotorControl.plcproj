@@ -18,7 +18,7 @@
     <LibraryReferences>{b44a2b0c-a7bd-4a89-9365-7ee8c7a6a1f7}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DUTs\E_ATVCommand.TcDUT">
+    <Compile Include="DUTs\E_Command.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\E_StateDevice.TcTLEO">

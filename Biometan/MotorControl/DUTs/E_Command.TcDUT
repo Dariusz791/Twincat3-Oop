@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <DUT Name="E_ATVCommand" Id="{d50d8559-d507-4ce1-81cc-42f496ab1cf0}">
+  <DUT Name="E_Command" Id="{d50d8559-d507-4ce1-81cc-42f496ab1cf0}">
     <Declaration><![CDATA[//{attribute 'qualified_only'}
 {attribute 'strict'}
-TYPE E_ATVCommand :
+TYPE E_Command :
 (
 	 eReady  := 14,
 	 eFwd  := 15,

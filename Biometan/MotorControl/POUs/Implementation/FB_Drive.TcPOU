@@ -15,11 +15,14 @@ VAR
 	_startCount  	: BOOL;		// start/stop zliczania czasu
 	_stWorkTime  	: ST_WorkTime;	// struktura czasu pracy napędu
 
+	_eStateMachine	: E_StateDevice :=eOff; //Drive State Machine ustaw stan początkowy
+	_eCommand		: E_Command;     // Command
   
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[
+]]></ST>
     </Implementation>
     <Method Name="AutoLedOff" Id="{e07e0a99-b516-4100-ba57-7091f166c26d}">
       <Declaration><![CDATA[METHOD AutoLedOff : BOOL
@@ -52,36 +55,97 @@ END_VAR
 // zliczaj czas pracy gdy napęd jest uruchomiony
 
 
-IF _termFuse.IsActive THEN
-		_supplyLed.State := TRUE;
-		_stateLabel.Text := 'ON';
-		_statusLabel.Text := 'Napęd jest w gotowości';
-		StatusState := eOn;
-		
-	IF _contactor.State THEN
-		_stateLabel.Text := 'RUNNING';
-		_statusLabel.Text := 'Napęd jest uruchomiony do przodu';
-		
-		// start count work time
-		WorkTimelabel();
-		StatusState := eForward;
-		
-		
-	END_IF
-
-ELSE
+CASE _eStateMachine OF
+	
+	eOff:
+		WorkCounterOff();
 		_supplyLed.State := FALSE;
 		_stateLabel.Text := 'OFF';
 		_statusLabel.Text := 'Napęd jest wyłączony';
-		StatusState := eOff;
+		_contactor.State := FALSE;
+		
+		IF (_eCommand = eReady) AND _termFuse.IsActive THEN
+			_eStateMachine := eOn;	
+		END_IF
+	
+	eOn:
+		WorkCounterOff();
+		_supplyLed.State := TRUE;
+		_stateLabel.Text := 'ON';
+		_statusLabel.Text := 'Napęd jest w gotowości';
+		_contactor.State := FALSE;
 
-	IF _contactor.State THEN
+		IF _eCommand = eFwd THEN
+			_eStateMachine := eForward;
+		ELSIF _eCommand = eReady AND NOT _termFuse.IsActive THEN
+			_eStateMachine := eOff;
+		ELSIF _eCommand = eReady AND _termFuse.IsActive THEN
+			_eStateMachine := eOn;	
+		END_IF
+		
+	
+	eForward:
+		_stateLabel.Text := 'RUNNING';
+		_statusLabel.Text := 'Napęd jest uruchomiony do przodu';	
+		WorkCounterOn();
+		WorkCount();
+		WorkTimelabel();	
+		IF _eCommand = eFwd THEN
+			_contactor.State := TRUE;
+		ELSIF _eCommand = eReady THEN
+			_eStateMachine := eOn;
+		END_IF
+		
+        IF _eCommand = eFwd AND NOT _termFuse.IsActive THEN
+			_eStateMachine := eFault;
+		END_IF
+		
+	
+	eFault:
+		_contactor.State := FALSE;
+		WorkCounterOff();
 		_stateLabel.Text := 'FAULT';
 		_statusLabel.Text := 'Zadziałał wyłacznik silnikowy';
-		StatusState := eFault;
-	END_IF
+		IF _eCommand = eReady AND NOT _termFuse.IsActive THEN
+			_eStateMachine := eOff;
+		END_IF
 
-END_IF
+END_CASE
+
+
+
+
+
+//IF _termFuse.IsActive THEN
+//		_supplyLed.State := TRUE;
+//		_stateLabel.Text := 'ON';
+//		_statusLabel.Text := 'Napęd jest w gotowości';
+//		StatusState := eOn;
+		
+//	IF _contactor.State THEN
+//		_stateLabel.Text := 'RUNNING';
+//		_statusLabel.Text := 'Napęd jest uruchomiony do przodu';
+		
+//		// start count work time
+//		WorkTimelabel();
+//		StatusState := eForward;
+		
+		
+//	END_IF
+
+//ELSE
+//		_supplyLed.State := FALSE;
+//		_stateLabel.Text := 'OFF';
+//		_statusLabel.Text := 'Napęd jest wyłączony';
+//		StatusState := eOff;
+
+//	IF _contactor.State THEN
+//		_stateLabel.Text := 'FAULT';
+//		_statusLabel.Text := 'Zadziałał wyłacznik silnikowy';
+//		StatusState := eFault;
+//	END_IF
+
+//END_IF
 
 ]]></ST>
       </Implementation>
@@ -93,7 +157,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_contactor.State := FALSE;
+        <ST><![CDATA[_eCommand := eReady;
+
 
 
 
@@ -107,7 +172,9 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_contactor.State := TRUE;
+        <ST><![CDATA[_eCommand := eFwd;
+
+
 
 
 

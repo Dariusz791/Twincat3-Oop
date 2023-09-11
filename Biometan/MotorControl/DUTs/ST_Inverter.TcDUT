@@ -5,7 +5,7 @@
 STRUCT
 	bDeviceId : BYTE;
 	wStatus	  : WORD;
-	eControl  : E_ATVCommand;
+	eControl  : E_Command;
 	rSpeed	  : WORD;
 	errorInv  : WORD;           // AVT inverter Error
 	errorMdb  : MODBUS_ERRORS;  // Modbus Communications error		
