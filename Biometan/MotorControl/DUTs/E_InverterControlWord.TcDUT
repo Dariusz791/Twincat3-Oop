@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="E_InverterControlWord" Id="{6742c02a-2823-4ec5-8162-272f84fb7170}">
+    <Declaration><![CDATA[//{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE E_InverterControlWord :
+(
+	 eShutDown         := 16#0006,  //State 2 - Shutdown command -final operating state -> Ready to switch on 
+	 eSwitchOn         := 16#0007,  //State 3 - Switch On  command - final operating state -> Switched On Its the same command Disable Operation
+	 eEnableOperation  := 16#000F,	//State 4 - Enable Operation - final operating state -> Operation enabled (napęd pracuej do przodu)  
+	 eReverseOperation := 16#080F,  //State 4 - Enable Operation Reverse - final operating state -> Operation enabled (napęd pracuej do tyłu)
+	 eFaultReset       := 16#0080   //State 5 - Error reset - final operating state -> Ready to switch on 
+ 	 
+)WORD;
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

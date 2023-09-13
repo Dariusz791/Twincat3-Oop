@@ -76,9 +76,8 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-
 // Set reset Command
-THIS^._stInverter.eControl := eResetInv;]]></ST>
+THIS^._stInverter.eControl := eFaultReset;]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetSpeed" Id="{ffbd82cf-721f-4d5f-82e9-2001d00f4e60}">
@@ -98,7 +97,7 @@ VAR_INPUT
 END_VAR
 
 VAR
-	test : ST_Inverter;
+	//test : ST_Inverter;
 	
 
 END_VAR]]></Declaration>
@@ -108,67 +107,156 @@ END_VAR]]></Declaration>
 // State Machine of the Drive 
 
 
-test := DeviceData;
 
 
 
-IF _termFuse.IsActive AND (test.wStatus = 561) THEN
-	_supplyLed.State := TRUE;
-	_stateLabel.Text := 'ON';
-	_statusLabel.Text := 'Napęd jest w gotowości';	
-	StatusState := eOn;
-END_IF
-
-IF _termFuse.IsActive AND (test.wStatus = 1591) THEN
-	_stateLabel.Text := 'RUNNING';
-	_statusLabel.Text := 'Napęd jest uruchomiony do przodu';
+CASE _eStateMachine OF
 	
-	// start count work time
-	WorkTimelabel();
-	StatusState := eForward;
+	eOff:
+		WorkCounterOff();
+		_supplyLed.State := FALSE;
+		_stateLabel.Text := 'OFF';
+		_statusLabel.Text := 'Napęd jest wyłączony';
+		//THIS^._stInverter.eControl := eShutDown;
+		
+		IF _eCommand = eReady AND _termFuse.IsActive THEN
+			_eStateMachine := eOn;	
+		END_IF
+		
+		
 	
-ELSIF _termFuse.IsActive AND (test.wStatus = 567) THEN
-	_stateLabel.Text := 'ON';
-	_statusLabel.Text := 'Ustawiono zerową prędkość zadaną';
-	StatusState := eOn;
-END_IF
+	eOn:
+		WorkCounterOff();
+		_supplyLed.State := TRUE;
+		_stateLabel.Text := 'ON';
+		_statusLabel.Text := 'Napęd jest w gotowości';
+		THIS^._stInverter.eControl := eSwitchOn;
+		
+		IF _eCommand = eFwd THEN
+			THIS^._stInverter.eControl := eEnableOperation;
+			IF  _stInverter.wStatus = eOperationEnabled THEN
+				_eStateMachine := eForward;
+			END_IF
+		ELSIF _eCommand = eRev THEN
+			THIS^._stInverter.eControl := eReverseOperation;
+			IF _stInverter.wStatus = eOperationEnabled THEN
+				_eStateMachine := eReverse;
+			END_IF
+		END_IF 
+		
+        IF NOT _termFuse.IsActive THEN
+			_eStateMachine := eOff;
+		END_IF
+ 
 	
-IF _termFuse.IsActive AND (test.wStatus = 34359) THEN
-	_stateLabel.Text := 'RUNNING';
-	_statusLabel.Text := 'Napęd jest uruchomiony do tyłu';
+	eForward:
+		_stateLabel.Text := 'RUNNING';
+		_statusLabel.Text := 'Napęd jest uruchomiony do przodu';	
+		WorkCounterOn();
+		WorkCount();
+		WorkTimelabel();	
+		IF _eCommand = eReady THEN 
+			THIS^._stInverter.eControl := eSwitchOn;
+			IF _stInverter.wStatus = eSwitchedOn THEN
+				_eStateMachine := eOn;
+			END_IF
+		END_IF
+		
+        IF _eCommand = eFwd AND NOT _termFuse.IsActive THEN
+			_eStateMachine := eFault;
+		END_IF
+		
+	eReverse:
+		_stateLabel.Text := 'RUNNING';
+		_statusLabel.Text := 'Napęd jest uruchomiony do tyłu';	
+		WorkCounterOn();
+		WorkCount();
+		WorkTimelabel();
+		IF _eCommand = eReady THEN
+			THIS^._stInverter.eControl := eSwitchOn;
+			IF _stInverter.wStatus = eSwitchedOn THEN
+				_eStateMachine := eOn;
+			END_IF
+		END_IF
+		
+        IF _eCommand = eRev AND NOT _termFuse.IsActive THEN
+			_eStateMachine := eFault;
+		END_IF		
 	
-	// start count work time
-	WorkTimelabel();
-	StatusState := eReverse;
+		
+	eFault:
+		THIS^._stInverter.eControl := eSwitchOn;
+		WorkCounterOff();
+		_stateLabel.Text := 'FAULT';
+		_statusLabel.Text := 'Zadziałał wyłacznik silnikowy';
+		IF _eCommand = eReady AND NOT _termFuse.IsActive THEN
+			_eStateMachine := eOff;
+		END_IF
 
-ELSIF _termFuse.IsActive AND (test.wStatus = 567) THEN
-	_stateLabel.Text := 'ON';
-	_statusLabel.Text := 'Ustawiono zerową prędkość zadaną';
-	StatusState := eOn;
+END_CASE
 
-END_IF
+
+
+
+
+
+//IF _termFuse.IsActive AND (test.wStatus = 561) THEN
+//	_supplyLed.State := TRUE;
+//	_stateLabel.Text := 'ON';
+//	_statusLabel.Text := 'Napęd jest w gotowości';	
+//	StatusState := eOn;
+//END_IF
+
+//IF _termFuse.IsActive AND (test.wStatus = 1591) THEN
+//	_stateLabel.Text := 'RUNNING';
+//	_statusLabel.Text := 'Napęd jest uruchomiony do przodu';
+	
+//	// start count work time
+//	WorkTimelabel();
+//	StatusState := eForward;
+	
+//ELSIF _termFuse.IsActive AND (test.wStatus = 567) THEN
+//	_stateLabel.Text := 'ON';
+//	_statusLabel.Text := 'Ustawiono zerową prędkość zadaną';
+//	StatusState := eOn;
+//END_IF
+	
+//IF _termFuse.IsActive AND (test.wStatus = 34359) THEN
+//	_stateLabel.Text := 'RUNNING';
+//	_statusLabel.Text := 'Napęd jest uruchomiony do tyłu';
+	
+//	// start count work time
+//	WorkTimelabel();
+//	StatusState := eReverse;
+
+//ELSIF _termFuse.IsActive AND (test.wStatus = 567) THEN
+//	_stateLabel.Text := 'ON';
+//	_statusLabel.Text := 'Ustawiono zerową prędkość zadaną';
+//	StatusState := eOn;
+
+//END_IF
 	
 	
-IF _termFuse.IsActive AND (test.wStatus = 568) THEN
-	_stateLabel.Text := 'FAULT';
-	_statusLabel.Text := 'Status Word falownika Fault bład SLF1';
-	StatusState := eFault;
-END_IF
+//IF _termFuse.IsActive AND (test.wStatus = 568) THEN
+//	_stateLabel.Text := 'FAULT';
+//	_statusLabel.Text := 'Status Word falownika Fault bład SLF1';
+//	StatusState := eFault;
+//END_IF
 
-IF _termFuse.IsActive AND (test.wStatus = 592) THEN
-	_stateLabel.Text := 'FAULT';
-	_statusLabel.Text := 'Falownik w trybie nSŁ';
-	StatusState := eFault;
-END_IF
+//IF _termFuse.IsActive AND (test.wStatus = 592) THEN
+//	_stateLabel.Text := 'FAULT';
+//	_statusLabel.Text := 'Falownik w trybie nSŁ';
+//	StatusState := eFault;
+//END_IF
 
 
-IF NOT _termFuse.IsActive THEN
-	_supplyLed.State := FALSE;
-	_stateLabel.Text := 'OFF';
-	_statusLabel.Text := 'Napęd jest wyłączony';
-	StatusState := eOff;
+//IF NOT _termFuse.IsActive THEN
+//	_supplyLed.State := FALSE;
+//	_stateLabel.Text := 'OFF';
+//	_statusLabel.Text := 'Napęd jest wyłączony';
+//	StatusState := eOff;
 
-END_IF
+//END_IF
 
 
 
@@ -185,8 +273,10 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[//Override  send "stop" command to modbus block
+THIS^._eCommand := eReady;
 
-THIS^._stInverter.eControl := eReady; (*Set Ready Command (its mean stop inverter)*)
+
+
 
 
 ]]></ST>
@@ -199,9 +289,10 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[//Override  send "start" command to Modbus block
+THIS^._eCommand := eFwd;
 
 
-THIS^._stInverter.eControl := eFwd; (*Set Ready Command (its mean stop inverter)*)
+
 
 ]]></ST>
       </Implementation>
@@ -211,9 +302,9 @@ THIS^._stInverter.eControl := eFwd; (*Set Ready Command (its mean stop inverter)
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[//Override  send "reverse" stop command to Modbus block
+THIS^._eCommand := eReady;
 
-
-THIS^._stInverter.eControl := eReady; (*Set Ready Command (its mean stop inverter)*)]]></ST>
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="SwitchReverseOn" Id="{fa8df555-f63f-4670-adb2-e7de773a03c4}">
@@ -221,10 +312,10 @@ THIS^._stInverter.eControl := eReady; (*Set Ready Command (its mean stop inverte
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[//Override  send "reverse" start command to Modbus block
+THIS^._eCommand := eRev;
 
 
-
-THIS^._stInverter.eControl := eRev; (*Set Ready Command (its mean stop inverter)*)]]></ST>
+]]></ST>
       </Implementation>
     </Method>
   </POU>

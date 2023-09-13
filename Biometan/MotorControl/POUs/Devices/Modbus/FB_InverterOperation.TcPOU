@@ -10,10 +10,12 @@ VAR
 	_stInverter			: ST_Inverter;
 	_MBdata      		: ARRAY[0..40] OF WORD;	(* The size of this array can be adapted to the modbus slaves register area *)
  	_busy		 		: BOOL;	
-	_timeoutvalue		: TIME:=T#3S;		            (* Timeout while waiting for an answer of the modbus slave *)
+	_timeoutvalue		: TIME:=T#300MS;		            (* Timeout while waiting for an answer of the modbus slave *)
 	
 	_step		 		: INT;						(* Step of the control inverter program*)
 	_iItfCount			: INT :=1;
+	
+
 	
 	
 	
@@ -32,6 +34,7 @@ CASE _step OF
 		_iItfCount := 1;		
 		_step:= 10;
 		
+		
 
 	
 10:	(*Read status of Inverter*) (*Sprawdzić status po wystąpieniu bledu przerwania komuikacji*)
@@ -40,7 +43,7 @@ CASE _step OF
 		_stInverter := Itf.aItfDriveInverter[_iItfCount].DeviceData;
 		
 		MB.ReadRegs(
-			UnitID:=_stInverter.bDeviceId,
+			UnitID:=1,//_stInverter.bDeviceId,
 			Quantity:= 1,
 			MBAddr:=3201,
 			cbLength:= 2,
@@ -49,54 +52,60 @@ CASE _step OF
 			Timeout:= _timeoutvalue,
 			Busy => _busy	);
 
-	
-//	eSLF1      := 568,	// błąd komunikacja Modbus przerwana i nieaktywna
-//	enSL	   := 592,	// Stan po udanym resecie błędu komunikacji komedną eResetInv = 128
-//	eRdy       := 561,	// Stan po ustawieniu gotowości Inverta komendą eReady = 14
-//	eZeroSpeed := 567,  // Stan po ustawieniu komendy eFwd = 15 lub eRev = 2063 gdy jest zerowa prędkośc zadana speed = 0 
-//	eFwdOper   := 1591, // Stan gdy napęd pracuje w kierunku przodu po komendzie eFwd = 15 i osiągnał zadaną prędkość
-//	eRevOper   := 34359	// Stan gdy napęd pracuje w kierunku odwrotnym po komendzie eRev = 2063 i osiągnał zadaną prędkość 	
 
-	
-		IF NOT _busy THEN
+		IF NOT _busy THEN		// Boot procedure
 
 			MB.ReadRegs(Execute:=FALSE);
 			_stInverter.errorMdb := MB.ErrorId;		
 		
 			IF NOT MB.Error THEN
-				_stInverter.wStatus := StatusWord(_MBdata[0]);
+				_stInverter.wStatus := StatusWord(_MBdata);
 			END_IF
 			
-			IF _stInverter.wStatus = eSLF1 OR _stInverter.wStatus = 536  THEN
+			IF _stInverter.wStatus = eFaultDrive THEN
 				_MBdata[0]:=0;
 				_step :=20;
-				_stInverter.eControl := eResetInv;
+				_stInverter.eControl := eFaultReset;
+			ELSIF _stInverter.wStatus = eSwitchOnDisabled THEN
+				_MBdata[0]:=0;
+				_step :=20;	
+				_stInverter.eControl := eShutDown;
+			ELSIF _stInverter.wStatus = eReadyToSwitchOn THEN
+				_MBdata[0]:=0;
+				_step :=20;	
+				_stInverter.eControl := eSwitchOn;	
 			ELSE
 				_MBdata[0]:=0;
-				_step :=20;			
+				_step :=20;
 			END_IF
-		
+			
 		END_IF
 		
+
 	
 		
 20: 	(*Write Control Register*)
 
-		CASE _stInverter.eControl OF
-			eFwd:
-			   _MBdata[0] := eFwd;
-			eRev:
-				_MBdata[0] := eRev;
-			eResetInv:
-				_MBdata[0] := eResetInv;		 
-		ELSE
-			_MBdata[0] := eReady;
-		
-		END_CASE
-	
-		
+				
+
+			CASE _stInverter.eControl OF
+				eShutDown:
+					_MBdata[0] := eShutDown;
+				eEnableOperation:
+				   _MBdata[0] := eEnableOperation;
+				eReverseOperation:
+					_MBdata[0] := eReverseOperation;
+				eFaultReset:
+					_MBdata[0] := eFaultReset;
+							 
+			ELSE
+				_MBdata[0] := eSwitchOn;
+			
+			END_CASE	
+			
+			
 		MB.WriteSingleRegister(
-			UnitID:=_stInverter.bDeviceId,
+			UnitID:=1,//_stInverter.bDeviceId,
 			Quantity:=1,
 			MBAddr:=8501,
 			cbLength:= 2,
@@ -107,7 +116,7 @@ CASE _step OF
 
 		IF NOT _busy THEN
 			MB.ReadRegs(Execute:=FALSE);
-			_step :=30;
+			_step := 30;
 		END_IF
 
 30: 	(*Write the set frequency*)
@@ -115,7 +124,7 @@ CASE _step OF
 		_MBdata[0] := _stInverter.rSpeed;
 	
 		MB.WriteSingleRegister(
-					UnitID:=_stInverter.bDeviceId,
+					UnitID:=1,//_stInverter.bDeviceId,
 					Quantity:=1,
 					MBAddr:=8502,
 					cbLength:= 2,
@@ -133,7 +142,7 @@ CASE _step OF
 40:	(*Read actual error of Inverter*)
 	
 		MB.ReadRegs(
-			UnitID:=_stInverter.bDeviceId,
+			UnitID:=1,//_stInverter.bDeviceId,
 			Quantity:= 1,
 			MBAddr:=7200,
 			cbLength:= 2,
@@ -177,20 +186,24 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[CASE refMBdata[0] OF
+        <ST><![CDATA[// ETA Masked by 0x006F h -> Altivar modbus instructions
+
+
+refMbdata[0] := refMBdata[0]  AND 16#006F;
+
+CASE refMBdata[0] OF
 	
-	568:
-		StatusWord := eSLF1; // błąd komunikacja Modbus przerwana i nieaktywna
-	592: 
-		StatusWord := enSL; // Stan po udanym resecie błędu komunikacji komedną eResetInv = 128
-	561: 
-		StatusWord := eRdy; // Stan po ustawieniu gotowości Inverta komendą eReady = 14
-	567:
-		StatusWord := eZeroSpeed; // Stan po ustawieniu komendy eFwd = 15 lub eRev = 2063 gdy jest zerowa prędkośc zadana speed = 0 
-	1591:
-		StatusWord := eFwdOper; // Stan gdy napęd pracuje w kierunku przodu po komendzie eFwd = 15 i osiągnał zadaną prędkość
-	34359:
-		StatusWord := eRevOper; // Stan gdy napęd pracuje w kierunku odwrotnym po komendzie eRev = 2063 i osiągnał zadaną prędkość 
+	16#0028:
+		StatusWord := eFaultDrive; // błąd komunikacja Modbus przerwana i nieaktywna
+	16#0040: 
+		StatusWord := eSwitchOnDisabled; // Stan po udanym resecie błędu komunikacji komedną eResetInv = 128
+	16#0021: 
+		StatusWord := eReadyToSwitchON; // Stan po ustawieniu gotowości Inverta komendą eReady = 14
+	16#0023:
+		StatusWord := eSwitchedOn; // Stan po ustawieniu komendy eFwd = 15 lub eRev = 2063 gdy jest zerowa prędkośc zadana speed = 0 
+	16#0027:
+		StatusWord := eOperationEnabled; // Stan gdy napęd pracuje w kierunku przodu po komendzie eFwd = 15 i osiągnał zadaną prędkość
+	
 		
 END_CASE
 
