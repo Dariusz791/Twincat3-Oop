@@ -5,6 +5,7 @@
 {attribute 'strict'}
 TYPE E_InverterStatusWord : // State WORD of ATV Inverter ETA Masked By 0x006f H
 (
+	eFaultAfterOperation   := 16#0008,	// wykryto błąd po stanie operacyjnym (falownik pracował i nastąpił błąd pracy) po operacji Quick Stop Active przejscie do stanu - 6 falownika
 	eFaultDrive            := 16#0028,	// błąd komunikacja Modbus przerwana i nieaktywna SLF1
 	eSwitchOnDisabled	   := 16#0040,	// Stan po udanym resecie błędu komunikacji LCD - nSE
 	eReadyToSwitchOn       := 16#0021,	// Stan po ustawieniu gotowości Inverta komendą eReady = 14
@@ -17,6 +18,11 @@ END_TYPE]]></Declaration>
       <Data>
         <o xml:space="preserve" t="TextListEnumerationTextListObject">
           <l n="TextList" t="ArrayList" cet="TextListRow">
+            <o>
+              <v n="TextID">"eFaultAfterOperation"</v>
+              <v n="TextDefault">"16#0008"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
             <o>
               <v n="TextID">"eFaultDrive"</v>
               <v n="TextDefault">"16#0028"</v>

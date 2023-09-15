@@ -4,11 +4,11 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
 
-//	bTermFuse  : BOOL;
-//	bContactor : BOOL;
-//	bState	   : BOOL;
-//	sWorkTime   : T_MaxString := '100:45:34';
-//	sStatus		: T_MaxString := 'RUNNING';
+	bTermFuse  : BOOL;
+	bContactor : BOOL;
+	bState	   : BOOL;
+	sWorkTime   : T_MaxString := '100:45:34';
+	sStatus		: T_MaxString := 'RUNNING';
 			
 
 END_VAR]]></Declaration>

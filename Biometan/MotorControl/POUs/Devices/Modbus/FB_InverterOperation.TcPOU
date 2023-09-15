@@ -16,34 +16,29 @@ VAR
 	_iItfCount			: INT :=1;
 	
 
+
 	
 	
 	
-	
+	ELSE_IF: INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[
-
-
-CASE _step OF
+      <ST><![CDATA[CASE _step OF
 0:	(*Initialize*)
 		MB.ReadRegs(Execute:= FALSE); (* initialize *)
 		
 		//set index of inverter FB  
 		_iItfCount := 1;		
 		_step:= 10;
-		
-		
 
-	
 10:	(*Read status of Inverter*) (*Sprawdzić status po wystąpieniu bledu przerwania komuikacji*)
 
 		// Read the device settings
 		_stInverter := Itf.aItfDriveInverter[_iItfCount].DeviceData;
 		
 		MB.ReadRegs(
-			UnitID:=1,//_stInverter.bDeviceId,
+			UnitID:=_stInverter.bDeviceId,
 			Quantity:= 1,
 			MBAddr:=3201,
 			cbLength:= 2,
@@ -53,44 +48,29 @@ CASE _step OF
 			Busy => _busy	);
 
 
-		IF NOT _busy THEN		// Boot procedure
-
+		IF NOT _busy THEN	
 			MB.ReadRegs(Execute:=FALSE);
 			_stInverter.errorMdb := MB.ErrorId;		
 		
 			IF NOT MB.Error THEN
 				_stInverter.wStatus := StatusWord(_MBdata);
-			END_IF
-			
-			IF _stInverter.wStatus = eFaultDrive THEN
-				_MBdata[0]:=0;
 				_step :=20;
-				_stInverter.eControl := eFaultReset;
-			ELSIF _stInverter.wStatus = eSwitchOnDisabled THEN
-				_MBdata[0]:=0;
-				_step :=20;	
-				_stInverter.eControl := eShutDown;
-			ELSIF _stInverter.wStatus = eReadyToSwitchOn THEN
-				_MBdata[0]:=0;
-				_step :=20;	
-				_stInverter.eControl := eSwitchOn;	
-			ELSE
-				_MBdata[0]:=0;
-				_step :=20;
-			END_IF
+			END_IF		
 			
 		END_IF
+
+
 		
 
 	
 		
 20: 	(*Write Control Register*)
 
-				
-
 			CASE _stInverter.eControl OF
 				eShutDown:
-					_MBdata[0] := eShutDown;
+					_MBdata[0] := eShutDown;			
+				eSwitchOn:
+					_MBdata[0] := eSwitchOn;
 				eEnableOperation:
 				   _MBdata[0] := eEnableOperation;
 				eReverseOperation:
@@ -99,13 +79,13 @@ CASE _step OF
 					_MBdata[0] := eFaultReset;
 							 
 			ELSE
-				_MBdata[0] := eSwitchOn;
+				_MBdata[0] := 0;
 			
 			END_CASE	
-			
+	
 			
 		MB.WriteSingleRegister(
-			UnitID:=1,//_stInverter.bDeviceId,
+			UnitID:=_stInverter.bDeviceId,
 			Quantity:=1,
 			MBAddr:=8501,
 			cbLength:= 2,
@@ -124,7 +104,7 @@ CASE _step OF
 		_MBdata[0] := _stInverter.rSpeed;
 	
 		MB.WriteSingleRegister(
-					UnitID:=1,//_stInverter.bDeviceId,
+					UnitID:=_stInverter.bDeviceId,
 					Quantity:=1,
 					MBAddr:=8502,
 					cbLength:= 2,
@@ -142,7 +122,7 @@ CASE _step OF
 40:	(*Read actual error of Inverter*)
 	
 		MB.ReadRegs(
-			UnitID:=1,//_stInverter.bDeviceId,
+			UnitID:=_stInverter.bDeviceId,
 			Quantity:= 1,
 			MBAddr:=7200,
 			cbLength:= 2,
@@ -166,7 +146,7 @@ CASE _step OF
 		
 50: (* Go to the next device*)
 	
-	IF _iItfCount < 1 THEN
+	IF _iItfCount < Itf.aItfDriveInverter[_iItfCount].InstanceCounter THEN
 		_iItfCount := _iItfCount +1;
 		_step := 10;
 	ELSE
