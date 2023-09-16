@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <EnumerationTextList Name="E_InverterError" Id="{2e727e13-9486-477d-a6d8-30c64fff4769}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE E_InverterError :
+(
+	nOF := 0,
+	InF := 1,
+	CFF := 3,
+	CFI := 4,
+	SLF1:= 5, 
+	EPF1:= 8,
+	OCF := 9,
+	CrF1:= 10,
+	OHF := 16,
+	OLF := 17,
+	ObF := 18,
+	OSF := 19,
+	OPF1:= 20,
+	PHF := 21,
+	USF := 22,
+	SCF1:= 23,
+	SOF := 24,
+	tnF := 25,
+	InF1:= 26,
+	InF2:= 27,
+	InF3:= 28,
+	InF4:= 29,
+	SCF3:= 32,
+	OPF2:= 33,
+	SLF2:= 42,
+	SLF3:= 45,
+	InF9:= 51,
+	InFb:= 53,
+	tJF := 54,
+	SCF4:= 55,
+	SCF5:= 56,
+	InFE:= 69, 
+	CFI2:= 77,
+	ULF := 100,
+	OLC := 101,
+	SPIF:= 102,
+	LFF1:= 106
+	
+)WORD;
+END_TYPE
+]]></Declaration>
+    <XmlArchive>
+      <Data>
+        <o xml:space="preserve" t="TextListEnumerationTextListObject">
+          <l n="TextList" t="ArrayList" cet="TextListRow">
+            <o>
+              <v n="TextID">"nOF"</v>
+              <v n="TextDefault">"0"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"InF"</v>
+              <v n="TextDefault">"1"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"CFF"</v>
+              <v n="TextDefault">"3"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"CFI"</v>
+              <v n="TextDefault">"4"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"SLF1"</v>
+              <v n="TextDefault">"5"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"EPF1"</v>
+              <v n="TextDefault">"8"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"OCF"</v>
+              <v n="TextDefault">"9"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"CrF1"</v>
+              <v n="TextDefault">"10"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"OHF"</v>
+              <v n="TextDefault">"16"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"OLF"</v>
+              <v n="TextDefault">"17"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ObF"</v>
+              <v n="TextDefault">"18"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"OSF"</v>
+              <v n="TextDefault">"19"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"OPF1"</v>
+              <v n="TextDefault">"20"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"PHF"</v>
+              <v n="TextDefault">"21"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"USF"</v>
+              <v n="TextDefault">"22"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"SCF1"</v>
+              <v n="TextDefault">"23"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"SOF"</v>
+              <v n="TextDefault">"24"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"tnF"</v>
+              <v n="TextDefault">"25"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"InF1"</v>
+              <v n="TextDefault">"26"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"InF2"</v>
+              <v n="TextDefault">"27"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"InF3"</v>
+              <v n="TextDefault">"28"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"InF4"</v>
+              <v n="TextDefault">"29"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"SCF3"</v>
+              <v n="TextDefault">"32"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"OPF2"</v>
+              <v n="TextDefault">"33"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"SLF2"</v>
+              <v n="TextDefault">"42"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"SLF3"</v>
+              <v n="TextDefault">"45"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"InF9"</v>
+              <v n="TextDefault">"51"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"InFb"</v>
+              <v n="TextDefault">"53"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"tJF"</v>
+              <v n="TextDefault">"54"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"SCF4"</v>
+              <v n="TextDefault">"55"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"SCF5"</v>
+              <v n="TextDefault">"56"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"InFE"</v>
+              <v n="TextDefault">"69"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"CFI2"</v>
+              <v n="TextDefault">"77"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ULF"</v>
+              <v n="TextDefault">"100"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"OLC"</v>
+              <v n="TextDefault">"101"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"SPIF"</v>
+              <v n="TextDefault">"102"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"LFF1"</v>
+              <v n="TextDefault">"106"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">""</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+          </l>
+          <l n="Languages" t="ArrayList" />
+          <v n="GuidInit">{c223fb0d-b02d-4ae7-bfe6-5e526dddfd57}</v>
+          <v n="GuidReInit">{eb2eaba9-6ecd-473d-ac4a-4b0ec459cb10}</v>
+          <v n="GuidExitX">{3b1502e6-ee8c-4e75-a2fc-d47b5fc30e48}</v>
+        </o>
+      </Data>
+      <TypeList>
+        <Type n="ArrayList">System.Collections.ArrayList</Type>
+        <Type n="Guid">System.Guid</Type>
+        <Type n="String">System.String</Type>
+        <Type n="TextListEnumerationTextListObject">{4b60233c-f940-4beb-b331-82133b520151}</Type>
+        <Type n="TextListRow">{53da1be7-ad25-47c3-b0e8-e26286dad2e0}</Type>
+      </TypeList>
+    </XmlArchive>
+  </EnumerationTextList>
+</TcPlcObject>

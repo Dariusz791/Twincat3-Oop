@@ -3,12 +3,13 @@
   <DUT Name="ST_Inverter" Id="{1bc7dfbe-c465-43ab-9d3e-fb9ebb68c136}">
     <Declaration><![CDATA[TYPE ST_Inverter :
 STRUCT
-	bDeviceId : BYTE;
-	wStatus	  : E_InverterStatusWord;
-	eControl  : E_InverterControlWord;
-	rSpeed	  : WORD;
-	errorInv  : WORD;           // AVT inverter Error
-	errorMdb  : MODBUS_ERRORS;  // Modbus Communications error		
+	bDeviceId         : BYTE;
+	wStatus	          : E_InverterStatusWord;
+	eControl          : E_InverterControlWord;
+	errorInv  		  : E_InverterError;           // AVT inverter Error
+	sErrorDescription : T_MaxString;
+	rSpeed	          : WORD;	
+	errorMdb          : MODBUS_ERRORS;  // Modbus Communications error		
 END_STRUCT
 END_TYPE
 ]]></Declaration>

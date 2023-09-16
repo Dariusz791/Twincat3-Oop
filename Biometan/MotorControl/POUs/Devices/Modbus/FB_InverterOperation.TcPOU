@@ -6,21 +6,19 @@
 VAR
 	
 	MB           		: ModbusRtuMaster_KL6x22B;
-	
-	_stInverter			: ST_Inverter;
 	_MBdata      		: ARRAY[0..40] OF WORD;	(* The size of this array can be adapted to the modbus slaves register area *)
  	_busy		 		: BOOL;	
 	_timeoutvalue		: TIME:=T#300MS;		            (* Timeout while waiting for an answer of the modbus slave *)
 	
 	_step		 		: INT;						(* Step of the control inverter program*)
 	_iItfCount			: INT :=1;
+	_stInverter			: ST_Inverter;
 	
 
 
 	
 	
-	
-	ELSE_IF: INT;
+
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -135,7 +133,7 @@ END_VAR
 			MB.ReadRegs(Execute:=FALSE);
 			_stInverter.errorMdb := MB.ErrorId;			
 			IF NOT MB.Error THEN
-				_stInverter.errorInv := _MBdata[0];
+				_stInverter.errorInv := ErrorWord(_MBdata, sErrorDescription => _stInverter.sErrorDescription);
 			END_IF
 	
 			_MBdata[0]:=0;
@@ -159,6 +157,139 @@ END_VAR
 END_CASE	
 ]]></ST>
     </Implementation>
+    <Method Name="ErrorWord" Id="{1c38af7d-ba2a-450a-9065-98091672d410}">
+      <Declaration><![CDATA[METHOD ErrorWord : E_InverterError
+VAR_INPUT
+	refMBdata : REFERENCE TO ARRAY[0..40] OF WORD;  //wskaźnik do tablicy ze słowem błędu Error Inverter
+END_VAR
+
+
+VAR_OUTPUT
+	
+	sErrorDescription : T_MaxString;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+
+CASE refMBdata[0] OF
+	
+	0:
+		ErrorWord := 0;
+		sErrorDescription := 'Brak Błędu';
+	1: 
+		ErrorWord := 1;
+		sErrorDescription := 'Błąd InF';
+	3: 
+		ErrorWord := 3;
+		sErrorDescription := 'Incorrect Configuration';
+	4:
+		ErrorWord := 4;
+		sErrorDescription := 'Incvalid Configuration'; 
+	5:
+		ErrorWord := 5;
+		sErrorDescription := 'Modbus communications - interruption in communication on the Modbus network' ;
+	8:
+		ErrorWord := 8;
+		sErrorDescription := 'External detected fault by logic input'; 
+	9: 
+		ErrorWord := 9;
+		sErrorDescription := 'Overcurrent';
+	10: 
+		ErrorWord := 10;
+		sErrorDescription := 'Precharge - Charging relay control fault or charging resistor damaged';
+	16:
+		ErrorWord := 16;
+		sErrorDescription := 'Overheat - Drive temperature to high'; 
+	17:
+		ErrorWord := 17;
+		sErrorDescription := 'Motor overload - triggered by excessive motor current'; 
+	18:
+		ErrorWord := 18;
+		sErrorDescription :=  'Overbraking - Braking too sudden or driving load too high';
+	19: 
+		ErrorWord := 19;
+		sErrorDescription := 'Main Overvoltage - line voltage to high';
+	20: 
+		ErrorWord := 20;
+		sErrorDescription := '1 output phases loss';
+	21:
+		ErrorWord := 21;
+		sErrorDescription := 'Input phase loss';
+	22:
+		ErrorWord := 22;
+		sErrorDescription := 'Undervoltage';
+	23:
+		ErrorWord := 23;
+		sErrorDescription := 'Motor or Ground short circuit';
+	24: 
+		ErrorWord := 24;
+		sErrorDescription := 'Overspeed';
+	25: 
+		ErrorWord := 25;
+		sErrorDescription := 'Auto-tunning';
+	26:
+		ErrorWord := 26;
+		sErrorDescription := 'Unknown drive rating';
+	27:
+		ErrorWord := 27;
+		sErrorDescription := 'Unknown or incompatible power board';
+	28:
+		ErrorWord := 28;
+		sErrorDescription := 'Internal serial link'; 
+	29:
+		ErrorWord := 29;
+		sErrorDescription := 'Invalid industrialization zone'; 
+	32: 
+		ErrorWord := 32;
+		sErrorDescription :='Ground short circuit'; 
+	33: 
+		ErrorWord := 33;
+		sErrorDescription := '3 output phase loss';
+	42:
+		ErrorWord := 42;
+		sErrorDescription := 'SoMove communication - interruption';
+	45:
+		ErrorWord := 45;
+		sErrorDescription := 'HMI communication - interruption';
+	51:
+		ErrorWord := 51;
+		sErrorDescription := 'Current measurement circuit';
+	53: 
+		ErrorWord := 53;
+		sErrorDescription := 'Internal thermal sensor detected fault'; 
+	54: 
+		ErrorWord := 54;
+		sErrorDescription := 'IGBT overheat '; 
+	55:
+		ErrorWord := 55;
+		sErrorDescription := 'IGBT short circuit'; 
+	56:
+		ErrorWord := 56;
+		sErrorDescription := 'Load short circuit';
+	69:
+		ErrorWord := 69;
+		sErrorDescription := 'Internal CPU'; 
+	77: 
+		ErrorWord := 77;
+		sErrorDescription := 'Download invalid configuration'; 
+	100: 
+		ErrorWord := 100;
+		sErrorDescription := 'Process underload fault';
+	101:
+		ErrorWord := 101;
+		sErrorDescription := 'Process overload ';
+	102:
+		ErrorWord := 102;
+		sErrorDescription := 'PI Feedback detectedfault'; 
+	106:
+		ErrorWord := 106;
+		sErrorDescription := ' AI current lost fault ';
+	
+		
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="StatusWord" Id="{e6933e2b-4142-422c-ba7d-516e32170dda}">
       <Declaration><![CDATA[METHOD StatusWord : E_InverterStatusWord
 VAR_INPUT

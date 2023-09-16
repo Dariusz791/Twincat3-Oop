@@ -111,6 +111,7 @@ CASE _eStateMachine OF
 		_stateLabel.Text := 'OFF';
 		_statusLabel.Text := 'Napęd jest wyłączony';
 		
+		// Jesli falownik jest zasilony przejdz do stanu napęd w gotowości eOn
 		IF _eCommand = eReady AND _termFuse.IsActive THEN
 			_stInverter.eControl := eFaultReset;
 			
@@ -137,12 +138,13 @@ CASE _eStateMachine OF
 		_stateLabel.Text := 'ON';
 		_statusLabel.Text := 'Napęd jest w gotowości';
 
-		
+		// Uruchomienie napędu i przejscie do stanu eForward po potwierdzeniu slowa statusu eOperationEnabled
 		IF _eCommand = eFwd THEN
 			_stInverter.eControl := eEnableOperation;
 			IF  _stInverter.wStatus = eOperationEnabled THEN
 				_eStateMachine := eForward;
 			END_IF
+		// Uruchomienie napędu i przejscie do stanu eForward po potwierdzeniu slowa statusu eOperationEnabled
 		ELSIF _eCommand = eRev THEN
 			_stInverter.eControl := eReverseOperation;
 			IF _stInverter.wStatus = eOperationEnabled THEN
@@ -202,17 +204,21 @@ CASE _eStateMachine OF
 		//_stInverter.eControl := eSwitchOn;
 		WorkCounterOff();
 		_stateLabel.Text := 'FAULT';
-		IF _termFuse.IsActive AND _stInverter.errorInv <> 0 THEN
-			_statusLabel.Text :=  CONCAT('Błąd Falownika nr:', WORD_TO_STRING(_stInverter.errorInv));
-		ELSIF NOT _termFuse.IsActive THEN
 		
- 			_statusLabel.Text := 'Zadziałał wyłacznik silnikowy';
+		//wystąpił błąd falownika lub zadziałał wyłacznik silnikowy
+		IF _termFuse.IsActive AND _stInverter.errorInv <> 0 THEN
+			_statusLabel.Text := CONCAT('Błąd falownika nr:', WORD_TO_STRING(_stInverter.errorInv));
+			_statusLabel.Text := CONCAT(_statuslabel.Text, _stInverter.sErrorDescription);
+		ELSIF NOT _termFuse.IsActive THEN
+			_statusLabel.Text := 'Zadziałał wyłacznik silnikowy';
 		END_IF
 		
+		//wyłaczone zasilanie falownika przejdz do stanu eOff napęd wyłaczony
 		IF _eCommand = eReady AND NOT _termFuse.IsActive THEN
 			_eStateMachine := eOff;
 		END_IF
 			
+		//wciśniety przycisk reset skasuj błąd falownika jesli się powiedzie przejdz do stanu eOff napęd wyłączony
 		IF _eCommand = eResetInv THEN
 			_stInverter.eControl := eFaultReset;
 			IF  _stInverter.wStatus = eSwitchOnDisabled THEN 
