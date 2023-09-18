@@ -58,29 +58,27 @@ END_VAR
 		END_IF
 
 
-		
-
 	
 		
 20: 	(*Write Control Register*)
 
-			CASE _stInverter.eControl OF
-				eShutDown:
-					_MBdata[0] := eShutDown;			
-				eSwitchOn:
-					_MBdata[0] := eSwitchOn;
-				eEnableOperation:
-				   _MBdata[0] := eEnableOperation;
-				eReverseOperation:
-					_MBdata[0] := eReverseOperation;
-				eFaultReset:
-					_MBdata[0] := eFaultReset;
-							 
-			ELSE
-				_MBdata[0] := 0;
-			
-			END_CASE	
-	
+		CASE _stInverter.eControl OF
+			eShutDown:
+				_MBdata[0] := eShutDown;			
+			eSwitchOn:
+				_MBdata[0] := eSwitchOn;
+			eEnableOperation:
+			   _MBdata[0] := eEnableOperation;
+			eReverseOperation:
+				_MBdata[0] := eReverseOperation;
+			eFaultReset:
+				_MBdata[0] := eFaultReset;
+						 
+		ELSE
+			_MBdata[0] := 0;
+		
+		END_CASE	
+
 			
 		MB.WriteSingleRegister(
 			UnitID:=_stInverter.bDeviceId,

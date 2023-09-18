@@ -155,6 +155,11 @@ CASE _eStateMachine OF
         IF NOT _termFuse.IsActive THEN
 			_eStateMachine := eOff;
 		END_IF
+		
+		//Obsługa sytuacji blędu Modbusa przejdz do stanu eFault		
+		IF _stInverter.errorMdb <> 0 THEN
+ 			_eStateMachine := eFault;
+		END_IF
  
 	
 	eForward:
@@ -163,6 +168,8 @@ CASE _eStateMachine OF
 		WorkCounterOn();
 		WorkCount();
 		WorkTimelabel();	
+		
+		//Zatrzymaj napęd i przejdź do stanu gotowości eOn 
 		IF _eCommand = eReady THEN 
 			_stInverter.eControl := eSwitchOn;
 			IF _stInverter.wStatus = eSwitchedOn THEN
@@ -170,12 +177,27 @@ CASE _eStateMachine OF
 			END_IF
 		END_IF
 		
+		//Obsługa sytuacji zadziałania wyłacznika silnikowego przejdz do stanu eFault
         IF _eCommand = eFwd AND NOT _termFuse.IsActive THEN
 			_eStateMachine := eFault;
 		END_IF
+		
+		//Informacja o blędzie falownika 
 		IF _stInverter.errorInv <> 0 THEN
+			_statusLabel.Text := CONCAT('Błąd falownika nr:', WORD_TO_STRING(_stInverter.errorInv));
+			_statusLabel.Text := CONCAT(_statuslabel.Text, _stInverter.sErrorDescription);
+		END_IF
+		
+		//Obsługa sytuacji blędu Modbusa przejdz do stanu eFault
+		IF _stInverter.errorMdb <> 0 THEN
  			_eStateMachine := eFault;
 		END_IF
+		
+		//Jesli w Word Status Invertera jest status fault przejdz do stanu fault i zatrzymaj napęd
+		IF _stInverter.wStatus = eFaultDrive OR _stInverter.wStatus =eFaultAfterOperation THEN
+			_eStateMachine := eFault;
+		END_IF
+		
 		
 		
 	eReverse:
@@ -194,11 +216,21 @@ CASE _eStateMachine OF
         IF _eCommand = eRev AND NOT _termFuse.IsActive THEN
 			_eStateMachine := eFault;
 		END_IF	
-
+	 
 		IF _stInverter.errorInv <> 0 THEN
+			_statusLabel.Text := CONCAT('Błąd falownika nr:', WORD_TO_STRING(_stInverter.errorInv));
+			_statusLabel.Text := CONCAT(_statuslabel.Text, _stInverter.sErrorDescription);
+		END_IF
+		
+		IF _stInverter.errorMdb <> 0 THEN
  			_eStateMachine := eFault;
-		END_IF	
+		END_IF
 	
+
+		IF _stInverter.wStatus = eFaultDrive OR _stInverter.wStatus =eFaultAfterOperation THEN
+			_eStateMachine := eFault;
+		END_IF
+		
 		
 	eFault:
 		//_stInverter.eControl := eSwitchOn;
@@ -212,6 +244,11 @@ CASE _eStateMachine OF
 		ELSIF NOT _termFuse.IsActive THEN
 			_statusLabel.Text := 'Zadziałał wyłacznik silnikowy';
 		END_IF
+		
+		//wystąpił błąd Modbusa
+		IF _stInverter.errorMdb <> 0 THEN
+			_statusLabel.Text := CONCAT('Błąd sieci Modbus ', WORD_TO_STRING(_stInverter.errorMdb));
+		END_IF		
 		
 		//wyłaczone zasilanie falownika przejdz do stanu eOff napęd wyłaczony
 		IF _eCommand = eReady AND NOT _termFuse.IsActive THEN
