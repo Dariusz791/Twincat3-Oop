@@ -24,6 +24,26 @@ END_VAR
       <ST><![CDATA[
 ]]></ST>
     </Implementation>
+    <Folder Name="Property" Id="{c7b71121-1c3a-4233-8eae-34af406c9779}" />
+    <Property Name="Auto" Id="{216d8a9c-1493-4338-9c24-1d475d17adbf}" FolderPath="Property\">
+      <Declaration><![CDATA[PROPERTY Auto : BOOL]]></Declaration>
+      <Get Name="Get" Id="{26cff0e9-30d4-430d-ba36-40b646b260a2}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Auto := _autoLed;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{b2bb48fa-6fac-4a91-afeb-f69383ab9f17}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_autoLed := Auto;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Method Name="AutoLedOff" Id="{e07e0a99-b516-4100-ba57-7091f166c26d}">
       <Declaration><![CDATA[METHOD AutoLedOff : BOOL
 VAR_INPUT
@@ -45,6 +65,25 @@ END_VAR
 ]]></ST>
       </Implementation>
     </Method>
+    <Property Name="Contactor" Id="{c4450694-6377-44b1-9b63-deebdda0956c}" FolderPath="Property\">
+      <Declaration><![CDATA[PROPERTY Contactor : BOOL]]></Declaration>
+      <Get Name="Get" Id="{50892fe0-ade1-404a-ab21-03d926735e20}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{4c8b7b13-2fd1-4940-9e34-f3610670644e}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Method Name="StatusState" Id="{cd1cb900-b022-4cc7-bc91-7a31f5c8791b}">
       <Declaration><![CDATA[METHOD StatusState : E_StateDevice
 VAR_INPUT
@@ -150,6 +189,18 @@ END_CASE
 ]]></ST>
       </Implementation>
     </Method>
+    <Property Name="Supply" Id="{f667981d-706f-4708-99c7-9dc298d3783a}" FolderPath="Property\">
+      <Declaration><![CDATA[PROPERTY Supply : BOOL]]></Declaration>
+      <Get Name="Get" Id="{a650e293-77db-4e65-b9e5-e7ef0bbbec2b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Supply := _supplyLed;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="SwitchOff" Id="{b726e6e2-693a-4b15-abd3-37eeaf4d83de}">
       <Declaration><![CDATA[METHOD SwitchOff : BOOL
 VAR_INPUT
@@ -185,6 +236,17 @@ END_VAR
 ]]></ST>
       </Implementation>
     </Method>
+    <Property Name="TermFuse" Id="{5f769aa7-9a8f-4b7d-94a2-8efc080d6f75}" FolderPath="Property\">
+      <Declaration><![CDATA[PROPERTY TermFuse : BOOL]]></Declaration>
+      <Get Name="Get" Id="{a0af65ea-6e3e-4dad-a86e-8bf01cc75136}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[TermFuse := _termFuse;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="WorkCount" Id="{72be380d-7f66-4d86-a0eb-efd62cefdaad}">
       <Declaration><![CDATA[METHOD PUBLIC WorkCount : STRING
 VAR_INPUT
