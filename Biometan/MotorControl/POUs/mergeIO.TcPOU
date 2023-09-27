@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="mergeIO" Id="{24c17ea6-2604-43c2-bdfc-ac3ca7d44854}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM mergeIO
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+//Sygnały obiektu fbDrive MCC_01
+GVL.bForwardButton_M01 := MAIN.fbMotorControl.ScadaForwardButton; // SCADA button Forward Command
+GVL.bAutoButton_M01 := MAIN.fbMotorControl.ScadaAutoButton;       // SCADA button Auto/manual Command
+GVL.bAuto_M01 := MAIN.fbDrive.MotorAuto;
+GVL.bContactor_M01 := Main.fbDrive.MotorContactor;
+GVL.bTermFuse_M01 := Main.fbDrive.MotorProtection;
+GVL.udHours_M01 := MAIN.fbDrive.Hours;
+GVL.uMinuts_M01 := MAIN.fbDrive.Minuts;
+GVL.uSeconds_M01 := MAIN.fbDrive.Seconds;
+GVL.sStatus_M01 := main.fbDrive.MotorStatus;
+GVL.sState_M01 := Main.fbDrive.MotorState;
+
+
+
+
+//Sygnały obiektu fbDrive Inverter MCC_02
+GVL.bForwardButton_M02 := MAIN.fbMotorControlInverter.ScadaForwardButton;  // SCADA button Forward Command
+GVL.bReverseButton_M02  := MAIN.fbMotorControlInverter.ScadaReverseButton; // SCADA button Reverse drive Command
+GVL.bAutoButton_M02 := MAIN.fbMotorControlInverter.ScadaAutoButton;        // SCADA button Auto/manual Command
+GVL.bResetButton_M02 := MAIN.fbMotorControlInverter.ScadaResetButton;	   // SCADA button Reset drive Command 
+GVL.rSpeedEdit_M02 := MAIN.fbMotorControlInverter.ScadaSpeedEdit;		   // SCADA textEdit speed edit box
+GVL.bAuto_M02 := MAIN.fbDriveInverter1.MotorAuto;						   // PLC program execution control	
+GVL.bTermFuse_M02 := Main.fbDriveInverter1.MotorProtection;				   // PLC program execution control
+GVL.udHours_M02 := MAIN.fbDriveInverter1.Hours;							   // PLC Work Time Hours		
+GVL.uMinuts_M02 := MAIN.fbDriveInverter1.Minuts;						   // PLC Work Time Minuts
+GVL.uSeconds_M02 := MAIN.fbDriveInverter1.Seconds;						   // PLC Work Time Seconds	
+GVL.sStatus_M02 := main.fbDriveInverter1.MotorStatus;					   // PLC Motor Drive status	
+GVL.sState_M02 := Main.fbDriveInverter1.MotorState;						   // PLC Motor Drive state	
+
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

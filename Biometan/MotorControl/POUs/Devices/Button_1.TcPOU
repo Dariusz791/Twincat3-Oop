@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Button_1" Id="{d0ad95e5-f537-4427-b9e4-8f0a814bc27e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Button_1
+VAR
+	_input	: REFERENCE TO BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{4fe7a8bb-9f30-445e-829b-c98d19f67371}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	_input : REFERENCE TO BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^._input REF= _input;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="IsPressed" Id="{da884b95-2669-42d9-b315-93e85345d7d5}">
+      <Declaration><![CDATA[PROPERTY IsPressed : BOOL]]></Declaration>
+      <Get Name="Get" Id="{75a828c2-7728-4a8d-96ca-6299a71d8b68}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IsPressed:= _input;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

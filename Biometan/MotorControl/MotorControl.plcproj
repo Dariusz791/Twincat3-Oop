@@ -66,6 +66,9 @@
     <Compile Include="POUs\Devices\Button.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\Devices\Button_1.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Devices\Contactor.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -109,6 +112,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\mergeIO.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

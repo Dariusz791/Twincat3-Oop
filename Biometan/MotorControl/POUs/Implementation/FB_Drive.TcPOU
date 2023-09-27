@@ -3,6 +3,7 @@
   <POU Name="FB_Drive" Id="{112ce01f-73d6-45c3-b7fa-a81578b83871}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Drive IMPLEMENTS I_Drive
 VAR
+	//_test			: -(GVL.bAuto);
 	_contactor		: Contactor;	// załącz/wyłącz stycznik silnika
 	_autoLed 		: Led;	// zaświeć/zgaś Led auto w stacyjce napędu SCADA
 	_supplyLed		: Led;	// zaświeć/zgaś Led supply w stacyjce napędu SCADA
@@ -24,33 +25,16 @@ END_VAR
       <ST><![CDATA[
 ]]></ST>
     </Implementation>
-    <Folder Name="Property" Id="{c7b71121-1c3a-4233-8eae-34af406c9779}" />
-    <Property Name="Auto" Id="{216d8a9c-1493-4338-9c24-1d475d17adbf}" FolderPath="Property\">
-      <Declaration><![CDATA[PROPERTY Auto : BOOL]]></Declaration>
-      <Get Name="Get" Id="{26cff0e9-30d4-430d-ba36-40b646b260a2}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[Auto := _autoLed;]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{b2bb48fa-6fac-4a91-afeb-f69383ab9f17}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[_autoLed := Auto;]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
+    <Folder Name="Property" Id="{c7b71121-1c3a-4233-8eae-34af406c9779}">
+      <Folder Name="MotorWorkTime" Id="{10e107bf-c4be-4780-86a7-d7576a373d9f}" />
+    </Folder>
     <Method Name="AutoLedOff" Id="{e07e0a99-b516-4100-ba57-7091f166c26d}">
       <Declaration><![CDATA[METHOD AutoLedOff : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[THIS^._autoLed.State := FALSE;
+        <ST><![CDATA[_autoLed.State := FALSE;
 ]]></ST>
       </Implementation>
     </Method>
@@ -60,27 +44,166 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[THIS^._autoLed.State := TRUE;
+        <ST><![CDATA[_autoLed.State := TRUE;
 
 ]]></ST>
       </Implementation>
     </Method>
-    <Property Name="Contactor" Id="{c4450694-6377-44b1-9b63-deebdda0956c}" FolderPath="Property\">
-      <Declaration><![CDATA[PROPERTY Contactor : BOOL]]></Declaration>
-      <Get Name="Get" Id="{50892fe0-ade1-404a-ab21-03d926735e20}">
+    <Property Name="Hours" Id="{83ff7b23-d542-44a0-a51e-87fce6354f51}" FolderPath="Property\MotorWorkTime\">
+      <Declaration><![CDATA[PROPERTY Hours : UDINT]]></Declaration>
+      <Get Name="Get" Id="{110232a8-4189-4bfd-b800-2f34beba4317}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[]]></ST>
+          <ST><![CDATA[Hours := _stWorkTime.hours;]]></ST>
         </Implementation>
       </Get>
-      <Set Name="Set" Id="{4c8b7b13-2fd1-4940-9e34-f3610670644e}">
+      <Set Name="Set" Id="{c6759b61-b3b7-4f84-b15c-ad7510a60763}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[]]></ST>
+          <ST><![CDATA[_stWorkTime.hours := Hours;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="Minuts" Id="{2c928558-1a13-41ab-9dca-ccbd2943a6bc}" FolderPath="Property\MotorWorkTime\">
+      <Declaration><![CDATA[PROPERTY Minuts : UINT]]></Declaration>
+      <Get Name="Get" Id="{b7ec9b9d-9114-4372-b9f2-8b8fe130cca8}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Minuts := _stWorkTime.minuts;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{76cb540b-6d75-4ff4-a1b6-fe11f9bc1fc0}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_stWorkTime.minuts := Minuts;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="MotorAuto" Id="{216d8a9c-1493-4338-9c24-1d475d17adbf}" FolderPath="Property\">
+      <Declaration><![CDATA[PROPERTY MotorAuto : BOOL]]></Declaration>
+      <Get Name="Get" Id="{26cff0e9-30d4-430d-ba36-40b646b260a2}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MotorAuto := _autoLed.State;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{b2bb48fa-6fac-4a91-afeb-f69383ab9f17}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_autoLed.State := MotorAuto;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="MotorContactor" Id="{a180266d-0a03-443e-a88a-2ae80833ed22}" FolderPath="Property\">
+      <Declaration><![CDATA[PROPERTY MotorContactor : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{42fa6f41-95be-4640-bb36-c5b488692b0c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MotorContactor := _contactor.State;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{bc61eb22-93c1-4a6f-99ac-81a381665e72}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_contactor.State := MotorContactor;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="MotorProtection" Id="{d2fd7222-1b8d-40fb-b39a-407d67f1b779}" FolderPath="Property\">
+      <Declaration><![CDATA[PROPERTY MotorProtection : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{5708bec6-cc9f-4ed5-9651-2e5d3e9f245d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MotorProtection := _termFuse.IsActive;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="MotorState" Id="{bcbd0b90-616d-4f0c-900d-52faaafb4145}" FolderPath="Property\">
+      <Declaration><![CDATA[PROPERTY MotorState : T_MaxString]]></Declaration>
+      <Get Name="Get" Id="{022da717-0ca5-47af-a10d-e499e705df39}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MotorState := _stateLabel.Text;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{bbe7486b-66d3-454d-a7f9-5faef133cbbe}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_stateLabel.Text := MotorState;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="MotorStatus" Id="{65a94747-28a9-44d4-b4a5-3882308337fb}" FolderPath="Property\">
+      <Declaration><![CDATA[PROPERTY MotorStatus : T_MaxString]]></Declaration>
+      <Get Name="Get" Id="{e794ce05-1294-4c52-9cac-88c0a3ea4979}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MotorStatus := _statusLabel.Text;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{40c05f27-ff6b-46dc-b6a6-ab20ff4c923a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_statusLabel.Text := MotorStatus;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="MotorSupply" Id="{f667981d-706f-4708-99c7-9dc298d3783a}" FolderPath="Property\">
+      <Declaration><![CDATA[PROPERTY MotorSupply : BOOL]]></Declaration>
+      <Get Name="Get" Id="{a650e293-77db-4e65-b9e5-e7ef0bbbec2b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MotorSupply := _supplyLed.State;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Seconds" Id="{fd563d37-0094-4c84-b9f7-5d376d195340}" FolderPath="Property\MotorWorkTime\">
+      <Declaration><![CDATA[PROPERTY Seconds : UINT]]></Declaration>
+      <Get Name="Get" Id="{622b7e42-cb54-4182-86d0-2f014c25e6d5}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Seconds := _stWorkTime.seconds;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{961918d0-6db6-42bf-a3f6-7bb0154459db}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_stWorkTime.seconds := Seconds;]]></ST>
         </Implementation>
       </Set>
     </Property>
@@ -189,18 +312,6 @@ END_CASE
 ]]></ST>
       </Implementation>
     </Method>
-    <Property Name="Supply" Id="{f667981d-706f-4708-99c7-9dc298d3783a}" FolderPath="Property\">
-      <Declaration><![CDATA[PROPERTY Supply : BOOL]]></Declaration>
-      <Get Name="Get" Id="{a650e293-77db-4e65-b9e5-e7ef0bbbec2b}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[Supply := _supplyLed;
-]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
     <Method Name="SwitchOff" Id="{b726e6e2-693a-4b15-abd3-37eeaf4d83de}">
       <Declaration><![CDATA[METHOD SwitchOff : BOOL
 VAR_INPUT
@@ -208,7 +319,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[THIS^._eCommand := eReady;
+        <ST><![CDATA[_eCommand := eReady;
 
 
 
@@ -223,7 +334,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[THIS^._eCommand := eFwd;
+        <ST><![CDATA[_eCommand := eFwd;
 
 
 
@@ -236,17 +347,6 @@ END_VAR
 ]]></ST>
       </Implementation>
     </Method>
-    <Property Name="TermFuse" Id="{5f769aa7-9a8f-4b7d-94a2-8efc080d6f75}" FolderPath="Property\">
-      <Declaration><![CDATA[PROPERTY TermFuse : BOOL]]></Declaration>
-      <Get Name="Get" Id="{a0af65ea-6e3e-4dad-a86e-8bf01cc75136}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[TermFuse := _termFuse;]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
     <Method Name="WorkCount" Id="{72be380d-7f66-4d86-a0eb-efd62cefdaad}">
       <Declaration><![CDATA[METHOD PUBLIC WorkCount : STRING
 VAR_INPUT
@@ -282,7 +382,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[THIS^._startCount := FALSE;
+        <ST><![CDATA[_startCount := FALSE;
 
 ]]></ST>
       </Implementation>
@@ -293,7 +393,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[THIS^._startCount := TRUE;
+        <ST><![CDATA[_startCount := TRUE;
 
 
 

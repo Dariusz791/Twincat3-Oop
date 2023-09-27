@@ -4,12 +4,10 @@
     <Declaration><![CDATA[// Function block to control simple MCC 
 FUNCTION_BLOCK FB_MotorControl
 VAR
-	autoButton		    : Button;	// Scada Button auto
-	forwardButton		: Button;	// Scada Button forward
-
-	iDrive 		: I_Drive;				// interface variable
-	
-	
+	autoButton		    : Button;	   // Scada Button auto
+	forwardButton	    : Button;	   // Scada Button forward
+	iDrive 		        : I_Drive;     // interface variable
+		
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -42,6 +40,7 @@ END_IF
 
 ]]></ST>
     </Implementation>
+    <Folder Name="Property" Id="{17a601d5-7821-4f9c-8a38-8607c8187ce2}" />
     <Method Name="AutoOff" Id="{d8967504-f11e-4755-939d-967045b0616b}">
       <Declaration><![CDATA[METHOD PUBLIC AutoOff : BOOL
 VAR_INPUT
@@ -97,5 +96,28 @@ END_VAR
 ]]></ST>
       </Implementation>
     </Method>
+    <Property Name="ScadaAutoButton" Id="{b6fca961-f8d1-4599-ac62-7c1ed18c6199}" FolderPath="Property\">
+      <Declaration><![CDATA[PROPERTY ScadaAutoButton : BOOL]]></Declaration>
+      <Get Name="Get" Id="{edc44f24-f21f-4c0d-89cb-0c62acd5d762}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ScadaAutoButton := autoButton.IsPressed;	]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="ScadaForwardButton" Id="{ffad69d9-d8e9-47d6-b482-b488b6c47ab5}" FolderPath="Property\">
+      <Declaration><![CDATA[PROPERTY ScadaForwardButton : BOOL]]></Declaration>
+      <Get Name="Get" Id="{1214b155-5e64-4195-9c04-53d8bfd51ee1}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ScadaForwardButton := forwardButton.IsPressed;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
   </POU>
 </TcPlcObject>

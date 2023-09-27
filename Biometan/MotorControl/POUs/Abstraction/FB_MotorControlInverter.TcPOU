@@ -3,9 +3,8 @@
   <POU Name="FB_MotorControlInverter" Id="{09f97a7c-20ed-4dba-b4ed-2db01e0000dd}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_MotorControlInverter EXTENDS FB_MotorControlReverse
 VAR
-	resetButton		: Button;	// Scada Button inverter reset
+	resetButton		: Button;	   // Scada Button inverter reset
 	speedEdit		: NumberEdit; // SCADA number Edit field
-	currentSpeed	: REAL;	  // Current speed read from Inverter
 	
 	iDriveInverter  : I_DriveInverter; // interface variable
 	
@@ -35,6 +34,7 @@ END_IF
 // Speed set all the time
 Speed(speedEdit.Number);]]></ST>
     </Implementation>
+    <Folder Name="Property" Id="{15d4d125-0065-4a15-83c3-f71c537c7fb8}" />
     <Method Name="FB_init" Id="{0e59730c-83eb-413d-aa7a-18575dff9c7e}">
       <Declaration><![CDATA[METHOD FB_init : BOOL
 VAR_INPUT
@@ -63,6 +63,29 @@ END_VAR
 ]]></ST>
       </Implementation>
     </Method>
+    <Property Name="ScadaResetButton" Id="{d08d8344-4bf7-4889-a282-00493b96281e}" FolderPath="Property\">
+      <Declaration><![CDATA[PROPERTY ScadaResetButton : BOOL]]></Declaration>
+      <Get Name="Get" Id="{a6d657e2-4b91-4afa-9498-965d51f138a5}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ScadaResetButton := resetButton.IsPressed;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="ScadaSpeedEdit" Id="{4db53d40-3b32-4edd-a3c7-9c35459748a7}" FolderPath="Property\">
+      <Declaration><![CDATA[PROPERTY ScadaSpeedEdit : REAL]]></Declaration>
+      <Get Name="Get" Id="{253f300b-1336-49e1-8152-0535aebb42fe}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ScadaSpeedEdit := speedEdit.Number;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="Speed" Id="{e377fbfd-7497-4fa5-9059-0449f28386b6}">
       <Declaration><![CDATA[METHOD Speed : BOOL
 VAR_INPUT
