@@ -15,14 +15,13 @@ VAR_GLOBAL
   	sStatus_M01	           : T_MaxString; // Motor Status string
 	sState_M01 	           : T_MaxString; // Motor State string
 
-	//FB Drive Reverse MCC_02
+	//FB Drive Inverter MCC_02
 	bForwardButton_M02     : BOOL;  // SCADA button Forward drive Command 
 	bReverseButton_M02     : BOOL;  // SCADA button Reverse drive Command
 	bResetButton_M02	   : BOOL;  // SCADA button Reset drive Command
 	bAutoButton_M02  	   : BOOL;  // SCADA button Auto/manual Command
 	rSpeedEdit_M02		   : REAL;	// SCADA textEdit Speed value
 	bAuto_M02			   : BOOL;  // Memory Flag to program execution control  
-	bContactor_M02 AT%Q*   : BOOL;  // Contactor state from psyhical output
 	bTermFuse_M02  AT%I*   : BOOL;  // Term Fuse state from psyhical input
 	udHours_M02   		   : UDINT; // Work Time Counter - hours nonvolatile memory register
 	uMinuts_M02	   		   : UINT;  // Work Time Counter - minuts nonvolatile memory register

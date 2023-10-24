@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="MccRev_007" Id="{964a0a5c-eed0-4f09-a97c-3d2328760901}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+
+// FB DRIVE MccRev_007
+	bForwardButton     : BOOL;  // SCADA button Forward drive Command 
+	bReverseButton	   : BOOL;  // SCADA button Reverse drive Command	
+	bAutoButton  	   : BOOL;  // SCADA button Auto/manual Command
+	bContactor AT%Q*   : BOOL;  // Contactor state from psyhical output
+	bTermFuse  AT%I*   : BOOL;  // Term Fuse state from psyhical input
+	udHours   		   : UDINT; // Work Time Counter - hours nonvolatile memory register
+	uMinuts	   		   : UINT;  // Work Time Counter - minuts nonvolatile memory register
+	uSeconds           : UINT;  // Work Time Counter - seconds nonvolatile memory register
+  	sStatus	           : T_MaxString; // Motor Status string
+	sState 	           : T_MaxString; // Motor State string	
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>
