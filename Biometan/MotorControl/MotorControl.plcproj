@@ -197,6 +197,9 @@
     <Compile Include="POUs\mergeIO.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\Process\FermentationProcess.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
@@ -208,6 +211,7 @@
     <Folder Include="POUs\Implementation" />
     <Folder Include="POUs\Implementation\ITFs" />
     <Folder Include="POUs\Devices" />
+    <Folder Include="POUs\Process" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>

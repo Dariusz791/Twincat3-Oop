@@ -5,17 +5,20 @@
 VAR
 	
 	// Drive
-	fbDrive			          : FB_Drive;
-	fbDriveReverse	          : FB_DriveReverse;
-	bUnitId              	  : BYTE:=1; //adres napędu falownikowego Higienizatora
+	//fbDrive			          : FB_Drive;
+	//fbDriveReverse	          : FB_DriveReverse;
+	//bUnitId              	  : BYTE:=1; //adres napędu falownikowego Higienizatora
 	
-	fbDriveInverter1		  : FB_DriveInverter(1);
+	//fbDriveInverter1		  : FB_DriveInverter(1);
 	//fbDriveInverter2		  : FB_DriveInverter(2);
 
 	//Drive Control	
-	fbMotorControl 	     	  : FB_MotorControl(fbDrive);
-	fbMotorControlReverse 	  : FB_MotorControlReverse(fbDriveReverse);
-	fbMotorControlInverter    : FB_MotorControlInverter(fbDriveInverter1);
+	//fbMotorControl 	     	  : FB_MotorControl(fbDrive);
+	//fbMotorControlReverse_001 	  : FB_MotorControlReverse(fbDriveReverse);
+	//fbMotorControlReverse_001 	  : FB_MotorControlReverse(fbDriveReverse);
+	
+	
+	//fbMotorControlInverter    : FB_MotorControlInverter(fbDriveInverter1);
 	
 //fbMotorControlInverter2    : FB_MotorControlInverter(fbDriveInverter2);	
 	
@@ -23,23 +26,25 @@ VAR
 
 	//Modbus RTU - obiektów tej klasy może być tylko tyle ile jest dostępnych fizycznych portów RS485
 	//np. dla modułu EL6022 są dwa fizyczne porty RS485
-	fbInverterOperation		   : FB_InverterOperation;
+	//fbInverterOperation		   : FB_InverterOperation;
 	
 
 	
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[mergeIO();
+      <ST><![CDATA[//mergeIO();
+FermentationProcess();
 
-fbMotorControl();
-fbMotorControlReverse();
-fbMotorControlInverter();
+//fbMotorControl();
 
+//Fermentation Process
+//fbMotorControlReverse();
+
+
+//fbMotorControlInverter();
 //fbMotorControlInverter2();
-
-
-fbInverterOperation();
+//fbInverterOperation();
 
 
 

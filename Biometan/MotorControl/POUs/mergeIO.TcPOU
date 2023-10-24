@@ -7,34 +7,272 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[
-//Sygnały obiektu fbDrive MCC_01
-GVL.bForwardButton_M01 := MAIN.fbMotorControl.ScadaForwardButton; // SCADA button Forward Command
-GVL.bAutoButton_M01 := MAIN.fbMotorControl.ScadaAutoButton;       // SCADA button Auto/manual Command
-GVL.bAuto_M01 := MAIN.fbDrive.MotorAuto;
-GVL.bContactor_M01 := Main.fbDrive.MotorContactor;
-GVL.bTermFuse_M01 := Main.fbDrive.MotorProtection;
-GVL.udHours_M01 := MAIN.fbDrive.Hours;
-GVL.uMinuts_M01 := MAIN.fbDrive.Minuts;
-GVL.uSeconds_M01 := MAIN.fbDrive.Seconds;
-GVL.sStatus_M01 := main.fbDrive.MotorStatus;
-GVL.sState_M01 := Main.fbDrive.MotorState;
+//Sygnały obiektów MccRev_* mieszadeł fermentora
+//MccRev_001
+GVL.FermentationProcess.MccRev_001.bAutoButton    := FermentationProcess.MccRev_001.bAutoButton;    // SCADA button Auto Command
+GVL.FermentationProcess.MccRev_001.bForwardButton := FermentationProcess.MccRev_001.bForwardButton; // SCADA button Forward Command
+GVL.FermentationProcess.MccRev_001.bReverseButton := FermentationProcess.MccRev_001.bReverseButton; // SCADA button Reverse Command
+GVL.FermentationProcess.MccRev_001.bTermFuse      := FermentationProcess.MccRev_001.bTermFuse;      // PLC input thermal fuse
+GVL.FermentationProcess.MccRev_001.bContactor     := FermentationProcess.MccRev_001.bContactor;     // PLC output contactor
+GVL.FermentationProcess.MccRev_001.udHours        := FermentationProcess.MccRev_001.udHours;        // Work Time Counter - hours nonvolatile memory register
+GVL.FermentationProcess.MccRev_001.uMinutes       := FermentationProcess.MccRev_001.uMinutes;       // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_001.uSeconds       := FermentationProcess.MccRev_001.uSeconds;       // Work Time Counter - seconds nonvolatile memory register
+GVL.FermentationProcess.MccRev_001.sState         := FermentationProcess.MccRev_001.sState;         // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_001.sStatus        := FermentationProcess.MccRev_001.sStatus;        // Work Time Counter - seconds nonvolatile memory register
 
+
+//MccRev_002
+GVL.FermentationProcess.MccRev_002.bAutoButton    := FermentationProcess.MccRev_002.bAutoButton;    // SCADA button Auto Command
+GVL.FermentationProcess.MccRev_002.bForwardButton := FermentationProcess.MccRev_002.bForwardButton; // SCADA button Forward Command
+GVL.FermentationProcess.MccRev_002.bReverseButton := FermentationProcess.MccRev_002.bReverseButton; // SCADA button Reverse Command
+GVL.FermentationProcess.MccRev_002.bTermFuse      := FermentationProcess.MccRev_002.bTermFuse;      // PLC input thermal fuse
+GVL.FermentationProcess.MccRev_002.bContactor     := FermentationProcess.MccRev_002.bContactor;     // PLC output contactor
+GVL.FermentationProcess.MccRev_002.udHours        := FermentationProcess.MccRev_002.udHours;        // Work Time Counter - hours nonvolatile memory register
+GVL.FermentationProcess.MccRev_002.uMinutes       := FermentationProcess.MccRev_002.uMinutes;       // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_002.uSeconds       := FermentationProcess.MccRev_002.uSeconds;       // Work Time Counter - seconds nonvolatile memory register
+GVL.FermentationProcess.MccRev_002.sState         := FermentationProcess.MccRev_002.sState;         // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_002.sStatus        := FermentationProcess.MccRev_002.sStatus;        // Work Time Counter - seconds nonvolatile memory register
+
+//MccRev_003
+GVL.FermentationProcess.MccRev_003.bAutoButton    := FermentationProcess.MccRev_003.bAutoButton;    // SCADA button Auto Command
+GVL.FermentationProcess.MccRev_003.bForwardButton := FermentationProcess.MccRev_003.bForwardButton; // SCADA button Forward Command
+GVL.FermentationProcess.MccRev_003.bReverseButton := FermentationProcess.MccRev_003.bReverseButton; // SCADA button Reverse Command
+GVL.FermentationProcess.MccRev_003.bTermFuse      := FermentationProcess.MccRev_003.bTermFuse;      // PLC input thermal fuse
+GVL.FermentationProcess.MccRev_003.bContactor     := FermentationProcess.MccRev_003.bContactor;     // PLC output contactor
+GVL.FermentationProcess.MccRev_003.udHours        := FermentationProcess.MccRev_003.udHours;        // Work Time Counter - hours nonvolatile memory register
+GVL.FermentationProcess.MccRev_003.uMinutes       := FermentationProcess.MccRev_003.uMinutes;       // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_003.uSeconds       := FermentationProcess.MccRev_003.uSeconds;       // Work Time Counter - seconds nonvolatile memory register
+GVL.FermentationProcess.MccRev_003.sState         := FermentationProcess.MccRev_003.sState;         // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_003.sStatus        := FermentationProcess.MccRev_003.sStatus;        // Work Time Counter - seconds nonvolatile memory register
+
+//MccRev_004
+GVL.FermentationProcess.MccRev_004.bAutoButton    := FermentationProcess.MccRev_004.bAutoButton;    // SCADA button Auto Command
+GVL.FermentationProcess.MccRev_004.bForwardButton := FermentationProcess.MccRev_004.bForwardButton; // SCADA button Forward Command
+GVL.FermentationProcess.MccRev_004.bReverseButton := FermentationProcess.MccRev_004.bReverseButton; // SCADA button Reverse Command
+GVL.FermentationProcess.MccRev_004.bTermFuse      := FermentationProcess.MccRev_004.bTermFuse;      // PLC input thermal fuse
+GVL.FermentationProcess.MccRev_004.bContactor     := FermentationProcess.MccRev_004.bContactor;     // PLC output contactor
+GVL.FermentationProcess.MccRev_004.udHours        := FermentationProcess.MccRev_004.udHours;        // Work Time Counter - hours nonvolatile memory register
+GVL.FermentationProcess.MccRev_004.uMinutes       := FermentationProcess.MccRev_004.uMinutes;       // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_004.uSeconds       := FermentationProcess.MccRev_004.uSeconds;       // Work Time Counter - seconds nonvolatile memory register
+GVL.FermentationProcess.MccRev_004.sState         := FermentationProcess.MccRev_004.sState;         // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_004.sStatus        := FermentationProcess.MccRev_004.sStatus;        // Work Time Counter - seconds nonvolatile memory register
+
+//MccRev_005
+GVL.FermentationProcess.MccRev_005.bAutoButton    := FermentationProcess.MccRev_005.bAutoButton;    // SCADA button Auto Command
+GVL.FermentationProcess.MccRev_005.bForwardButton := FermentationProcess.MccRev_005.bForwardButton; // SCADA button Forward Command
+GVL.FermentationProcess.MccRev_005.bReverseButton := FermentationProcess.MccRev_005.bReverseButton; // SCADA button Reverse Command
+GVL.FermentationProcess.MccRev_005.bTermFuse      := FermentationProcess.MccRev_005.bTermFuse;      // PLC input thermal fuse
+GVL.FermentationProcess.MccRev_005.bContactor     := FermentationProcess.MccRev_005.bContactor;     // PLC output contactor
+GVL.FermentationProcess.MccRev_005.udHours        := FermentationProcess.MccRev_005.udHours;        // Work Time Counter - hours nonvolatile memory register
+GVL.FermentationProcess.MccRev_005.uMinutes       := FermentationProcess.MccRev_005.uMinutes;       // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_005.uSeconds       := FermentationProcess.MccRev_005.uSeconds;       // Work Time Counter - seconds nonvolatile memory register
+GVL.FermentationProcess.MccRev_005.sState         := FermentationProcess.MccRev_005.sState;         // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_005.sStatus        := FermentationProcess.MccRev_005.sStatus;        // Work Time Counter - seconds nonvolatile memory register
+
+//MccRev_006
+GVL.FermentationProcess.MccRev_006.bAutoButton    := FermentationProcess.MccRev_006.bAutoButton;    // SCADA button Auto Command
+GVL.FermentationProcess.MccRev_006.bForwardButton := FermentationProcess.MccRev_006.bForwardButton; // SCADA button Forward Command
+GVL.FermentationProcess.MccRev_006.bReverseButton := FermentationProcess.MccRev_006.bReverseButton; // SCADA button Reverse Command
+GVL.FermentationProcess.MccRev_006.bTermFuse      := FermentationProcess.MccRev_006.bTermFuse;      // PLC input thermal fuse
+GVL.FermentationProcess.MccRev_006.bContactor     := FermentationProcess.MccRev_006.bContactor;     // PLC output contactor
+GVL.FermentationProcess.MccRev_006.udHours        := FermentationProcess.MccRev_006.udHours;        // Work Time Counter - hours nonvolatile memory register
+GVL.FermentationProcess.MccRev_006.uMinutes       := FermentationProcess.MccRev_006.uMinutes;       // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_006.uSeconds       := FermentationProcess.MccRev_006.uSeconds;       // Work Time Counter - seconds nonvolatile memory register
+GVL.FermentationProcess.MccRev_006.sState         := FermentationProcess.MccRev_006.sState;         // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_006.sStatus        := FermentationProcess.MccRev_006.sStatus;        // Work Time Counter - seconds nonvolatile memory register
+
+
+//MccRev_007
+GVL.FermentationProcess.MccRev_007.bAutoButton    := FermentationProcess.MccRev_007.bAutoButton;    // SCADA button Auto Command
+GVL.FermentationProcess.MccRev_007.bForwardButton := FermentationProcess.MccRev_007.bForwardButton; // SCADA button Forward Command
+GVL.FermentationProcess.MccRev_007.bReverseButton := FermentationProcess.MccRev_007.bReverseButton; // SCADA button Reverse Command
+GVL.FermentationProcess.MccRev_007.bTermFuse      := FermentationProcess.MccRev_007.bTermFuse;      // PLC input thermal fuse
+GVL.FermentationProcess.MccRev_007.bContactor     := FermentationProcess.MccRev_007.bContactor;     // PLC output contactor
+GVL.FermentationProcess.MccRev_007.udHours        := FermentationProcess.MccRev_007.udHours;        // Work Time Counter - hours nonvolatile memory register
+GVL.FermentationProcess.MccRev_007.uMinutes       := FermentationProcess.MccRev_007.uMinutes;       // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_007.uSeconds       := FermentationProcess.MccRev_007.uSeconds;       // Work Time Counter - seconds nonvolatile memory register
+GVL.FermentationProcess.MccRev_007.sState         := FermentationProcess.MccRev_007.sState;         // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_007.sStatus        := FermentationProcess.MccRev_007.sStatus;        // Work Time Counter - seconds nonvolatile memory register
+
+//MccRev_008
+GVL.FermentationProcess.MccRev_008.bAutoButton    := FermentationProcess.MccRev_008.bAutoButton;    // SCADA button Auto Command
+GVL.FermentationProcess.MccRev_008.bForwardButton := FermentationProcess.MccRev_008.bForwardButton; // SCADA button Forward Command
+GVL.FermentationProcess.MccRev_008.bReverseButton := FermentationProcess.MccRev_008.bReverseButton; // SCADA button Reverse Command
+GVL.FermentationProcess.MccRev_008.bTermFuse      := FermentationProcess.MccRev_008.bTermFuse;      // PLC input thermal fuse
+GVL.FermentationProcess.MccRev_008.bContactor     := FermentationProcess.MccRev_008.bContactor;     // PLC output contactor
+GVL.FermentationProcess.MccRev_008.udHours        := FermentationProcess.MccRev_008.udHours;        // Work Time Counter - hours nonvolatile memory register
+GVL.FermentationProcess.MccRev_008.uMinutes       := FermentationProcess.MccRev_008.uMinutes;       // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_008.uSeconds       := FermentationProcess.MccRev_008.uSeconds;       // Work Time Counter - seconds nonvolatile memory register
+GVL.FermentationProcess.MccRev_008.sState         := FermentationProcess.MccRev_008.sState;         // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_008.sStatus        := FermentationProcess.MccRev_008.sStatus;        // Work Time Counter - seconds nonvolatile memory register
+
+//MccRev_009
+GVL.FermentationProcess.MccRev_009.bAutoButton    := FermentationProcess.MccRev_009.bAutoButton;    // SCADA button Auto Command
+GVL.FermentationProcess.MccRev_009.bForwardButton := FermentationProcess.MccRev_009.bForwardButton; // SCADA button Forward Command
+GVL.FermentationProcess.MccRev_009.bReverseButton := FermentationProcess.MccRev_009.bReverseButton; // SCADA button Reverse Command
+GVL.FermentationProcess.MccRev_009.bTermFuse      := FermentationProcess.MccRev_009.bTermFuse;      // PLC input thermal fuse
+GVL.FermentationProcess.MccRev_009.bContactor     := FermentationProcess.MccRev_009.bContactor;     // PLC output contactor
+GVL.FermentationProcess.MccRev_009.udHours        := FermentationProcess.MccRev_009.udHours;        // Work Time Counter - hours nonvolatile memory register
+GVL.FermentationProcess.MccRev_009.uMinutes       := FermentationProcess.MccRev_009.uMinutes;       // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_009.uSeconds       := FermentationProcess.MccRev_009.uSeconds;       // Work Time Counter - seconds nonvolatile memory register
+GVL.FermentationProcess.MccRev_009.sState         := FermentationProcess.MccRev_009.sState;         // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_009.sStatus        := FermentationProcess.MccRev_009.sStatus;        // Work Time Counter - seconds nonvolatile memory register
+
+
+//MccRev_010
+GVL.FermentationProcess.MccRev_010.bAutoButton    := FermentationProcess.MccRev_010.bAutoButton;    // SCADA button Auto Command
+GVL.FermentationProcess.MccRev_010.bForwardButton := FermentationProcess.MccRev_010.bForwardButton; // SCADA button Forward Command
+GVL.FermentationProcess.MccRev_010.bReverseButton := FermentationProcess.MccRev_010.bReverseButton; // SCADA button Reverse Command
+GVL.FermentationProcess.MccRev_010.bTermFuse      := FermentationProcess.MccRev_010.bTermFuse;      // PLC input thermal fuse
+GVL.FermentationProcess.MccRev_010.bContactor     := FermentationProcess.MccRev_010.bContactor;     // PLC output contactor
+GVL.FermentationProcess.MccRev_010.udHours        := FermentationProcess.MccRev_010.udHours;        // Work Time Counter - hours nonvolatile memory register
+GVL.FermentationProcess.MccRev_010.uMinutes       := FermentationProcess.MccRev_010.uMinutes;       // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_010.uSeconds       := FermentationProcess.MccRev_010.uSeconds;       // Work Time Counter - seconds nonvolatile memory register
+GVL.FermentationProcess.MccRev_010.sState         := FermentationProcess.MccRev_010.sState;         // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_010.sStatus        := FermentationProcess.MccRev_010.sStatus;        // Work Time Counter - seconds nonvolatile memory register
+
+
+//MccRev_011
+GVL.FermentationProcess.MccRev_011.bAutoButton    := FermentationProcess.MccRev_011.bAutoButton;    // SCADA button Auto Command
+GVL.FermentationProcess.MccRev_011.bForwardButton := FermentationProcess.MccRev_011.bForwardButton; // SCADA button Forward Command
+GVL.FermentationProcess.MccRev_011.bReverseButton := FermentationProcess.MccRev_011.bReverseButton; // SCADA button Reverse Command
+GVL.FermentationProcess.MccRev_011.bTermFuse      := FermentationProcess.MccRev_011.bTermFuse;      // PLC input thermal fuse
+GVL.FermentationProcess.MccRev_011.bContactor     := FermentationProcess.MccRev_011.bContactor;     // PLC output contactor
+GVL.FermentationProcess.MccRev_011.udHours        := FermentationProcess.MccRev_011.udHours;        // Work Time Counter - hours nonvolatile memory register
+GVL.FermentationProcess.MccRev_011.uMinutes       := FermentationProcess.MccRev_011.uMinutes;       // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_011.uSeconds       := FermentationProcess.MccRev_011.uSeconds;       // Work Time Counter - seconds nonvolatile memory register
+GVL.FermentationProcess.MccRev_011.sState         := FermentationProcess.MccRev_011.sState;         // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_011.sStatus        := FermentationProcess.MccRev_011.sStatus;        // Work Time Counter - seconds nonvolatile memory register
+
+//MccRev_012
+GVL.FermentationProcess.MccRev_012.bAutoButton    := FermentationProcess.MccRev_012.bAutoButton;    // SCADA button Auto Command
+GVL.FermentationProcess.MccRev_012.bForwardButton := FermentationProcess.MccRev_012.bForwardButton; // SCADA button Forward Command
+GVL.FermentationProcess.MccRev_012.bReverseButton := FermentationProcess.MccRev_012.bReverseButton; // SCADA button Reverse Command
+GVL.FermentationProcess.MccRev_012.bTermFuse      := FermentationProcess.MccRev_012.bTermFuse;      // PLC input thermal fuse
+GVL.FermentationProcess.MccRev_012.bContactor     := FermentationProcess.MccRev_012.bContactor;     // PLC output contactor
+GVL.FermentationProcess.MccRev_012.udHours        := FermentationProcess.MccRev_012.udHours;        // Work Time Counter - hours nonvolatile memory register
+GVL.FermentationProcess.MccRev_012.uMinutes       := FermentationProcess.MccRev_012.uMinutes;       // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_012.uSeconds       := FermentationProcess.MccRev_012.uSeconds;       // Work Time Counter - seconds nonvolatile memory register
+GVL.FermentationProcess.MccRev_012.sState         := FermentationProcess.MccRev_012.sState;         // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_012.sStatus        := FermentationProcess.MccRev_012.sStatus;        // Work Time Counter - seconds nonvolatile memory register
+
+
+//MccRev_013
+GVL.FermentationProcess.MccRev_013.bAutoButton    := FermentationProcess.MccRev_013.bAutoButton;    // SCADA button Auto Command
+GVL.FermentationProcess.MccRev_013.bForwardButton := FermentationProcess.MccRev_013.bForwardButton; // SCADA button Forward Command
+GVL.FermentationProcess.MccRev_013.bReverseButton := FermentationProcess.MccRev_013.bReverseButton; // SCADA button Reverse Command
+GVL.FermentationProcess.MccRev_013.bTermFuse      := FermentationProcess.MccRev_013.bTermFuse;      // PLC input thermal fuse
+GVL.FermentationProcess.MccRev_013.bContactor     := FermentationProcess.MccRev_013.bContactor;     // PLC output contactor
+GVL.FermentationProcess.MccRev_013.udHours        := FermentationProcess.MccRev_013.udHours;        // Work Time Counter - hours nonvolatile memory register
+GVL.FermentationProcess.MccRev_013.uMinutes       := FermentationProcess.MccRev_013.uMinutes;       // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_013.uSeconds       := FermentationProcess.MccRev_013.uSeconds;       // Work Time Counter - seconds nonvolatile memory register
+GVL.FermentationProcess.MccRev_013.sState         := FermentationProcess.MccRev_013.sState;         // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_013.sStatus        := FermentationProcess.MccRev_013.sStatus;        // Work Time Counter - seconds nonvolatile memory register
+
+
+//MccRev_014
+GVL.FermentationProcess.MccRev_014.bAutoButton    := FermentationProcess.MccRev_014.bAutoButton;    // SCADA button Auto Command
+GVL.FermentationProcess.MccRev_014.bForwardButton := FermentationProcess.MccRev_014.bForwardButton; // SCADA button Forward Command
+GVL.FermentationProcess.MccRev_014.bReverseButton := FermentationProcess.MccRev_014.bReverseButton; // SCADA button Reverse Command
+GVL.FermentationProcess.MccRev_014.bTermFuse      := FermentationProcess.MccRev_014.bTermFuse;      // PLC input thermal fuse
+GVL.FermentationProcess.MccRev_014.bContactor     := FermentationProcess.MccRev_014.bContactor;     // PLC output contactor
+GVL.FermentationProcess.MccRev_014.udHours        := FermentationProcess.MccRev_014.udHours;        // Work Time Counter - hours nonvolatile memory register
+GVL.FermentationProcess.MccRev_014.uMinutes       := FermentationProcess.MccRev_014.uMinutes;       // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_014.uSeconds       := FermentationProcess.MccRev_014.uSeconds;       // Work Time Counter - seconds nonvolatile memory register
+GVL.FermentationProcess.MccRev_014.sState         := FermentationProcess.MccRev_014.sState;         // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_014.sStatus        := FermentationProcess.MccRev_014.sStatus;        // Work Time Counter - seconds nonvolatile memory register
+
+//MccRev_015
+GVL.FermentationProcess.MccRev_015.bAutoButton    := FermentationProcess.MccRev_015.bAutoButton;    // SCADA button Auto Command
+GVL.FermentationProcess.MccRev_015.bForwardButton := FermentationProcess.MccRev_015.bForwardButton; // SCADA button Forward Command
+GVL.FermentationProcess.MccRev_015.bReverseButton := FermentationProcess.MccRev_015.bReverseButton; // SCADA button Reverse Command
+GVL.FermentationProcess.MccRev_015.bTermFuse      := FermentationProcess.MccRev_015.bTermFuse;      // PLC input thermal fuse
+GVL.FermentationProcess.MccRev_015.bContactor     := FermentationProcess.MccRev_015.bContactor;     // PLC output contactor
+GVL.FermentationProcess.MccRev_015.udHours        := FermentationProcess.MccRev_015.udHours;        // Work Time Counter - hours nonvolatile memory register
+GVL.FermentationProcess.MccRev_015.uMinutes       := FermentationProcess.MccRev_015.uMinutes;       // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_015.uSeconds       := FermentationProcess.MccRev_015.uSeconds;       // Work Time Counter - seconds nonvolatile memory register
+GVL.FermentationProcess.MccRev_015.sState         := FermentationProcess.MccRev_015.sState;         // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_015.sStatus        := FermentationProcess.MccRev_015.sStatus;        // Work Time Counter - seconds nonvolatile memory register
+
+//MccRev_016
+GVL.FermentationProcess.MccRev_016.bAutoButton    := FermentationProcess.MccRev_016.bAutoButton;    // SCADA button Auto Command
+GVL.FermentationProcess.MccRev_016.bForwardButton := FermentationProcess.MccRev_016.bForwardButton; // SCADA button Forward Command
+GVL.FermentationProcess.MccRev_016.bReverseButton := FermentationProcess.MccRev_016.bReverseButton; // SCADA button Reverse Command
+GVL.FermentationProcess.MccRev_016.bTermFuse      := FermentationProcess.MccRev_016.bTermFuse;      // PLC input thermal fuse
+GVL.FermentationProcess.MccRev_016.bContactor     := FermentationProcess.MccRev_016.bContactor;     // PLC output contactor
+GVL.FermentationProcess.MccRev_016.udHours        := FermentationProcess.MccRev_016.udHours;        // Work Time Counter - hours nonvolatile memory register
+GVL.FermentationProcess.MccRev_016.uMinutes       := FermentationProcess.MccRev_016.uMinutes;       // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_016.uSeconds       := FermentationProcess.MccRev_016.uSeconds;       // Work Time Counter - seconds nonvolatile memory register
+GVL.FermentationProcess.MccRev_016.sState         := FermentationProcess.MccRev_016.sState;         // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_016.sStatus        := FermentationProcess.MccRev_016.sStatus;        // Work Time Counter - seconds nonvolatile memory register
+
+
+//MccRev_017
+GVL.FermentationProcess.MccRev_017.bAutoButton    := FermentationProcess.MccRev_017.bAutoButton;    // SCADA button Auto Command
+GVL.FermentationProcess.MccRev_017.bForwardButton := FermentationProcess.MccRev_017.bForwardButton; // SCADA button Forward Command
+GVL.FermentationProcess.MccRev_017.bReverseButton := FermentationProcess.MccRev_017.bReverseButton; // SCADA button Reverse Command
+GVL.FermentationProcess.MccRev_017.bTermFuse      := FermentationProcess.MccRev_017.bTermFuse;      // PLC input thermal fuse
+GVL.FermentationProcess.MccRev_017.bContactor     := FermentationProcess.MccRev_017.bContactor;     // PLC output contactor
+GVL.FermentationProcess.MccRev_017.udHours        := FermentationProcess.MccRev_017.udHours;        // Work Time Counter - hours nonvolatile memory register
+GVL.FermentationProcess.MccRev_017.uMinutes       := FermentationProcess.MccRev_017.uMinutes;       // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_017.uSeconds       := FermentationProcess.MccRev_017.uSeconds;       // Work Time Counter - seconds nonvolatile memory register
+GVL.FermentationProcess.MccRev_017.sState         := FermentationProcess.MccRev_017.sState;         // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_017.sStatus        := FermentationProcess.MccRev_017.sStatus;        // Work Time Counter - seconds nonvolatile memory register
+
+
+//MccRev_018
+GVL.FermentationProcess.MccRev_018.bAutoButton    := FermentationProcess.MccRev_018.bAutoButton;    // SCADA button Auto Command
+GVL.FermentationProcess.MccRev_018.bForwardButton := FermentationProcess.MccRev_018.bForwardButton; // SCADA button Forward Command
+GVL.FermentationProcess.MccRev_018.bReverseButton := FermentationProcess.MccRev_018.bReverseButton; // SCADA button Reverse Command
+GVL.FermentationProcess.MccRev_018.bTermFuse      := FermentationProcess.MccRev_018.bTermFuse;      // PLC input thermal fuse
+GVL.FermentationProcess.MccRev_018.bContactor     := FermentationProcess.MccRev_018.bContactor;     // PLC output contactor
+GVL.FermentationProcess.MccRev_018.udHours        := FermentationProcess.MccRev_018.udHours;        // Work Time Counter - hours nonvolatile memory register
+GVL.FermentationProcess.MccRev_018.uMinutes       := FermentationProcess.MccRev_018.uMinutes;       // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_018.uSeconds       := FermentationProcess.MccRev_018.uSeconds;       // Work Time Counter - seconds nonvolatile memory register
+GVL.FermentationProcess.MccRev_018.sState         := FermentationProcess.MccRev_018.sState;         // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_018.sStatus        := FermentationProcess.MccRev_018.sStatus;        // Work Time Counter - seconds nonvolatile memory register
+
+
+//MccRev_019
+GVL.FermentationProcess.MccRev_019.bAutoButton    := FermentationProcess.MccRev_019.bAutoButton;    // SCADA button Auto Command
+GVL.FermentationProcess.MccRev_019.bForwardButton := FermentationProcess.MccRev_019.bForwardButton; // SCADA button Forward Command
+GVL.FermentationProcess.MccRev_019.bReverseButton := FermentationProcess.MccRev_019.bReverseButton; // SCADA button Reverse Command
+GVL.FermentationProcess.MccRev_019.bTermFuse      := FermentationProcess.MccRev_019.bTermFuse;      // PLC input thermal fuse
+GVL.FermentationProcess.MccRev_019.bContactor     := FermentationProcess.MccRev_019.bContactor;     // PLC output contactor
+GVL.FermentationProcess.MccRev_019.udHours        := FermentationProcess.MccRev_019.udHours;        // Work Time Counter - hours nonvolatile memory register
+GVL.FermentationProcess.MccRev_019.uMinutes       := FermentationProcess.MccRev_019.uMinutes;       // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_019.uSeconds       := FermentationProcess.MccRev_019.uSeconds;       // Work Time Counter - seconds nonvolatile memory register
+GVL.FermentationProcess.MccRev_019.sState         := FermentationProcess.MccRev_019.sState;         // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_019.sStatus        := FermentationProcess.MccRev_019.sStatus;        // Work Time Counter - seconds nonvolatile memory register
+
+
+//MccRev_020
+GVL.FermentationProcess.MccRev_020.bAutoButton    := FermentationProcess.MccRev_020.bAutoButton;    // SCADA button Auto Command
+GVL.FermentationProcess.MccRev_020.bForwardButton := FermentationProcess.MccRev_020.bForwardButton; // SCADA button Forward Command
+GVL.FermentationProcess.MccRev_020.bReverseButton := FermentationProcess.MccRev_020.bReverseButton; // SCADA button Reverse Command
+GVL.FermentationProcess.MccRev_020.bTermFuse      := FermentationProcess.MccRev_020.bTermFuse;      // PLC input thermal fuse
+GVL.FermentationProcess.MccRev_020.bContactor     := FermentationProcess.MccRev_020.bContactor;     // PLC output contactor
+GVL.FermentationProcess.MccRev_020.udHours        := FermentationProcess.MccRev_020.udHours;        // Work Time Counter - hours nonvolatile memory register
+GVL.FermentationProcess.MccRev_020.uMinutes       := FermentationProcess.MccRev_020.uMinutes;       // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_020.uSeconds       := FermentationProcess.MccRev_020.uSeconds;       // Work Time Counter - seconds nonvolatile memory register
+GVL.FermentationProcess.MccRev_020.sState         := FermentationProcess.MccRev_020.sState;         // Work Time Counter - minutes nonvolatile memory register
+GVL.FermentationProcess.MccRev_020.sStatus        := FermentationProcess.MccRev_020.sStatus;        // Work Time Counter - seconds nonvolatile memory register
 
 
 
 //Sygnały obiektu fbDrive Inverter MCC_02
-GVL.bForwardButton_M02 := MAIN.fbMotorControlInverter.ScadaForwardButton;  // SCADA button Forward Command
-GVL.bReverseButton_M02  := MAIN.fbMotorControlInverter.ScadaReverseButton; // SCADA button Reverse drive Command
-GVL.bAutoButton_M02 := MAIN.fbMotorControlInverter.ScadaAutoButton;        // SCADA button Auto/manual Command
-GVL.bResetButton_M02 := MAIN.fbMotorControlInverter.ScadaResetButton;	   // SCADA button Reset drive Command 
-GVL.rSpeedEdit_M02 := MAIN.fbMotorControlInverter.ScadaSpeedEdit;		   // SCADA textEdit speed edit box
-GVL.bAuto_M02 := MAIN.fbDriveInverter1.MotorAuto;						   // PLC program execution control	
-GVL.bTermFuse_M02 := Main.fbDriveInverter1.MotorProtection;				   // PLC program execution control
-GVL.udHours_M02 := MAIN.fbDriveInverter1.Hours;							   // PLC Work Time Hours		
-GVL.uMinuts_M02 := MAIN.fbDriveInverter1.Minuts;						   // PLC Work Time Minuts
-GVL.uSeconds_M02 := MAIN.fbDriveInverter1.Seconds;						   // PLC Work Time Seconds	
-GVL.sStatus_M02 := main.fbDriveInverter1.MotorStatus;					   // PLC Motor Drive status	
-GVL.sState_M02 := Main.fbDriveInverter1.MotorState;						   // PLC Motor Drive state	
+//GVL.bForwardButton_M02 := MAIN.fbMotorControlInverter.ScadaForwardButton;  // SCADA button Forward Command
+//GVL.bReverseButton_M02  := MAIN.fbMotorControlInverter.ScadaReverseButton; // SCADA button Reverse drive Command
+//GVL.bAutoButton_M02 := MAIN.fbMotorControlInverter.ScadaAutoButton;        // SCADA button Auto/manual Command
+//GVL.bResetButton_M02 := MAIN.fbMotorControlInverter.ScadaResetButton;	   // SCADA button Reset drive Command 
+//GVL.rSpeedEdit_M02 := MAIN.fbMotorControlInverter.ScadaSpeedEdit;		   // SCADA textEdit speed edit box
+//GVL.bAuto_M02 := MAIN.fbDriveInverter1.MotorAuto;						   // PLC program execution control	
+//GVL.bTermFuse_M02 := Main.fbDriveInverter1.MotorProtection;				   // PLC program execution control
+//GVL.udHours_M02 := MAIN.fbDriveInverter1.Hours;							   // PLC Work Time Hours		
+//GVL.uMinuts_M02 := MAIN.fbDriveInverter1.Minuts;						   // PLC Work Time Minuts
+//GVL.uSeconds_M02 := MAIN.fbDriveInverter1.Seconds;						   // PLC Work Time Seconds	
+//GVL.sStatus_M02 := main.fbDriveInverter1.MotorStatus;					   // PLC Motor Drive status	
+//GVL.sState_M02 := Main.fbDriveInverter1.MotorState;						   // PLC Motor Drive state	
 
 
 ]]></ST>

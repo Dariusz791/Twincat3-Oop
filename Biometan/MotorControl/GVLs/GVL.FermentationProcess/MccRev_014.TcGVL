@@ -4,13 +4,13 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
 // FB DRIVE MccRev_014
-	bForwardButton     : BOOL;  // SCADA button Forward drive Command 
-	bReverseButton	   : BOOL;  // SCADA button Reverse drive Command	
 	bAutoButton  	   : BOOL;  // SCADA button Auto/manual Command
-	bContactor AT%Q*   : BOOL;  // Contactor state from psyhical output
+	bForwardButton     : BOOL;  // SCADA button Forward drive Command
+	bReverseButton	   : BOOL;  // SCADA button Reverse drive Command	 
 	bTermFuse  AT%I*   : BOOL;  // Term Fuse state from psyhical input
+	bContactor AT%Q*   : BOOL;  // Contactor state from psyhical output
 	udHours   		   : UDINT; // Work Time Counter - hours nonvolatile memory register
-	uMinuts	   		   : UINT;  // Work Time Counter - minuts nonvolatile memory register
+	uMinutes	   	   : UINT;  // Work Time Counter - minutes nonvolatile memory register
 	uSeconds           : UINT;  // Work Time Counter - seconds nonvolatile memory register
   	sStatus	           : T_MaxString; // Motor Status string
 	sState 	           : T_MaxString; // Motor State string	
