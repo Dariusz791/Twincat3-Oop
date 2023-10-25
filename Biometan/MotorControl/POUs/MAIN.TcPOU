@@ -13,7 +13,9 @@ VAR
 	//fbDriveInverter2		  : FB_DriveInverter(2);
 
 	//Drive Control	
-	//fbMotorControl 	     	  : FB_MotorControl(fbDrive);
+//	fbMotorControl_001 	     	  : FB_MotorControl(fbDrive);
+//	fbMotorControl_002 	     	  : FB_MotorControl(fbDrive);
+	
 	//fbMotorControlReverse_001 	  : FB_MotorControlReverse(fbDriveReverse);
 	//fbMotorControlReverse_001 	  : FB_MotorControlReverse(fbDriveReverse);
 	
@@ -33,10 +35,15 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//mergeIO();
+      <ST><![CDATA[//Ustaw zmienne SCADY i PLC
+mergeIO();
+
+//Processy
 FermentationProcess();
 
-//fbMotorControl();
+
+
+
 
 //Fermentation Process
 //fbMotorControlReverse();

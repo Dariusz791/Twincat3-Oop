@@ -5,28 +5,50 @@
 VAR
 	
 
-	//Drive Control	
-	fbDriveReverse		          : FB_DriveReverse;
-	fbMccRev_001			 	  : FB_MotorControlReverse(fbDriveReverse);
-	fbMccRev_002			 	  : FB_MotorControlReverse(fbDriveReverse);
-	fbMccRev_003			 	  : FB_MotorControlReverse(fbDriveReverse);
-	fbMccRev_004 	 			  : FB_MotorControlReverse(fbDriveReverse);
-	fbMccRev_005			 	  : FB_MotorControlReverse(fbDriveReverse);
-	fbMccRev_006			 	  : FB_MotorControlReverse(fbDriveReverse);
-	fbMccRev_007				  : FB_MotorControlReverse(fbDriveReverse);
-	fbMccRev_008 	 			  : FB_MotorControlReverse(fbDriveReverse);
-	fbMccRev_009 	  			  : FB_MotorControlReverse(fbDriveReverse);
-	fbMccRev_010 	              : FB_MotorControlReverse(fbDriveReverse);
-	fbMccRev_011			 	  : FB_MotorControlReverse(fbDriveReverse);
-	fbMccRev_012			 	  : FB_MotorControlReverse(fbDriveReverse);
-	fbMccRev_013			 	  : FB_MotorControlReverse(fbDriveReverse);
-	fbMccRev_014 	 			  : FB_MotorControlReverse(fbDriveReverse);
-	fbMccRev_015			 	  : FB_MotorControlReverse(fbDriveReverse);
-	fbMccRev_016			 	  : FB_MotorControlReverse(fbDriveReverse);
-	fbMccRev_017				  : FB_MotorControlReverse(fbDriveReverse);
-	fbMccRev_018 	 			  : FB_MotorControlReverse(fbDriveReverse);
-	fbMccRev_019 	  			  : FB_MotorControlReverse(fbDriveReverse);
-	fbMccRev_020 	              : FB_MotorControlReverse(fbDriveReverse);
+	//MCC Driver	
+	fbDriveReverse_001		      : FB_DriveReverse;
+	fbDriveReverse_002		      : FB_DriveReverse;
+	fbDriveReverse_003		      : FB_DriveReverse;
+	fbDriveReverse_004		      : FB_DriveReverse;
+	fbDriveReverse_005		      : FB_DriveReverse;
+	fbDriveReverse_006		      : FB_DriveReverse;
+	fbDriveReverse_007		      : FB_DriveReverse;
+	fbDriveReverse_008		      : FB_DriveReverse;
+	fbDriveReverse_009		      : FB_DriveReverse;
+	fbDriveReverse_010		      : FB_DriveReverse;
+	fbDriveReverse_011		      : FB_DriveReverse;
+	fbDriveReverse_012		      : FB_DriveReverse;
+	fbDriveReverse_013		      : FB_DriveReverse;
+	fbDriveReverse_014		      : FB_DriveReverse;
+	fbDriveReverse_015		      : FB_DriveReverse;
+	fbDriveReverse_016		      : FB_DriveReverse;
+	fbDriveReverse_017		      : FB_DriveReverse;
+	fbDriveReverse_018		      : FB_DriveReverse;
+	fbDriveReverse_019		      : FB_DriveReverse;
+	fbDriveReverse_020		      : FB_DriveReverse;
+
+
+	//MCC Driver Control
+	fbMccRev_001			 	  : FB_MotorControlReverse(fbDriveReverse_001);
+	fbMccRev_002			 	  : FB_MotorControlReverse(fbDriveReverse_002);
+	fbMccRev_003			 	  : FB_MotorControlReverse(fbDriveReverse_003);
+	fbMccRev_004 	 			  : FB_MotorControlReverse(fbDriveReverse_004);
+	fbMccRev_005			 	  : FB_MotorControlReverse(fbDriveReverse_005);
+	fbMccRev_006			 	  : FB_MotorControlReverse(fbDriveReverse_006);
+	fbMccRev_007				  : FB_MotorControlReverse(fbDriveReverse_007);
+	fbMccRev_008 	 			  : FB_MotorControlReverse(fbDriveReverse_008);
+	fbMccRev_009 	  			  : FB_MotorControlReverse(fbDriveReverse_009);
+	fbMccRev_010 	              : FB_MotorControlReverse(fbDriveReverse_010);
+	fbMccRev_011			 	  : FB_MotorControlReverse(fbDriveReverse_011);
+	fbMccRev_012			 	  : FB_MotorControlReverse(fbDriveReverse_012);
+	fbMccRev_013			 	  : FB_MotorControlReverse(fbDriveReverse_013);
+	fbMccRev_014 	 			  : FB_MotorControlReverse(fbDriveReverse_014);
+	fbMccRev_015			 	  : FB_MotorControlReverse(fbDriveReverse_015);
+	fbMccRev_016			 	  : FB_MotorControlReverse(fbDriveReverse_016);
+	fbMccRev_017				  : FB_MotorControlReverse(fbDriveReverse_017);
+	fbMccRev_018 	 			  : FB_MotorControlReverse(fbDriveReverse_018);
+	fbMccRev_019 	  			  : FB_MotorControlReverse(fbDriveReverse_019);
+	fbMccRev_020 	              : FB_MotorControlReverse(fbDriveReverse_020);
 	
 	
 END_VAR
