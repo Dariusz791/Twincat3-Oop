@@ -106,6 +106,15 @@ END_VAR
           <ST><![CDATA[ScadaAutoButton := autoButton.IsPressed;	]]></ST>
         </Implementation>
       </Get>
+      <Set Name="Set" Id="{e19bb3c2-66b1-406f-8c9f-19179b6ef845}">
+        <Declaration><![CDATA[
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[autoButton.IsPressed :=  ScadaAutoButton;	]]></ST>
+        </Implementation>
+      </Set>
     </Property>
     <Property Name="ScadaForwardButton" Id="{ffad69d9-d8e9-47d6-b482-b488b6c47ab5}" FolderPath="Property\">
       <Declaration><![CDATA[PROPERTY ScadaForwardButton : BOOL]]></Declaration>
@@ -118,6 +127,15 @@ END_VAR
 ]]></ST>
         </Implementation>
       </Get>
+      <Set Name="Set" Id="{58af65f6-eb84-456f-bfd2-35db7baa15bf}">
+        <Declaration><![CDATA[
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[forwardButton.IsPressed := ScadaForwardButton;]]></ST>
+        </Implementation>
+      </Set>
     </Property>
   </POU>
 </TcPlcObject>

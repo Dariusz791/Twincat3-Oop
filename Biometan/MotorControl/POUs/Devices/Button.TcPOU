@@ -19,6 +19,15 @@ END_VAR
           <ST><![CDATA[IsPressed:= _input;]]></ST>
         </Implementation>
       </Get>
+      <Set Name="Set" Id="{5d9df6a8-cd1f-4aaa-9a42-7da4724320fc}">
+        <Declaration><![CDATA[
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_input := IsPressed;]]></ST>
+        </Implementation>
+      </Set>
     </Property>
   </POU>
 </TcPlcObject>

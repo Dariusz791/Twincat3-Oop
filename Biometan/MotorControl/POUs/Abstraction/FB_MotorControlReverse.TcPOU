@@ -90,6 +90,15 @@ END_VAR
           <ST><![CDATA[ScadaReverseButton := reverseButton.IsPressed;]]></ST>
         </Implementation>
       </Get>
+      <Set Name="Set" Id="{2af1048b-bcfb-4dee-8e19-9a18e55ac678}">
+        <Declaration><![CDATA[
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[reverseButton.IsPressed := ScadaReverseButton;]]></ST>
+        </Implementation>
+      </Set>
     </Property>
   </POU>
 </TcPlcObject>
