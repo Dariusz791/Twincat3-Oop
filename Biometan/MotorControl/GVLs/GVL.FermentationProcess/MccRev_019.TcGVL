@@ -7,8 +7,8 @@ VAR_GLOBAL
 	bAutoButton  	   : BOOL;  // SCADA button Auto/manual Command
 	bForwardButton     : BOOL;  // SCADA button Forward drive Command
 	bReverseButton	   : BOOL;  // SCADA button Reverse drive Command	 
-	bTermFuse          : BOOL;  // Term Fuse state from psyhical input
-	bContactor         : BOOL;  // Contactor state from psyhical output
+	bTermFuse    AT%I* : BOOL;  // Term Fuse state from psyhical input
+	bContactor   AT%Q* : BOOL;  // Contactor state from psyhical output
 	udHours   		   : UDINT; // Work Time Counter - hours nonvolatile memory register
 	uMinutes	   	   : UINT;  // Work Time Counter - minutes nonvolatile memory register
 	uSeconds           : UINT;  // Work Time Counter - seconds nonvolatile memory register

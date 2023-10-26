@@ -137,6 +137,15 @@ END_VAR
           <ST><![CDATA[MotorProtection := _termFuse.IsActive;]]></ST>
         </Implementation>
       </Get>
+      <Set Name="Set" Id="{434671ed-a3a8-43ac-b8a0-0bded4400da1}">
+        <Declaration><![CDATA[
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_termFuse.IsActive := MotorProtection;]]></ST>
+        </Implementation>
+      </Set>
     </Property>
     <Property Name="MotorState" Id="{bcbd0b90-616d-4f0c-900d-52faaafb4145}" FolderPath="Property\">
       <Declaration><![CDATA[PROPERTY MotorState : T_MaxString]]></Declaration>

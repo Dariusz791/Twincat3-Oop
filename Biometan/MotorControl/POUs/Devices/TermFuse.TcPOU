@@ -20,6 +20,15 @@ END_VAR
           <ST><![CDATA[IsActive := _input;]]></ST>
         </Implementation>
       </Get>
+      <Set Name="Set" Id="{ed525197-c64e-4ae9-88ee-a4f5f6af8c7d}">
+        <Declaration><![CDATA[
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_input := IsActive;]]></ST>
+        </Implementation>
+      </Set>
     </Property>
   </POU>
 </TcPlcObject>

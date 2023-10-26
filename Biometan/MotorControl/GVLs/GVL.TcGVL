@@ -7,8 +7,8 @@ VAR_GLOBAL
 	bForwardButton_M01     : BOOL;  // SCADA button Forward drive Command 
 	bAutoButton_M01  	   : BOOL;  // SCADA button Auto/manual Command
 	bAuto_M01			   : BOOL;  // Memory Flag to program execution control  
-	bContactor_M01 AT%Q*   : BOOL;  // Contactor state from psyhical output
-	bTermFuse_M01  AT%I*   : BOOL;  // Term Fuse state from psyhical input
+	bContactor_M01         : BOOL;  // Contactor state from psyhical output
+	bTermFuse_M01          : BOOL;  // Term Fuse state from psyhical input
 	udHours_M01   		   : UDINT; // Work Time Counter - hours nonvolatile memory register
 	uMinuts_M01	   		   : UINT;  // Work Time Counter - minuts nonvolatile memory register
 	uSeconds_M01           : UINT;  // Work Time Counter - seconds nonvolatile memory register
@@ -22,7 +22,7 @@ VAR_GLOBAL
 	bAutoButton_M02  	   : BOOL;  // SCADA button Auto/manual Command
 	rSpeedEdit_M02		   : REAL;	// SCADA textEdit Speed value
 	bAuto_M02			   : BOOL;  // Memory Flag to program execution control  
-	bTermFuse_M02  AT%I*   : BOOL;  // Term Fuse state from psyhical input
+	bTermFuse_M02          : BOOL;  // Term Fuse state from psyhical input
 	udHours_M02   		   : UDINT; // Work Time Counter - hours nonvolatile memory register
 	uMinuts_M02	   		   : UINT;  // Work Time Counter - minuts nonvolatile memory register
 	uSeconds_M02           : UINT;  // Work Time Counter - seconds nonvolatile memory register
