@@ -5,16 +5,26 @@
 VAR_GLOBAL
 
 // FB DRIVE MccRev_012
+	{attribute 'OPC.UA.DA' := '1'}
 	bAutoButton  	   : BOOL;  // SCADA button Auto/manual Command
+	{attribute 'OPC.UA.DA' := '1'}
 	bForwardButton     : BOOL;  // SCADA button Forward drive Command
-	bReverseButton	   : BOOL;  // SCADA button Reverse drive Command	 
+	{attribute 'OPC.UA.DA' := '1'}
+	bReverseButton	   : BOOL;  // SCADA button Reverse drive Command
+	{attribute 'OPC.UA.DA' := '1'}	 
 	bTermFuse    AT%I* : BOOL;  // Term Fuse state from psyhical input
+	{attribute 'OPC.UA.DA' := '1'}
 	bContactor   AT%Q* : BOOL;  // Contactor state from psyhical output
+	{attribute 'OPC.UA.DA' := '1'}
 	udHours   		   : UDINT; // Work Time Counter - hours nonvolatile memory register
+	{attribute 'OPC.UA.DA' := '1'}
 	uMinutes	   	   : UINT;  // Work Time Counter - minuts nonvolatile memory register
+	{attribute 'OPC.UA.DA' := '1'}
 	uSeconds           : UINT;  // Work Time Counter - seconds nonvolatile memory register
+	{attribute 'OPC.UA.DA' := '1'}
   	sStatus	           : T_MaxString; // Motor Status string
-	sState 	           : T_MaxString; // Motor State string	g	
+	{attribute 'OPC.UA.DA' := '1'}
+	sState 	           : T_MaxString; // Motor State string	
 
 END_VAR]]></Declaration>
   </GVL>

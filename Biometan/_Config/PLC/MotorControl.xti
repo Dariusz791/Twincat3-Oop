@@ -1,16 +1,11 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.47" ClassName="CNestedPlcProjDef">
-	<Project GUID="{C2885184-96B6-487C-9286-A6CA2945AECD}" Name="MotorControl" PrjFilePath="..\..\MotorControl\MotorControl.plcproj" TmcFilePath="..\..\MotorControl\MotorControl.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="MotorControl\MotorControl.tmc" TmcHash="{117A911C-55E9-EDEC-68C3-C3DA9D7B3CFD}">
+	<Project GUID="{C2885184-96B6-487C-9286-A6CA2945AECD}" Name="MotorControl" PrjFilePath="..\..\MotorControl\MotorControl.plcproj" TmcFilePath="..\..\MotorControl\MotorControl.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" CopyTmcToTarget="true" CopyTpyToTarget="false" SymbolicMapping="true">
+		<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="MotorControl\MotorControl.tmc" TmcHash="{10154CC2-1194-9565-95C4-F7A22C3F73F8}">
 			<Name>MotorControl Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
-				<Var>
-					<Name>MccRev_001.bTermFuse</Name>
-					<Comment><![CDATA[ Term Fuse state from psyhical input]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
 				<Var>
 					<Name>MccRev_002.bTermFuse</Name>
 					<Comment><![CDATA[ Term Fuse state from psyhical input]]></Comment>
@@ -106,14 +101,19 @@
 					<Comment><![CDATA[ Term Fuse state from psyhical input]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
+				<Var>
+					<Name>MccRev_001.bTermFuse</Name>
+					<Comment><![CDATA[ Term Fuse state from psyhical input]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>TempSens_001.rRawTempValue</Name>
+					<Comment><![CDATA[ raw value from measure instruments]]></Comment>
+					<Type>INT</Type>
+				</Var>
 			</Vars>
 			<Vars VarGrpType="2" AreaNo="1">
 				<Name>PlcTask Outputs</Name>
-				<Var>
-					<Name>MccRev_001.bContactor</Name>
-					<Comment><![CDATA[ Contactor state from psyhical output]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
 				<Var>
 					<Name>MccRev_002.bContactor</Name>
 					<Comment><![CDATA[ Contactor state from psyhical output]]></Comment>
@@ -209,6 +209,11 @@
 					<Comment><![CDATA[ Contactor state from psyhical output]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
+				<Var>
+					<Name>MccRev_001.bContactor</Name>
+					<Comment><![CDATA[ Contactor state from psyhical output]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
 			</Vars>
 			<UnrestoredVarLinks ImportTime="2023-09-06T17:11:57">
 				<OwnerA Name="InputDst" Prefix="TIPC^MotorControl^MotorControl Instance" Type="1">
@@ -282,4 +287,63 @@
 			</TaskPouOids>
 		</Instance>
 	</Project>
+	<Mappings>
+		<OwnerA Name="MotorControl Instance">
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 10 (EL2008)">
+				<Link VarA="PlcTask Outputs^MccRev_001.bContactor" VarB="Channel 1^MccRev_001.bContactor" Size="1"/>
+				<Link VarA="PlcTask Outputs^MccRev_002.bContactor" VarB="Channel 2^MccRev_002.bContactor" Size="1"/>
+				<Link VarA="PlcTask Outputs^MccRev_003.bContactor" VarB="Channel 3^MccRev_003.bContactor" Size="1"/>
+				<Link VarA="PlcTask Outputs^MccRev_004.bContactor" VarB="Channel 4^MccRev_004.bContactor" Size="1"/>
+				<Link VarA="PlcTask Outputs^MccRev_005.bContactor" VarB="Channel 5^MccRev_005.bContactor" Size="1"/>
+				<Link VarA="PlcTask Outputs^MccRev_006.bContactor" VarB="Channel 6^MccRev_006.bContactor" Size="1"/>
+				<Link VarA="PlcTask Outputs^MccRev_007.bContactor" VarB="Channel 7^MccRev_007.bContactor" Size="1"/>
+				<Link VarA="PlcTask Outputs^MccRev_008.bContactor" VarB="Channel 8^MccRev_008.bContactor" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 11 (EL2008)">
+				<Link VarA="PlcTask Outputs^MccRev_009.bContactor" VarB="Channel 1^MccRev_009.bContactor" Size="1"/>
+				<Link VarA="PlcTask Outputs^MccRev_010.bContactor" VarB="Channel 2^MccRev_010.bContactor" Size="1"/>
+				<Link VarA="PlcTask Outputs^MccRev_011.bContactor" VarB="Channel 3^MccRev_011.bContactor" Size="1"/>
+				<Link VarA="PlcTask Outputs^MccRev_012.bContactor" VarB="Channel 4^MccRev_012.bContactor" Size="1"/>
+				<Link VarA="PlcTask Outputs^MccRev_013.bContactor" VarB="Channel 5^MccRev_013.bContactor" Size="1"/>
+				<Link VarA="PlcTask Outputs^MccRev_014.bContactor" VarB="Channel 6^MccRev_014.bContactor" Size="1"/>
+				<Link VarA="PlcTask Outputs^MccRev_015.bContactor" VarB="Channel 7^MccRev_015.bContactor" Size="1"/>
+				<Link VarA="PlcTask Outputs^MccRev_016.bContactor" VarB="Channel 8^MccRev_016.bContactor" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 14 (EL3058)">
+				<Link VarA="PlcTask Inputs^TempSens_001.rRawTempValue" VarB="AI Standard Channel 1^TempSens_001.rRawTempValue"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL2008)">
+				<Link VarA="PlcTask Outputs^MccRev_017.bContactor" VarB="Channel 1^MccRev_017.bContactor" Size="1"/>
+				<Link VarA="PlcTask Outputs^MccRev_018.bContactor" VarB="Channel 2^MccRev_018.bContactor" Size="1"/>
+				<Link VarA="PlcTask Outputs^MccRev_019.bContactor" VarB="Channel 3^MccRev_019.bContactor" Size="1"/>
+				<Link VarA="PlcTask Outputs^MccRev_020.bContactor" VarB="Channel 4^MccRev_020.bContactor" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1008)">
+				<Link VarA="PlcTask Inputs^MccRev_001.bTermFuse" VarB="Channel 1^MccRev_001.bTermFuse" Size="1"/>
+				<Link VarA="PlcTask Inputs^MccRev_002.bTermFuse" VarB="Channel 2^MccRev_002.bTermFuse" Size="1"/>
+				<Link VarA="PlcTask Inputs^MccRev_003.bTermFuse" VarB="Channel 3^MccRev_003.bTermFuse" Size="1"/>
+				<Link VarA="PlcTask Inputs^MccRev_004.bTermFuse" VarB="Channel 4^MccRev_004.bTermFuse" Size="1"/>
+				<Link VarA="PlcTask Inputs^MccRev_005.bTermFuse" VarB="Channel 5^MccRev_005.bTermFuse" Size="1"/>
+				<Link VarA="PlcTask Inputs^MccRev_006.bTermFuse" VarB="Channel 6^MccRev_006.bTermFuse" Size="1"/>
+				<Link VarA="PlcTask Inputs^MccRev_007.bTermFuse" VarB="Channel 7^MccRev_007.bTermFuse" Size="1"/>
+				<Link VarA="PlcTask Inputs^MccRev_008.bTermFuse" VarB="Channel 8^MccRev_008.bTermFuse" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 7 (EL1008)">
+				<Link VarA="PlcTask Inputs^MccRev_009.bTermFuse" VarB="Channel 1^MccRev_009.bTermFuse" Size="1"/>
+				<Link VarA="PlcTask Inputs^MccRev_010.bTermFuse" VarB="Channel 2^MccRev_010.bTermFuse" Size="1"/>
+				<Link VarA="PlcTask Inputs^MccRev_011.bTermFuse" VarB="Channel 3^MccRev_011.bTermFuse" Size="1"/>
+				<Link VarA="PlcTask Inputs^MccRev_012.bTermFuse" VarB="Channel 4^MccRev_012.bTermFuse" Size="1"/>
+				<Link VarA="PlcTask Inputs^MccRev_013.bTermFuse" VarB="Channel 5^MccRev_013.bTermFuse" Size="1"/>
+				<Link VarA="PlcTask Inputs^MccRev_014.bTermFuse" VarB="Channel 6^MccRev_014.bTermFuse" Size="1"/>
+				<Link VarA="PlcTask Inputs^MccRev_015.bTermFuse" VarB="Channel 7^MccRev_015.bTermFuse" Size="1"/>
+				<Link VarA="PlcTask Inputs^MccRev_016.bTermFuse" VarB="Channel 8^MccRev_016.bTermFuse" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 8 (EL1008)">
+				<Link VarA="PlcTask Inputs^MccRev_017.bTermFuse" VarB="Channel 1^MccRev_017.bTermFuse" Size="1"/>
+				<Link VarA="PlcTask Inputs^MccRev_018.bTermFuse" VarB="Channel 2^MccRev_018.bTermFuse" Size="1"/>
+				<Link VarA="PlcTask Inputs^MccRev_019.bTermFuse" VarB="Channel 3^MccRev_019.bTermFuse" Size="1"/>
+				<Link VarA="PlcTask Inputs^MccRev_020.bTermFuse" VarB="Channel 4^MccRev_020.bTermFuse" Size="1"/>
+			</OwnerB>
+		</OwnerA>
+	</Mappings>
 </TcSmItem>

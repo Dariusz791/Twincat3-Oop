@@ -4,6 +4,7 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
 	// FB DRIVE MCC_01
+	{attribute 'OPC.UA.DA' := '1'}
 	bForwardButton_M01     : BOOL;  // SCADA button Forward drive Command 
 	bAutoButton_M01  	   : BOOL;  // SCADA button Auto/manual Command
 	bAuto_M01			   : BOOL;  // Memory Flag to program execution control  
@@ -15,7 +16,12 @@ VAR_GLOBAL
   	sStatus_M01	           : T_MaxString; // Motor Status string
 	sState_M01 	           : T_MaxString; // Motor State string
 
+END_VAR
+
+{attribute 'qualified_only'}
+VAR_GLOBAL
 	//FB Drive Inverter MCC_02
+	{attribute 'OPC.UA.DA' := '1'}
 	bForwardButton_M02     : BOOL;  // SCADA button Forward drive Command 
 	bReverseButton_M02     : BOOL;  // SCADA button Reverse drive Command
 	bResetButton_M02	   : BOOL;  // SCADA button Reset drive Command
@@ -28,12 +34,6 @@ VAR_GLOBAL
 	uSeconds_M02           : UINT;  // Work Time Counter - seconds nonvolatile memory register
   	sStatus_M02	           : T_MaxString; // Motor Status string
 	sState_M02 	           : T_MaxString; // Motor State string	
-	
-	
-	
- 
-			
-
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

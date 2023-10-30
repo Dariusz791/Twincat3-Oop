@@ -119,6 +119,10 @@
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
+    <Compile Include="GVLs\GVL.FermentationProcess\TempSens_001.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="GVLs\GVL.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -200,6 +204,9 @@
     <Compile Include="POUs\Process\FermentationProcess.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\Scaling\FB_Scaling.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
@@ -211,6 +218,7 @@
     <Folder Include="POUs\Implementation" />
     <Folder Include="POUs\Implementation\ITFs" />
     <Folder Include="POUs\Devices" />
+    <Folder Include="POUs\Scaling" />
     <Folder Include="POUs\Process" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
