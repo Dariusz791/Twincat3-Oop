@@ -11,7 +11,7 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000006}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..5] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000006}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..5] OF BIT</Name>
 			<BitSize>6</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -72,7 +72,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 					<Type>BIT</Type>
 					<Comment><![CDATA[Bit toggles everytime when new value available]]></Comment>
 				</Entry>
-				<Entry Name="TempSens_001.rRawTempValue" Index="#x6000" Sub="#x11" Flags="#x00040000">
+				<Entry Name="Fermentation_001.TempSens_001.rRawTempValue" Index="#x6000" Sub="#x11" Flags="#x00040000">
 					<Type>INT</Type>
 					<Comment><![CDATA[ raw value from measure instruments]]></Comment>
 				</Entry>

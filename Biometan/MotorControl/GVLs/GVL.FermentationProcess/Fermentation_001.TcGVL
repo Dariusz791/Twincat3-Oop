@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="Fermentation_001" Id="{33959a14-5dbf-4b59-bc48-b77301b37aab}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+	//**************************** Reverse Motor ***************************************************************
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.StructuredType' := '1'}
+	{attribute 'OPC.UA.DA.Description' := 'MccRev (structured) type '} 
+	MccRev_001 : ST_MccRev;
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.StructuredType' := '1'}
+	{attribute 'OPC.UA.DA.Description' := 'MccRev (structured) type '} 
+	MccRev_002 : ST_MccRev;
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.StructuredType' := '1'}
+	{attribute 'OPC.UA.DA.Description' := 'MccRev (structured) type '} 
+	MccRev_003 : ST_MccRev;
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.StructuredType' := '1'}
+	{attribute 'OPC.UA.DA.Description' := 'MccRev (structured) type '} 
+	MccRev_004 : ST_MccRev;
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.StructuredType' := '1'}
+	{attribute 'OPC.UA.DA.Description' := 'MccRev (structured) type '} 
+	MccRev_005 : ST_MccRev;
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.StructuredType' := '1'}
+	{attribute 'OPC.UA.DA.Description' := 'MccRev (structured) type '} 
+	MccRev_006 : ST_MccRev;
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.StructuredType' := '1'}
+	{attribute 'OPC.UA.DA.Description' := 'MccRev (structured) type '} 
+	MccRev_007 : ST_MccRev;
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.StructuredType' := '1'}
+	{attribute 'OPC.UA.DA.Description' := 'MccRev (structured) type '} 
+	MccRev_008 : ST_MccRev;
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.StructuredType' := '1'}
+	{attribute 'OPC.UA.DA.Description' := 'MccRev (structured) type '} 
+	MccRev_009 : ST_MccRev;
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.StructuredType' := '1'}
+	{attribute 'OPC.UA.DA.Description' := 'MccRev (structured) type '} 
+	MccRev_010 : ST_MccRev;
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.StructuredType' := '1'}
+	{attribute 'OPC.UA.DA.Description' := 'MccRev (structured) type '} 
+	MccRev_011 : ST_MccRev;
+	
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.StructuredType' := '1'}
+	{attribute 'OPC.UA.DA.Description' := 'MccRev (structured) type '} 
+	MccRev_012 : ST_MccRev;
+	
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.StructuredType' := '1'}
+	{attribute 'OPC.UA.DA.Description' := 'MccRev (structured) type '} 
+	MccRev_013 : ST_MccRev;
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.StructuredType' := '1'}
+	{attribute 'OPC.UA.DA.Description' := 'MccRev (structured) type '} 
+	MccRev_014 : ST_MccRev;
+	
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.StructuredType' := '1'}
+	{attribute 'OPC.UA.DA.Description' := 'MccRev (structured) type '} 
+	MccRev_015 : ST_MccRev;
+	
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.StructuredType' := '1'}
+	{attribute 'OPC.UA.DA.Description' := 'MccRev (structured) type '} 
+	MccRev_016 : ST_MccRev;
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.StructuredType' := '1'}
+	{attribute 'OPC.UA.DA.Description' := 'MccRev (structured) type '} 
+	MccRev_017 : ST_MccRev;
+	
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.StructuredType' := '1'}
+	{attribute 'OPC.UA.DA.Description' := 'MccRev (structured) type '} 
+	MccRev_018 : ST_MccRev;
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.StructuredType' := '1'}
+	{attribute 'OPC.UA.DA.Description' := 'MccRev (structured) type '} 
+	MccRev_019 : ST_MccRev;
+	
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.StructuredType' := '1'}
+	{attribute 'OPC.UA.DA.Description' := 'MccRev (structured) type '} 
+	MccRev_020 : ST_MccRev;
+	
+	
+	
+	//**************************** Temperature Sensor***************************************************************
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.AnalogItemType' := '1'}
+	{attribute 'OPC.UA.DA.AnalogItemType.EngineeringUnits' := '4408652'  }(*EngeneeringUnit = degree Celsius*)
+	{attribute 'OPC.UA.DA.AnalogItemType.InstrumentRange' := '0:100'  }
+	{attribute 'OPC.UA.DA.AnalogItemType.EURange' := '53:57'  }
+	{attribute 'OPC.UA.DA.AnalogItemType.WriteBehavior' := '2'  } (*AnalogWrMode_AllowAny = 0,
+																	AnalogWrMode_Clamp = 1,
+																	AnalogWrMode_Reject = 2,*)
+	TempSens_001 : ST_TempSens;
+	
+		//**************************** Temperature Sensor***************************************************************
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.AnalogItemType' := '1'}
+	{attribute 'OPC.UA.DA.AnalogItemType.EngineeringUnits' := '4408652'  }(*EngeneeringUnit = degree Celsius*)
+	{attribute 'OPC.UA.DA.AnalogItemType.InstrumentRange' := '0:100'  }
+	{attribute 'OPC.UA.DA.AnalogItemType.EURange' := '53:57'  }
+	{attribute 'OPC.UA.DA.AnalogItemType.WriteBehavior' := '2'  } (*AnalogWrMode_AllowAny = 0,
+																	AnalogWrMode_Clamp = 1,
+																	AnalogWrMode_Reject = 2,*)
+	TempSens_002 : ST_TempSens;
+	
+		//**************************** Temperature Sensor***************************************************************
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.AnalogItemType' := '1'}
+	{attribute 'OPC.UA.DA.AnalogItemType.EngineeringUnits' := '4408652'  }(*EngeneeringUnit = degree Celsius*)
+	{attribute 'OPC.UA.DA.AnalogItemType.InstrumentRange' := '0:100'  }
+	{attribute 'OPC.UA.DA.AnalogItemType.EURange' := '53:57'  }
+	{attribute 'OPC.UA.DA.AnalogItemType.WriteBehavior' := '2'  } (*AnalogWrMode_AllowAny = 0,
+																	AnalogWrMode_Clamp = 1,
+																	AnalogWrMode_Reject = 2,*)
+	TempSens_003 : ST_TempSens;
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

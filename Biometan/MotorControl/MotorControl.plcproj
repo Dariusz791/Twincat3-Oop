@@ -36,90 +36,16 @@
     <Compile Include="DUTs\ST_Inverter.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\ST_MccRev.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ST_TempSens.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\ST_WorkTime.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GVLs\GVL.FermentationProcess\MccRev_001.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="GVLs\GVL.FermentationProcess\MccRev_002.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="GVLs\GVL.FermentationProcess\MccRev_003.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="GVLs\GVL.FermentationProcess\MccRev_004.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="GVLs\GVL.FermentationProcess\MccRev_005.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="GVLs\GVL.FermentationProcess\MccRev_006.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="GVLs\GVL.FermentationProcess\MccRev_007.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="GVLs\GVL.FermentationProcess\MccRev_008.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="GVLs\GVL.FermentationProcess\MccRev_009.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="GVLs\GVL.FermentationProcess\MccRev_010.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="GVLs\GVL.FermentationProcess\MccRev_011.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="GVLs\GVL.FermentationProcess\MccRev_012.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="GVLs\GVL.FermentationProcess\MccRev_013.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="GVLs\GVL.FermentationProcess\MccRev_014.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="GVLs\GVL.FermentationProcess\MccRev_015.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="GVLs\GVL.FermentationProcess\MccRev_016.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="GVLs\GVL.FermentationProcess\MccRev_017.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="GVLs\GVL.FermentationProcess\MccRev_018.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="GVLs\GVL.FermentationProcess\MccRev_019.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="GVLs\GVL.FermentationProcess\MccRev_020.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="GVLs\GVL.FermentationProcess\TempSens_001.TcGVL">
+    <Compile Include="GVLs\GVL.FermentationProcess\Fermentation_001.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>

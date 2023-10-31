@@ -1,31 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <GVL Name="MccRev_012" Id="{72b5ddb4-1382-46ea-9bf2-f44afb62e305}">
-    <Declaration><![CDATA[{attribute 'qualified_only'}
-VAR_GLOBAL
+  <DUT Name="ST_MccRev" Id="{3e3e8526-0293-402b-a4a0-9b2d41cfcc59}">
+    <Declaration><![CDATA[{attribute 'OPC.UA.DA' := '2'}
+{attribute 'OPC.UA.DA.StructuredType' := '1'}
+TYPE ST_MccRev :
+STRUCT
 
-// FB DRIVE MccRev_012
-	{attribute 'OPC.UA.DA' := '1'}
 	bAutoButton  	   : BOOL;  // SCADA button Auto/manual Command
-	{attribute 'OPC.UA.DA' := '1'}
 	bForwardButton     : BOOL;  // SCADA button Forward drive Command
-	{attribute 'OPC.UA.DA' := '1'}
 	bReverseButton	   : BOOL;  // SCADA button Reverse drive Command
-	{attribute 'OPC.UA.DA' := '1'}	 
 	bTermFuse    AT%I* : BOOL;  // Term Fuse state from psyhical input
-	{attribute 'OPC.UA.DA' := '1'}
 	bContactor   AT%Q* : BOOL;  // Contactor state from psyhical output
-	{attribute 'OPC.UA.DA' := '1'}
 	udHours   		   : UDINT; // Work Time Counter - hours nonvolatile memory register
-	{attribute 'OPC.UA.DA' := '1'}
 	uMinutes	   	   : UINT;  // Work Time Counter - minuts nonvolatile memory register
-	{attribute 'OPC.UA.DA' := '1'}
 	uSeconds           : UINT;  // Work Time Counter - seconds nonvolatile memory register
-	{attribute 'OPC.UA.DA' := '1'}
   	sStatus	           : T_MaxString; // Motor Status string
-	{attribute 'OPC.UA.DA' := '1'}
-	sState 	           : T_MaxString; // Motor State string	
+	sState 	           : T_MaxString; // Motor State string		
 
-END_VAR]]></Declaration>
-  </GVL>
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
 </TcPlcObject>
