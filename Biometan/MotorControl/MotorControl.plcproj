@@ -33,13 +33,22 @@
     <Compile Include="DUTs\E_StateDevice.TcTLEO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Fermentation\ST_LevelSens.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Fermentation\ST_MccRev.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Fermentation\ST_PhSens.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Fermentation\ST_PressureSens.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Fermentation\ST_TempSens.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\ST_Inverter.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DUTs\ST_MccRev.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DUTs\ST_TempSens.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ST_WorkTime.TcDUT">
@@ -136,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
+    <Folder Include="DUTs\Fermentation" />
     <Folder Include="GVLs" />
     <Folder Include="GVLs\GVL.FermentationProcess" />
     <Folder Include="POUs\Abstraction" />

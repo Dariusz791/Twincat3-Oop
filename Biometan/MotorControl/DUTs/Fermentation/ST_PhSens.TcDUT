@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ST_PhSens" Id="{543bb955-b778-4937-8d46-812198bfd927}">
+    <Declaration><![CDATA[{attribute 'OPC.UA.DA' := '2'}
+{attribute 'OPC.UA.DA.StructuredType' := '1'}
+
+TYPE ST_PhSens :
+STRUCT
+	
+	rRawPhValue AT%I* : INT;	 // raw value from measure instruments
+	rPhValue  		  : REAL;    // value from fermentation tank Ph sensor		
+
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

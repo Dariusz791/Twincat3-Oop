@@ -150,6 +150,46 @@ VAR_GLOBAL
 																	AnalogWrMode_Reject = 2,*)
 	TempSens_003 : ST_TempSens;
 	
+	
+		//**************************** Level Sensor***************************************************************
+			
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.AnalogItemType' := '1'}
+	{attribute 'OPC.UA.DA.AnalogItemType.EngineeringUnits' := '5067858'  }(*EngeneeringUnit = metre*)
+	{attribute 'OPC.UA.DA.AnalogItemType.InstrumentRange' := '0:10'  } (*0- 10m , metry*)
+	{attribute 'OPC.UA.DA.AnalogItemType.EURange' := '6:7'  }			(*1m słupa wody to 9,79kPa*)
+	{attribute 'OPC.UA.DA.AnalogItemType.WriteBehavior' := '2'  } (*AnalogWrMode_AllowAny = 0,
+																	AnalogWrMode_Clamp = 1,
+																	AnalogWrMode_Reject = 2,*)
+	LevelSens_001 : ST_LevelSens;
+																		
+
+		//**************************** Ph Sensor***************************************************************
+		
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.AnalogItemType' := '1'}
+	{attribute 'OPC.UA.DA.AnalogItemType.EngineeringUnits' := '5255734'  }(*EngeneeringUnit = phot*)
+	{attribute 'OPC.UA.DA.AnalogItemType.InstrumentRange' := '0:12'  } (*0- 12ph , czujnik od 0 do 12*)
+	{attribute 'OPC.UA.DA.AnalogItemType.EURange' := '7:8'  }			(*pracujemy w zakresie od 7 do 8 ph*)
+	{attribute 'OPC.UA.DA.AnalogItemType.WriteBehavior' := '2'  } (*AnalogWrMode_AllowAny = 0,
+																	AnalogWrMode_Clamp = 1,
+																	AnalogWrMode_Reject = 2,*)
+	PhSens_001 : ST_PhSens;		
+		
+		//**************************** Pressure Sensor***************************************************************
+		
+	{attribute 'OPC.UA.DA' := '1'}
+	{attribute 'OPC.UA.DA.AnalogItemType' := '1'}
+	{attribute 'OPC.UA.DA.AnalogItemType.EngineeringUnits' := '4935745'  }(*EngeneeringUnit = kPa*)
+	{attribute 'OPC.UA.DA.AnalogItemType.InstrumentRange' := '0:5'  } (*0- 5kPa*)
+	{attribute 'OPC.UA.DA.AnalogItemType.EURange' := '3:4'  }			(*pracujemy w zakresie od 3 do 4 kPa*)
+	{attribute 'OPC.UA.DA.AnalogItemType.WriteBehavior' := '2'  } (*AnalogWrMode_AllowAny = 0,
+																	AnalogWrMode_Clamp = 1,
+																	AnalogWrMode_Reject = 2,*)
+	PressureSens_001 : ST_PressureSens;		
+	
+	
+	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ST_LevelSens" Id="{7e785e69-a0e3-4cde-bdf1-2ab06201a58c}">
+    <Declaration><![CDATA[{attribute 'OPC.UA.DA' := '2'}
+{attribute 'OPC.UA.DA.StructuredType' := '1'}
+
+TYPE ST_LevelSens :
+STRUCT
+	
+	rRawLevelValue AT%I* : INT;	 // raw value from measure instruments
+	rLevelValue  		 : REAL;  // value from fermentation tank Level sensor	
+
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
