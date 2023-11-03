@@ -136,7 +136,7 @@
     <Compile Include="POUs\mergeIO.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\Process\FermentationProcess.TcPOU">
+    <Compile Include="POUs\Process\FermentationProcess_001.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Scaling\FB_Scaling.TcPOU">
